@@ -24,11 +24,21 @@ def create_multiple_files_dataset_dict():
     return create_dataset_dict(["../babylm_data/babylm_10M/switchboard.train",
                                 "../babylm_data/babylm_10M/qed.train", 
                                 "../babylm_data/babylm_10M/open_subtitles.train", 
-                                "../babylm_data/babylm_10M/wikipedia.train"], 
+                                "../babylm_data/babylm_10M/wikipedia.train", 
+                                "../babylm_data/babylm_10M/bnc_spoken.train", 
+                                "../babylm_data/babylm_10M/cbt.train", 
+                                "../babylm_data/babylm_10M/children_stories.train", 
+                                "../babylm_data/babylm_10M/gutenberg.train", 
+                                "../babylm_data/babylm_10M/simple_wikipedia.train"], 
                                ["../babylm_data/babylm_dev/switchboard.dev",
                                 "../babylm_data/babylm_dev/qed.dev",
                                 "../babylm_data/babylm_dev/open_subtitles.dev", 
-                                "../babylm_data/babylm_dev/wikipedia.dev"])
+                                "../babylm_data/babylm_dev/wikipedia.dev", 
+                                "../babylm_data/babylm_dev/bnc_spoken.dev", 
+                                "../babylm_data/babylm_dev/cbt.dev", 
+                                "../babylm_data/babylm_dev/children_stories.dev", 
+                                "../babylm_data/babylm_dev/gutenberg.dev", 
+                                "../babylm_data/babylm_dev/simple_wikipedia.dev"])
 
 
 CONTEXT_LENGTH = 128
