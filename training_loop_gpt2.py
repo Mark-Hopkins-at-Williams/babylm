@@ -1,6 +1,6 @@
 import sys
 sys.path.insert(0, '/home/nasim/babylm/Tokenizers')
-from tokenizer_return_overflow import create_multiple_files_dataset_dict, tokenize, TOKENIZER, CONTEXT_LENGTH
+from tokenizer_dp_merging_buffer import create_multiple_files_dataset_dict, tokenize, TOKENIZER, CONTEXT_LENGTH
 from transformers import AutoTokenizer, GPT2LMHeadModel, AutoConfig
 from transformers import DataCollatorForLanguageModeling
 from torch.utils.data.dataloader import DataLoader
@@ -10,6 +10,7 @@ from accelerate import Accelerator
 from tqdm import tqdm
 from torch.optim import AdamW
 from transformers import get_scheduler
+
 
 
 raw_datasets = create_multiple_files_dataset_dict()
@@ -72,7 +73,7 @@ model, optimizer, train_dataloader, eval_dataloader = accelerator.prepare(
 )
 
 
-num_train_epochs = 2
+num_train_epochs = 8
 num_update_steps_per_epoch = len(train_dataloader)
 num_training_steps = num_train_epochs * num_update_steps_per_epoch
 
@@ -83,15 +84,15 @@ lr_scheduler = get_scheduler(
     num_training_steps=num_training_steps,
 )
 
-gradient_accumulation_steps = 2
-eval_steps = 2000#200
+gradient_accumulation_steps = 1
+eval_steps = 1000
 
 
 model.train()
 completed_steps = 0
 for epoch in range(num_train_epochs):
     for step, batch in tqdm(
-        enumerate(train_dataloader, start=1), total=num_training_steps
+        enumerate(train_dataloader, start=1), total=num_training_steps, initial=completed_steps
     ):
         logits = model(batch["input_ids"]).logits
         loss = crossEntropy_loss(batch["input_ids"], logits)
@@ -116,6 +117,6 @@ for epoch in range(num_train_epochs):
             model.train()
             accelerator.wait_for_everyone()
             unwrapped_model = accelerator.unwrap_model(model)
-            unwrapped_model.save_pretrained("return_overflow_tokenization_model", save_function=accelerator.save)
+            unwrapped_model.save_pretrained("8e_9ds_dp_merging_buffer_model", save_function=accelerator.save)
             if accelerator.is_main_process:
-                TOKENIZER.save_pretrained("return_overflow_tokenization_model")
+                TOKENIZER.save_pretrained("8e_9ds_dp_merging_buffer_model")
