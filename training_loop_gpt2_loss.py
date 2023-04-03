@@ -1,5 +1,5 @@
 import sys
-sys.path.append("C:/Users/dlai5/OneDrive/Desktop/babylmMaster/working_dir/Tokenizers")
+sys.path.append("/home/nasim/babylm/Tokenizers")
 from tokenizer_dp_merging_buffer import create_multiple_files_dataset_dict, tokenize, TOKENIZER, CONTEXT_LENGTH
 from transformers import AutoTokenizer, GPT2LMHeadModel, AutoConfig
 from transformers import DataCollatorForLanguageModeling
@@ -16,7 +16,7 @@ from transformers import get_scheduler
 raw_datasets = create_multiple_files_dataset_dict()
 tokenized_datasets = raw_datasets.map(
     tokenize, batched=True, remove_columns=raw_datasets["train"].column_names,
-    load_from_cache_file=False
+    #load_from_cache_file=False
 )
 
 TOKENIZER.pad_token = TOKENIZER.eos_token
@@ -44,15 +44,16 @@ def crossEntropy_loss(inputs, logits):
     shift_logits = logits[..., :-1, :].contiguous()
     
     #to ignore the pad tokens
-    padding_mask = labels.eq(-100)    
-    labels = torch.clamp(labels, min=0) 
+    padding_mask = shift_labels.eq(50256)    
+    shift_labels = torch.clamp(shift_labels, max=50256) 
     num_active_elements = padding_mask.numel() - padding_mask.long().sum()
     
     loss_fct = CrossEntropyLoss(reduce=False)
     loss = loss_fct(shift_logits.view(-1, shift_logits.size(-1)), shift_labels.view(-1))
-    loss.masked_fill_(padding_mask, 0.0)    
+    loss_per_sample = loss.view(shift_logits.size(0), shift_logits.size(1))
+    loss_per_sample.masked_fill_(padding_mask, 0.0)    
     
-    loss_per_sample = loss.view(shift_logits.size(0), shift_logits.size(1)).sum() / num_active_elements
+    loss_per_sample = loss_per_sample.sum() / num_active_elements
 
     return loss_per_sample
     
@@ -82,7 +83,7 @@ model, optimizer, train_dataloader, eval_dataloader = accelerator.prepare(
 )
 
 
-num_train_epochs = 8
+num_train_epochs = 2
 num_update_steps_per_epoch = len(train_dataloader)
 num_training_steps = num_train_epochs * num_update_steps_per_epoch
 
@@ -126,6 +127,6 @@ for epoch in range(num_train_epochs):
             model.train()
             accelerator.wait_for_everyone()
             unwrapped_model = accelerator.unwrap_model(model)
-            unwrapped_model.save_pretrained("8e_9ds_dp_merging_buffer_model", save_function=accelerator.save)
+            unwrapped_model.save_pretrained("2e_9ds_dp_merging_nloss_model", save_function=accelerator.save)
             if accelerator.is_main_process:
-                TOKENIZER.save_pretrained("8e_9ds_dp_merging_buffer_model")
+                TOKENIZER.save_pretrained("2e_9ds_dp_merging_nloss_model")
