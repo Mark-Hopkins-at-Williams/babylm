@@ -60,10 +60,6 @@ TOKENIZER = RobertaTokenizer.from_pretrained("rbertT")
 def tokenize(element):
     outputs = TOKENIZER(element["text"], truncation=False)   
     merged_inputs = dp_merge_inputs(outputs["input_ids"], CONTEXT_LENGTH, TOKENIZER.eos_token_id)
-
-    #outputs = TOKENIZER.encode(outputs["input_ids"])
-    #merged_inputs = dp_merge_inputs(outputs["input_ids"], CONTEXT_LENGTH, "</s>", start = "<s>",)
-
     return {"input_ids": merged_inputs}
 
 
