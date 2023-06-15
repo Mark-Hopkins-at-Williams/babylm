@@ -40,30 +40,11 @@ def create_multiple_files_dataset_dict():
                                 "/home/nasim/babylm_data/babylm_dev/children_stories.dev", 
                                 "/home/nasim/babylm_data/babylm_dev/gutenberg.dev", 
                                 "/home/nasim/babylm_data/babylm_10M/simple_wikipedia.train"])
-    """return create_dataset_dict(["../babylm_data/babylm_10M/switchboard.train",
-                                "../babylm_data/babylm_10M/qed.train", 
-                                "../babylm_data/babylm_10M/open_subtitles.train", 
-                                "../babylm_data/babylm_10M/wikipedia.train"], 
-                               ["../babylm_data/babylm_dev/switchboard.dev",
-                                "../babylm_data/babylm_dev/qed.dev",
-                                "../babylm_data/babylm_dev/open_subtitles.dev", 
-                                "../babylm_data/babylm_dev/wikipedia.dev"])"""
     
 
 
-"""CONTEXT_LENGTH = 128
-TOKENIZER = AutoTokenizer.from_pretrained("gpt2")"""
-"""TOKENIZER = ByteLevelBPETokenizer(
-    "./roberta-tokenizer-vocab.json",
-    "./roberta-tokenizer-merges.txt",
-)"""
-"""CHECKPOINT = "distilbert-base-uncased"#"roberta-base"
-CONTEXT_LENGTH = 514
-TOKENIZER = AutoTokenizer.from_pretrained(CHECKPOINT)"""
-CONTEXT_LENGTH = 512
-TOKENIZER = RobertaTokenizerFast.from_pretrained('tokenizer')
-
-
+CONTEXT_LENGTH = 128
+TOKENIZER = AutoTokenizer.from_pretrained("gpt2")
 
 
 def tokenize(element):
