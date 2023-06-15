@@ -5,3 +5,6 @@ Notes:
 - Uses DP for augmenting tokenized sequences
 - Uses all 10 datasets in strict small
 
+Run the following on Appa:
+    sbatch train_bert_dp_ss.sh
+
