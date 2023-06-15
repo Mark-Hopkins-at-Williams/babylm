@@ -1,4 +1,4 @@
-from tokenize_and_data_gpt2_dp import create_multiple_files_dataset_dict, tokenize, TOKENIZER, CONTEXT_LENGTH 
+from tokenizer_and_data_gpt2_concatenation import create_multiple_files_dataset_dict, tokenize, TOKENIZER, CONTEXT_LENGTH 
 from transformers import GPT2LMHeadModel, AutoConfig
 from torch.utils.data.dataloader import DataLoader
 from transformers import DataCollatorForLanguageModeling
@@ -29,7 +29,7 @@ config = AutoConfig.from_pretrained(
 model = GPT2LMHeadModel(config)
 
 args = TrainingArguments(
-    output_dir="gpt2-dp-trainer-8b",
+    output_dir="gpt2-concat-trainer-8b",
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     evaluation_strategy="steps",
