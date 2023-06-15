@@ -1,4 +1,4 @@
-from babydata import strict_small_leave_one_out
+from babydata_all_but_one_datasets import strict_small_leave_one_out
 import os
 import sys
 from transformers import AutoTokenizer, GPT2LMHeadModel, AutoConfig

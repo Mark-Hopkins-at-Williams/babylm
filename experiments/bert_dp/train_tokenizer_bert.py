@@ -1,6 +1,6 @@
 from pathlib import Path
 from tokenizers.processors import BertProcessing
-from tokenizers import BertWordPieceTokenizer, ByteLevelBPETokenizer
+from tokenizers import ByteLevelBPETokenizer
 from transformers import RobertaTokenizer
 import os
 import json

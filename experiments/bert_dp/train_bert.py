@@ -1,6 +1,4 @@
-import sys
-sys.path.append("/home/nasim/working_dir/Tokenizers")
-from tokenizer_dp_merging_encoder import create_multiple_files_dataset_dict, tokenize, TOKENIZER, CONTEXT_LENGTH #CHECKPOINT
+from tokenize_and_data_bert import create_multiple_files_dataset_dict, tokenize, TOKENIZER, CONTEXT_LENGTH 
 from transformers import AutoTokenizer, RobertaConfig, RobertaForMaskedLM , BertConfig, BertForMaskedLM
 from torch.utils.data.dataloader import DataLoader
 from transformers import DataCollatorForLanguageModeling

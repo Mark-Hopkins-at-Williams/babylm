@@ -1,11 +1,8 @@
-import sys
-sys.path.append("/home/nasim/working_dir/Tokenizers")
 from transformers import AutoTokenizer, PreTrainedTokenizerFast, RobertaTokenizerFast
 from datasets import Dataset, DatasetDict
-from DP_merging_buffer import dp_merge_inputs
+from DP_merging import dp_merge_inputs
 import random
 from transformers import BertTokenizerFast, RobertaTokenizer
-from tokenizers import ByteLevelBPETokenizer
 
 def read_lines(filenames):
     for filename in filenames:
@@ -25,32 +22,15 @@ def create_dataset_dict(train_file_names, valid_file_names):
     return result
 
 def create_multiple_files_dataset_dict():
-    return create_dataset_dict(["/home/nasim/babylm_data/babylm_10M/switchboard.train",
-                                "/home/nasim/babylm_data/babylm_10M/qed.train", 
-                                "/home/nasim/babylm_data/babylm_10M/open_subtitles.train", 
-                                "/home/nasim/babylm_data/babylm_10M/wikipedia.train", 
-                                "/home/nasim/babylm_data/babylm_10M/bnc_spoken.train", 
-                                "/home/nasim/babylm_data/babylm_10M/cbt.train", 
-                                "/home/nasim/babylm_data/babylm_10M/children_stories.train", 
-                                "/home/nasim/babylm_data/babylm_10M/gutenberg.train", 
-                                "/home/nasim/babylm_data/babylm_10M/simple_wikipedia.train"], 
-                               ["/home/nasim/babylm_data/babylm_dev/switchboard.dev",
-                                "/home/nasim/babylm_data/babylm_dev/qed.dev",
-                                "/home/nasim/babylm_data/babylm_dev/open_subtitles.dev", 
-                                "/home/nasim/babylm_data/babylm_dev/wikipedia.dev", 
-                                "/home/nasim/babylm_data/babylm_dev/bnc_spoken.dev", 
-                                "/home/nasim/babylm_data/babylm_dev/cbt.dev", 
-                                "/home/nasim/babylm_data/babylm_dev/children_stories.dev", 
-                                "/home/nasim/babylm_data/babylm_dev/gutenberg.dev", 
-                                "/home/nasim/babylm_data/babylm_10M/simple_wikipedia.train"])
-    """return create_dataset_dict(["../babylm_data/babylm_10M/switchboard.train",
-                                "../babylm_data/babylm_10M/qed.train", 
-                                "../babylm_data/babylm_10M/open_subtitles.train", 
-                                "../babylm_data/babylm_10M/wikipedia.train"], 
-                               ["../babylm_data/babylm_dev/switchboard.dev",
-                                "../babylm_data/babylm_dev/qed.dev",
-                                "../babylm_data/babylm_dev/open_subtitles.dev", 
-                                "../babylm_data/babylm_dev/wikipedia.dev"])"""
+    corpora = ['aochildes', 'children_stories',
+               'bnc_spoken', 'cbt', 'gutenberg',
+               'open_subtitles', 'qed', 'simple_wikipedia',
+               'switchboard', 'wikipedia']
+    train_corpora = [f'../babylm_data/babylm_10M/{corpus}.train' for corpus in corpora]
+    dev_corpora = [f'../babylm_data/babylm_dev/{corpus}.dev' for corpus in corpora]
+    #test_corpora = [f'../babylm_data/babylm_test/{corpus}.test' for corpus in corpora]
+    return create_dataset_dict(train_corpora, dev_corpora)
+    
     
 
 CONTEXT_LENGTH = 512

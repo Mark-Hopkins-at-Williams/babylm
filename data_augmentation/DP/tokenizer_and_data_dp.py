@@ -1,6 +1,6 @@
 from transformers import AutoTokenizer
 from datasets import Dataset, DatasetDict
-from DP_merging_buffer import dp_merge_inputs
+from DP_merging import dp_merge_inputs
 import random
 
 
