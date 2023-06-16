@@ -7,4 +7,4 @@
 #SBATCH -e myerrors_%j.err  # File to which STDERR will be written, %j inserts jobid
 #SBATCH --gres=gpu:2        # Request two GPUs
 
-python train_gpt2_all_but_one_datasets.py gpt2
+python /home/nasimb/babylm/experiments/all_datasets_except_one/train_gpt2_all_but_one_datasets.py gpt2
