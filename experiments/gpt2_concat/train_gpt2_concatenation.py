@@ -35,7 +35,7 @@ args = TrainingArguments(
     evaluation_strategy="steps",
     eval_steps=500,
     logging_steps=500,
-    gradient_accumulation_steps=8,
+    gradient_accumulation_steps=2,
     num_train_epochs=9,
     weight_decay=0.1,
     warmup_steps=1_000,
@@ -56,6 +56,6 @@ trainer = Trainer(
     eval_dataset=tokenized_datasets["valid"],
 )
 
-trainer.train()
+trainer.train(resume_from_checkpoint=True)
 trainer.push_to_hub()
 
