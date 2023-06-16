@@ -95,10 +95,9 @@ if __name__ == "__main__":
     
     train_dir = sys.argv[1]
     
-    corpora = ['aochildes', 'children_stories',
-               'bnc_spoken', 'cbt', 'gutenberg',
-               'open_subtitles', 'qed', 'simple_wikipedia',
-               'switchboard', 'wikipedia']
+    corpora = ['aochildes', 'bnc_spoken', 'open_subtitles',
+               'children_stories', 'cbt', 'gutenberg', 
+               'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     for dataset in corpora:
         leave_out_dataset = dataset
         

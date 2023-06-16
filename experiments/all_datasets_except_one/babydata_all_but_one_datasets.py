@@ -50,10 +50,9 @@ def strict_small_leave_one_out(leave_out_dataset, bos_tok=None, eos_tok=None):
     """Creates a transformers DatasetDict for the strict-small babylm corpus.
     Ommits the dataset named leave_out_dataset.train/dev/test from the corpus."""
     
-    corpora = ['aochildes', 'children_stories',
-               'bnc_spoken', 'cbt', 'gutenberg',
-               'open_subtitles', 'qed', 'simple_wikipedia',
-               'switchboard', 'wikipedia']
+    corpora = ['aochildes', 'bnc_spoken', 'open_subtitles',
+               'children_stories', 'cbt', 'gutenberg', 
+               'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     corpora = [i for i in corpora if i != leave_out_dataset]
     
     train_corpora = [f'../babylm_data/babylm_10M/{corpus}.train' for corpus in corpora]
