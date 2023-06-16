@@ -29,13 +29,13 @@ config = AutoConfig.from_pretrained(
 model = GPT2LMHeadModel(config)
 
 args = TrainingArguments(
-    output_dir="gpt2-dp",
+    output_dir="gpt2-dp-2",
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     evaluation_strategy="steps",
     eval_steps=500,
     logging_steps=500,
-    gradient_accumulation_steps=8,
+    gradient_accumulation_steps=2,
     num_train_epochs=9,
     weight_decay=0.1,
     warmup_steps=1_000,
