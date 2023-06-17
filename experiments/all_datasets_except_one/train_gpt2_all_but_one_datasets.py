@@ -6,6 +6,7 @@ from transformers import DataCollatorForLanguageModeling
 from transformers import Trainer, TrainingArguments
 os.environ["TOKENIZERS_PARALLELISM"] = "false" # suppresses a transformers warning
 
+CONTEXT_LENGTH = 128
 
 class Gpt2Parameters:
     model_arch = "gpt2"
@@ -13,7 +14,7 @@ class Gpt2Parameters:
     explicit_bos_token = True
     explicit_eos_token = True
     pad_token = '[PAD]'
-    context_length = 64
+    context_length = CONTEXT_LENGTH
 
     def init_model(self, config):
         return GPT2LMHeadModel(config)
@@ -61,23 +62,26 @@ def train(model_dir, leave_out_dataset):
     )
     model = params.init_model(config)
 
+    eval_logging_ckp_steps = 500
+
     args = TrainingArguments(
         output_dir=model_dir,
         per_device_train_batch_size=32,
         per_device_eval_batch_size=32,
         evaluation_strategy="steps",
-        eval_steps=1000,
-        logging_steps=1000,
-        gradient_accumulation_steps=8,
-        num_train_epochs=9,
+        eval_steps=eval_logging_ckp_steps,
+        logging_steps=eval_logging_ckp_steps,
+        gradient_accumulation_steps=1,
+        num_train_epochs=10,
         weight_decay=0.1,
         warmup_steps=1_000,
         lr_scheduler_type="cosine",
         learning_rate=5e-4,
-        save_steps=1000,
+        save_steps=eval_logging_ckp_steps,
         fp16=True,
         push_to_hub=True,
     )
+
 
     trainer = Trainer(
         model=model,
@@ -94,6 +98,7 @@ def train(model_dir, leave_out_dataset):
 if __name__ == "__main__":
     
     train_dir = sys.argv[1]
+    og_train_dir = train_dir
     
     corpora = ['aochildes', 'bnc_spoken', 'open_subtitles',
                'children_stories', 'cbt', 'gutenberg', 
@@ -101,5 +106,5 @@ if __name__ == "__main__":
     for dataset in corpora:
         leave_out_dataset = dataset
         
-        train_dir += "_left_out_" + leave_out_dataset
+        train_dir = og_train_dir + "_left_out_" + leave_out_dataset
         train(train_dir, leave_out_dataset)
