@@ -59,6 +59,6 @@ trainer = Trainer(
     eval_dataset=tokenized_datasets["valid"],
 )
 
-trainer.train(resume_from_checkpoint=True)
+trainer.train(resume_from_checkpoint=False)
 trainer.push_to_hub()
 
