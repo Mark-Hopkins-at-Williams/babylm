@@ -2,10 +2,11 @@ Notes:
 
 - Tokenizer trained from scratch
 - Pre trained tokenizer cast into RobertaTokenizer due to bugs
-- Uses DP for augmenting tokenized sequences
+- Uses concatenation for augmenting tokenized sequences
 - Uses all 10 datasets in strict small
-- easy fix problem: how to run two commands continuously with slurm
+- finegrained training loop with eval steps every 500 steps and gradient accumalation set to 1
+- context length 128
 
 Run the following on Appa:
-    sbatch train_bert_dp_ss.sh
+    sbatch train_bert_concat_ss.sh
 
