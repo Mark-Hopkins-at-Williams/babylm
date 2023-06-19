@@ -100,9 +100,10 @@ if __name__ == "__main__":
     train_dir = sys.argv[1]
     og_train_dir = train_dir
     
-    corpora = ['aochildes', 'bnc_spoken', 'open_subtitles',
+    """corpora = ['aochildes', 'bnc_spoken', 'open_subtitles',
                'children_stories', 'cbt', 'gutenberg', 
-               'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
+               'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']"""
+    corpora = ['qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     for dataset in corpora:
         leave_out_dataset = dataset
         
