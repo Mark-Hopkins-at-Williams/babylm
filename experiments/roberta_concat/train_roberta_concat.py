@@ -11,7 +11,7 @@ tokenized_datasets = raw_datasets.map(
 )
 
 data_collator = DataCollatorForLanguageModeling(
-    tokenizer=TOKENIZER, mlm=True, mlm_probability=0.2
+    tokenizer=TOKENIZER, mlm=True, mlm_probability=0.15
 )
 tokenized_datasets.set_format("torch")
 train_dataloader = DataLoader(tokenized_datasets["train"], batch_size=32, shuffle=True,  collate_fn=data_collator)
@@ -20,11 +20,10 @@ eval_dataloader = DataLoader(tokenized_datasets["valid"], batch_size=32,  collat
 
 vocab_size = 30_522
 config = RobertaConfig(
-    vocab_size=vocab_size,
+    #vocab_size=vocab_size,
     max_position_embeddings=CONTEXT_LENGTH,
 )
 model = RobertaForMaskedLM(config=config)
-print('Num parameters: ',model.num_parameters())
 
 eval_logging_ckp_steps = 1000
 

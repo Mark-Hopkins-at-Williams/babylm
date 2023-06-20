@@ -15,9 +15,16 @@ paths = ["../babylm_data/babylm_10M/switchboard.train",
                                 "../babylm_data/babylm_10M/simple_wikipedia.train"]
 
 
-tokenizer = ByteLevelBPETokenizer()
-tokenizer.train(files=paths, vocab_size=30_522, min_frequency=2,
-                special_tokens=['<s>', '<pad>', '</s>', '<unk>', '<mask>'])
+tokenizer = ByteLevelBPETokenizer(lowercase=True)
+tokenizer.train(files=paths, vocab_size=8192, min_frequency=2,
+                show_progress=True,
+                special_tokens=[
+                                "<s>",
+                                "<pad>",
+                                "</s>",
+                                "<unk>",
+                                "<mask>",
+])
 
 model_path = "RobertaTokenizer"
 

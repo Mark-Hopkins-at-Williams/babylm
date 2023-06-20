@@ -33,7 +33,7 @@ def create_multiple_files_dataset_dict():
     
 
 CONTEXT_LENGTH = 128
-TOKENIZER = RobertaTokenizer.from_pretrained("rbertT")
+TOKENIZER = RobertaTokenizerFast.from_pretrained("roberta-base")#RobertaTokenizer.from_pretrained("RobertaTokenizer")
 
 
 def tokenize(element):
