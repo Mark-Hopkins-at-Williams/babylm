@@ -92,7 +92,7 @@ def train(model_dir, leave_out_dataset):
         eval_dataset=tokenized_datasets["valid"],
     )
 
-    trainer.train(resume_from_checkpoint=False)
+    trainer.train(resume_from_checkpoint=True)
     trainer.push_to_hub()
 
 if __name__ == "__main__":
@@ -103,7 +103,7 @@ if __name__ == "__main__":
     """corpora = ['aochildes', 'bnc_spoken', 'open_subtitles',
                'children_stories', 'cbt', 'gutenberg', 
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']"""
-    corpora = ['qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
+    corpora = ['switchboard', 'wikipedia']
     for dataset in corpora:
         leave_out_dataset = dataset
         
