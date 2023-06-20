@@ -11,7 +11,7 @@ tokenized_datasets = raw_datasets.map(
 )
 
 data_collator = DataCollatorForLanguageModeling(
-    tokenizer=TOKENIZER, mlm=True, mlm_probability=0.2
+    tokenizer=TOKENIZER, mlm=True, mlm_probability=0.15
 )
 tokenized_datasets.set_format("torch")
 train_dataloader = DataLoader(tokenized_datasets["train"], batch_size=32, shuffle=True,  collate_fn=data_collator)
@@ -22,10 +22,10 @@ vocab_size = 30_522
 model_config = BertConfig(vocab_size=vocab_size, max_position_embeddings=CONTEXT_LENGTH)
 model = BertForMaskedLM(config=model_config)
 
-eval_logging_ckp_steps = 500
+eval_logging_ckp_steps = 1000
 
 args = TrainingArguments(
-    output_dir="bert-concat",
+    output_dir="bert-concat-2",
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     evaluation_strategy="steps",
@@ -52,7 +52,7 @@ trainer = Trainer(
     eval_dataset=tokenized_datasets["valid"],
 )
 
-trainer.train(resume_from_checkpoint=True)
+trainer.train(resume_from_checkpoint=False)
 trainer.push_to_hub()
 
 
