@@ -22,7 +22,7 @@ vocab_size = 30_522
 model_config = BertConfig(vocab_size=vocab_size, max_position_embeddings=CONTEXT_LENGTH)
 model = BertForMaskedLM(config=model_config)
 
-eval_logging_ckp_steps = 1000
+eval_logging_ckp_steps = 2000
 
 args = TrainingArguments(
     output_dir="bert-dp-3",
@@ -52,7 +52,7 @@ trainer = Trainer(
     eval_dataset=tokenized_datasets["valid"],
 )
 
-trainer.train(resume_from_checkpoint=True)
+trainer.train(resume_from_checkpoint=False)
 trainer.push_to_hub()
 
 

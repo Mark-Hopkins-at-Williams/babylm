@@ -10,7 +10,9 @@ Notes:
 
 second run notes:
 - mlm_probability: 0.15
-- sacve steps 1000, 30 epochs
+- save steps 2000, 30 epochs
+- default tokenizer
+
 
 Run the following on Appa:
     sbatch train_bert_dp_ss.sh
