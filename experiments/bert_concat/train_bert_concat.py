@@ -25,7 +25,7 @@ model = BertForMaskedLM(config=model_config)
 eval_logging_ckp_steps = 1000
 
 args = TrainingArguments(
-    output_dir="bert-concat-2",
+    output_dir="bert-concat-3",
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     evaluation_strategy="steps",

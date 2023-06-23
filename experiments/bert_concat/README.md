@@ -13,6 +13,10 @@ second run notes:
 - sacve steps 1000, 20 epochs
 - default tokenizer
 
+thrid run:
+- 512 contect length for purpose of compatibility with simcse
+
+
 Run the following on Appa:
     sbatch train_bert_concat_ss.sh
 
