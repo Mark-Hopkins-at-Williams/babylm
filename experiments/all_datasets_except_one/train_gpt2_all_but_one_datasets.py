@@ -103,7 +103,7 @@ if __name__ == "__main__":
     """corpora = ['aochildes', 'bnc_spoken', 'open_subtitles',
                'children_stories', 'cbt', 'gutenberg', 
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']"""
-    corpora = ['aochildes', 'cbt', 'gutenberg']
+    corpora = ['aochildes']
     for dataset in corpora:
         leave_out_dataset = dataset
         
