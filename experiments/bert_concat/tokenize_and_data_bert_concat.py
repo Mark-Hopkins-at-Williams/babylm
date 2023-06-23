@@ -33,17 +33,16 @@ def create_multiple_files_dataset_dict():
     
 
 CONTEXT_LENGTH = 128
-TOKENIZER = RobertaTokenizer.from_pretrained("rbertT")
+TOKENIZER = AutoTokenizer.from_pretrained("bert-base-cased")
 
 
 def tokenize(element):
-    outputs = TOKENIZER(element["text"], truncation=False)
+    outputs = TOKENIZER(element["text"], truncation=False, return_special_tokens_mask=True)
     input_batch = []
     next_segment = []
     
     for input_ids in outputs["input_ids"]:
         next_segment.extend(input_ids)
-        next_segment.append(TOKENIZER.eos_token_id)
         while len(next_segment) >= CONTEXT_LENGTH:
             input_batch.append(next_segment[:CONTEXT_LENGTH])
             next_segment = next_segment[CONTEXT_LENGTH:]

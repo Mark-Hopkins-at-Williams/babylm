@@ -10,7 +10,8 @@ Notes:
 
 second run notes:
 - mlm_probability: 0.15
-- sacve steps 1000, 30 epochs
+- sacve steps 1000, 20 epochs
+- default tokenizer
 
 Run the following on Appa:
     sbatch train_bert_concat_ss.sh
