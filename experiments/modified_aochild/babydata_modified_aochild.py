@@ -49,11 +49,15 @@ def create_dataset_dict(train_files, valid_files, test_files, bos_tok, eos_tok):
 def strict_small(bos_tok=None, eos_tok=None):
     """Creates a transformers DatasetDict for the strict-small babylm corpus."""
     
-    corpora = [ 'bnc_spoken', 'open_subtitles',
+    corpora_train = ['aochildes_start_20000', 'bnc_spoken', 'open_subtitles',
                'children_stories', 'cbt', 'gutenberg', 
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     
-    train_corpora = [f'/home/nasimb/babylm_data/babylm_10M/{corpus}.train' for corpus in corpora]
+    corpora = ['aochildes', 'bnc_spoken', 'open_subtitles',
+               'children_stories', 'cbt', 'gutenberg', 
+               'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
+    
+    train_corpora = [f'/home/nasimb/babylm_data/babylm_10M/{corpus}.train' for corpus in corpora_train]
     dev_corpora = [f'/home/nasimb/babylm_data/babylm_dev/{corpus}.dev' for corpus in corpora]
     test_corpora = [f'/home/nasimb/babylm_data/babylm_test/{corpus}.test' for corpus in corpora]
     return create_dataset_dict(train_corpora, dev_corpora, test_corpora, bos_tok, eos_tok)
