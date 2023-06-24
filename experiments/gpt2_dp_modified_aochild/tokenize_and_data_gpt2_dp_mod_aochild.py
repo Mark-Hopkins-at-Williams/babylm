@@ -33,7 +33,7 @@ def create_multiple_files_dataset_dict():
     train_corpora = [f'/home/nasimb/babylm_data/babylm_10M/{corpus}.train' for corpus in corpora_train]
     dev_corpora = [f'/home/nasimb/babylm_data/babylm_dev/{corpus}.dev' for corpus in corpora]
     #test_corpora = [f'/home/nasimb/babylm_data/babylm_test/{corpus}.test' for corpus in corpora]
-    return create_dataset_dict(train_corpora, dev_corpora, st_corpora, bos_tok, eos_tok)
+    return create_dataset_dict(train_corpora, dev_corpora, bos_tok, eos_tok)
     
 
 CONTEXT_LENGTH = 128
