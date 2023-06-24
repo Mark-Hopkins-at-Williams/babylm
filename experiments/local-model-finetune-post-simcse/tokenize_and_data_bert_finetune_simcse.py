@@ -32,8 +32,8 @@ def create_multiple_files_dataset_dict():
     
     
 
-CONTEXT_LENGTH = 128
-TOKENIZER = AutoTokenizer.from_pretrained("bert-base-uncased")
+CONTEXT_LENGTH = 512
+TOKENIZER = AutoTokenizer.from_pretrained("bert-base-cased")
 
 
 def tokenize(element):
