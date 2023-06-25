@@ -22,7 +22,7 @@ eval_dataloader = DataLoader(tokenized_datasets["valid"], batch_size=32,  collat
 
 model = AutoModelForMaskedLM.from_pretrained("/home/nasimb/SimCSE/result/unsup-simcse-bert-concat-2")
 
-eval_logging_ckp_steps = 1000
+eval_logging_ckp_steps = 2000
 
 args = TrainingArguments(
     output_dir="bert-concat-2-finetune-simcse-truncate",
@@ -31,8 +31,8 @@ args = TrainingArguments(
     evaluation_strategy="steps",
     eval_steps=eval_logging_ckp_steps,
     logging_steps=eval_logging_ckp_steps,
-    gradient_accumulation_steps=4,
-    num_train_epochs=1,
+    gradient_accumulation_steps=1,
+    num_train_epochs=30,
     weight_decay=0.1,
     warmup_steps=1_000,
     lr_scheduler_type="cosine",
