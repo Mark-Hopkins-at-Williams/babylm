@@ -8,6 +8,9 @@ Notes:
 Second run:
 - aochiles modified to contain only sentences longer than 10 chars.
 
+third run:
+-rerun the first experiment to confirm the results
+
 Run the following on Appa:
     sbatch /home/nasimb/babylm/experiments/gpt2_dp_modified_aochild/train_gpt2_dp_mod_aochild_ss.sh
 
