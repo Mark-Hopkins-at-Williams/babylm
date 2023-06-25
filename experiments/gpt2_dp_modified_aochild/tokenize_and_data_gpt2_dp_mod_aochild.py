@@ -25,16 +25,16 @@ def create_multiple_files_dataset_dict():
     corpora_train = ['aochildes_start_20000', 'bnc_spoken', 'open_subtitles',
                'children_stories', 'cbt', 'gutenberg', 
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
-    
+
     corpora = ['aochildes', 'bnc_spoken', 'open_subtitles',
                'children_stories', 'cbt', 'gutenberg', 
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
-    
+
     train_corpora = [f'/home/nasimb/babylm_data/babylm_10M/{corpus}.train' for corpus in corpora_train]
     dev_corpora = [f'/home/nasimb/babylm_data/babylm_dev/{corpus}.dev' for corpus in corpora]
     #test_corpora = [f'/home/nasimb/babylm_data/babylm_test/{corpus}.test' for corpus in corpora]
     return create_dataset_dict(train_corpora, dev_corpora)
-    
+
 
 CONTEXT_LENGTH = 128
 TOKENIZER = AutoTokenizer.from_pretrained("gpt2")
@@ -44,4 +44,3 @@ def tokenize(element):
     outputs = TOKENIZER(element["text"], truncation=False)   
     merged_inputs = dp_merge_inputs(outputs["input_ids"], CONTEXT_LENGTH, TOKENIZER.eos_token_id)
     return {"input_ids": merged_inputs}
-
