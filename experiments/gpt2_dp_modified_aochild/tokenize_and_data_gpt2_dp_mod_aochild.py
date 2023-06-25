@@ -9,7 +9,10 @@ def read_lines(filenames):
         with open(filename) as reader:
             for line in reader:
                 line = line.strip()
-                if len(line) > 0:
+                if 'aochildes' in filename:
+                    if len(line) > 10:
+                        yield {'text': line}
+                elif len(line) > 0:
                     yield {'text': line}            
 
 def create_dataset(filenames):
@@ -22,7 +25,7 @@ def create_dataset_dict(train_file_names, valid_file_names):
     return result
 
 def create_multiple_files_dataset_dict():
-    corpora_train = ['aochildes_start_20000', 'bnc_spoken', 'open_subtitles',
+    corpora_train = ['aochildes', 'bnc_spoken', 'open_subtitles',
                'children_stories', 'cbt', 'gutenberg', 
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     
