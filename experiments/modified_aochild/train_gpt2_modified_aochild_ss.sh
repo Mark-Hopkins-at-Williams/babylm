@@ -7,4 +7,4 @@
 #SBATCH -e myerrors_%j.err  # File to which STDERR will be written, %j inserts jobid
 #SBATCH --gres=gpu:2        # Request two GPUs
 
-python /home/nasimb/babylm/experiments/modified_aochild/train_gpt2_modified_aochild.py gpt2-2-og-concat-modified-aochild
+python /home/nasimb/babylm/experiments/modified_aochild/train_gpt2_modified_aochild.py gpt2-3-og-concat-modified-aochild
