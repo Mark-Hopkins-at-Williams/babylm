@@ -15,7 +15,7 @@ TOKENIZER.pad_token = TOKENIZER.eos_token
 data_collator = DataCollatorForLanguageModeling(tokenizer=TOKENIZER, mlm=False)
 
 tokenized_datasets.set_format("torch")
-train_dataloader = DataLoader(tokenized_datasets["train"], batch_size=32, shuffle=True,  collate_fn=data_collator)
+train_dataloader = DataLoader(tokenized_datasets["train"], batch_size=32,  collate_fn=data_collator)#, shuffle=True,)
 eval_dataloader = DataLoader(tokenized_datasets["valid"], batch_size=32,  collate_fn=data_collator)
 
 
@@ -31,14 +31,14 @@ model = GPT2LMHeadModel(config)
 eval_logging_ckp_steps = 500
 
 args = TrainingArguments(
-    output_dir="gpt2-dp-3",
+    output_dir="gpt2-dp-no-shuffle",
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     evaluation_strategy="steps",
     eval_steps=eval_logging_ckp_steps,
     logging_steps=eval_logging_ckp_steps,
     gradient_accumulation_steps=1,
-    num_train_epochs=10,
+    num_train_epochs=7,
     weight_decay=0.1,
     warmup_steps=1_000,
     lr_scheduler_type="cosine",
