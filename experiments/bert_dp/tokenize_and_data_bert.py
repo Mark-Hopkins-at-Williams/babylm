@@ -33,14 +33,16 @@ def create_multiple_files_dataset_dict():
     
     
 
-CONTEXT_LENGTH = 128
-TOKENIZER = AutoTokenizer.from_pretrained("bert-base-cased")
+CONTEXT_LENGTH = 512
+TOKENIZER = AutoTokenizer.from_pretrained("bert-base-uncased")
 
 
 def tokenize(element):
-    outputs = TOKENIZER(element["text"], truncation=False)   
+    outputs = TOKENIZER(element["text"], truncation=False, return_special_tokens_mask=True) 
     merged_inputs = dp_merge_inputs(outputs["input_ids"], CONTEXT_LENGTH, TOKENIZER.eos_token_id)
-    return {"input_ids": merged_inputs}
+    merged_attention = dp_merge_inputs(outputs["attention_mask"], CONTEXT_LENGTH, None)
+    merged_mask = dp_merge_inputs(outputs["special_tokens_mask"], CONTEXT_LENGTH, None)
+    return {"input_ids": merged_inputs, "attention_mask": merged_attention, "special_tokens_mask": merged_mask}
 
 
 """raw_datasets = create_multiple_files_dataset_dict()

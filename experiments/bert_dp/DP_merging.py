@@ -85,7 +85,8 @@ def merge_inputs(inputs, mem, end_token, input_lens, context_length):
         merged_once = False
         for j in range(start_ind, end_ind+1):
             buffer.extend(inputs[j])
-            buffer.append(end_token)
+            if end_token is not None:
+                buffer.append(end_token)
             while len(buffer) >= context_length or (j == end_ind and not merged_once):
                 merged.append(buffer[:context_length])
                 buffer = buffer[context_length:]

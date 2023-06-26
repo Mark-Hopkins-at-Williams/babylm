@@ -13,6 +13,13 @@ second run notes:
 - save steps 2000, 30 epochs
 - default tokenizer
 
+fourth run notes:
+- context size 512 to be compatible with simcse
+- eval every 1000 steps, 40 epochs
+- pretrained tokenizer
+- no end tokens included in dp algorithm
+
+
 
 Run the following on Appa:
     sbatch train_bert_dp_ss.sh
