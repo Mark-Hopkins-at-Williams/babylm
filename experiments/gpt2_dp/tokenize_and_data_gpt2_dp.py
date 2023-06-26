@@ -22,10 +22,9 @@ def create_dataset_dict(train_file_names, valid_file_names):
     return result
 
 def create_multiple_files_dataset_dict():
-    corpora = ['aochildes', 'children_stories',
-               'bnc_spoken', 'cbt', 'gutenberg',
-               'open_subtitles', 'qed', 'simple_wikipedia',
-               'switchboard', 'wikipedia']
+    corpora = ['aochildes', 'open_subtitles', 'qed', 
+               'switchboard', 'children_stories', 'bnc_spoken',
+               'wikipedia', 'cbt', 'gutenberg',]
     train_corpora = [f'../babylm_data/babylm_10M/{corpus}.train' for corpus in corpora]
     dev_corpora = [f'../babylm_data/babylm_dev/{corpus}.dev' for corpus in corpora]
     #test_corpora = [f'../babylm_data/babylm_test/{corpus}.test' for corpus in corpora]
