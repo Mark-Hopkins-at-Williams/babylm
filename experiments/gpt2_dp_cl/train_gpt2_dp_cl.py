@@ -4,14 +4,6 @@ from torch.utils.data.dataloader import DataLoader
 from transformers import DataCollatorForLanguageModeling
 from transformers import Trainer, TrainingArguments
 
-
-#raw_datasets = create_multiple_files_dataset_dict()
-"""print(raw_datasets['train']['text'][0])
-tokenized_datasets = raw_datasets.map(
-    tokenize, batched=True, remove_columns=raw_datasets["train"].column_names,
-    load_from_cache_file=False
-)"""
-
 raw_datasets = create_multiple_files_dataset_dict()
 tokenized_datasets_train = tokenize(raw_datasets['train'])
 tokenized_datasets_valid = tokenize(raw_datasets['valid'])
