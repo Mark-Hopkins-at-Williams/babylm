@@ -11,7 +11,8 @@ tokenized_datasets_valid = tokenize(raw_datasets['valid'])
 TOKENIZER.pad_token = TOKENIZER.eos_token
 data_collator = DataCollatorForLanguageModeling(tokenizer=TOKENIZER, mlm=False)
 
-tokenized_datasets.set_format("torch")
+tokenized_datasets_train.set_format("torch")
+tokenized_datasets_valid.set_format("torch")
 train_dataloader = DataLoader(tokenized_datasets_train, batch_size=32,  collate_fn=data_collator)#, shuffle=True,)
 eval_dataloader = DataLoader(tokenized_datasets_valid, batch_size=32,  collate_fn=data_collator)
 
