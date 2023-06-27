@@ -34,7 +34,7 @@ args = TrainingArguments(
     eval_steps=eval_logging_ckp_steps,
     logging_steps=eval_logging_ckp_steps,
     gradient_accumulation_steps=1,
-    num_train_epochs=40,
+    num_train_epochs=50,
     weight_decay=0.1,
     warmup_steps=1_000,
     lr_scheduler_type="cosine",
@@ -54,7 +54,7 @@ trainer = Trainer(
     eval_dataset=tokenized_datasets["valid"],
 )
 
-trainer.train(resume_from_checkpoint=False)
+trainer.train(resume_from_checkpoint=True)
 trainer.push_to_hub()
 
 
