@@ -8,4 +8,4 @@
 #SBATCH --gres=gpu:2        # Request two GPUs
 
 #python /home/nasimb/babylm/experiments/bert_dp/train_tokenizer_bert.py
-python /home/nasimb/babylm/experiments/bert_dp/train_bert.py
+python /mnt/storage/nasimb/babylm/experiments/bert_dp/train_bert.py
