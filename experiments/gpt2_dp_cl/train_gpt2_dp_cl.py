@@ -1,4 +1,4 @@
-from tokenize_and_data_gpt2_dp_cl_rarity import create_multiple_files_dataset_dict, tokenize, TOKENIZER, CONTEXT_LENGTH 
+from tokenize_and_data_gpt2_dp_cl_length import create_multiple_files_dataset_dict, tokenize, TOKENIZER, CONTEXT_LENGTH 
 from transformers import GPT2LMHeadModel, AutoConfig
 from torch.utils.data.dataloader import DataLoader
 from transformers import DataCollatorForLanguageModeling
@@ -28,7 +28,7 @@ model = GPT2LMHeadModel(config)
 eval_logging_ckp_steps = 500
 
 args = TrainingArguments(
-    output_dir="gpt2-dp-cl-rarity",
+    output_dir="gpt2-dp-cl-length",
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     evaluation_strategy="steps",
