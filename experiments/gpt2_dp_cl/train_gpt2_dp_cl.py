@@ -1,20 +1,21 @@
-from tokenize_and_data_gpt2_dp_cl_length import create_multiple_files_dataset_dict, tokenize, TOKENIZER, CONTEXT_LENGTH 
+from tokenize_and_data_gpt2_dp_cl import create_multiple_files_dataset_dict, tokenize, TOKENIZER, CONTEXT_LENGTH 
 from transformers import GPT2LMHeadModel, AutoConfig
 from torch.utils.data.dataloader import DataLoader
 from transformers import DataCollatorForLanguageModeling
 from transformers import Trainer, TrainingArguments
 
 raw_datasets = create_multiple_files_dataset_dict()
-tokenized_datasets_train = tokenize(raw_datasets['train'])
-tokenized_datasets_valid = tokenize(raw_datasets['valid'])
+tokenized_datasets = raw_datasets.map(
+    tokenize, batched=True, remove_columns=raw_datasets["train"].column_names,
+    load_from_cache_file=False
+)
 
 TOKENIZER.pad_token = TOKENIZER.eos_token
 data_collator = DataCollatorForLanguageModeling(tokenizer=TOKENIZER, mlm=False)
 
-tokenized_datasets_train.set_format("torch")
-tokenized_datasets_valid.set_format("torch")
-train_dataloader = DataLoader(tokenized_datasets_train, batch_size=32,  collate_fn=data_collator)#, shuffle=True,)
-eval_dataloader = DataLoader(tokenized_datasets_valid, batch_size=32,  collate_fn=data_collator)
+tokenized_datasets.set_format("torch")
+train_dataloader = DataLoader(tokenized_datasets["train"], batch_size=32, collate_fn=data_collator)
+eval_dataloader = DataLoader(tokenized_datasets["valid"], batch_size=32,  collate_fn=data_collator)
 
 
 config = AutoConfig.from_pretrained(

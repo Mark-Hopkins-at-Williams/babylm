@@ -3,8 +3,6 @@ from datasets import Dataset, DatasetDict
 from DP_merging import dp_merge_inputs
 import random
 from transformers import BertTokenizerFast, RobertaTokenizer
-from collections import Counter
-
 
 def read_lines(filenames):
     for filename in filenames:
@@ -24,36 +22,19 @@ def create_dataset_dict(train_file_names, valid_file_names):
     return result
 
 def create_multiple_files_dataset_dict():
-    corpora = ['aochildes', 'open_subtitles', 'qed', 
-               'switchboard', 'children_stories', 'bnc_spoken',
-               'wikipedia', 'cbt', 'gutenberg',]
-    train_corpora = [f'../babylm_data/babylm_10M/{corpus}.train' for corpus in corpora]
+    corpora = ['aochildes', 'bnc_spoken', 'open_subtitles',
+               'children_stories', 'cbt', 'gutenberg', 
+               'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
+    #train_corpora = [f'../babylm_data/babylm_10M/{corpus}.train' for corpus in corpora]
+    train_corpora = ['/mnt/storage/nasimb/babylm/train_data_cl_length.txt']
     dev_corpora = [f'../babylm_data/babylm_dev/{corpus}.dev' for corpus in corpora]
-    #test_corpora = [f'../babylm_data/babylm_test/{corpus}.test' for corpus in corpora]
     return create_dataset_dict(train_corpora, dev_corpora)
-    
-    
+   
 
 CONTEXT_LENGTH = 128
 TOKENIZER = AutoTokenizer.from_pretrained("gpt2")
 
-
-def tokenize(dataset):
-    outputs = [TOKENIZER(element["text"], truncation=False)['input_ids'] for element in dataset]
-    print("finished tokenizing")
-    
-    token_counts = Counter()
-    for element in outputs:
-        for token in element:
-            token_counts[token] += 1
-    print("finished counting tokens")
-    
-    outputs_copy = list(outputs)
-    outputs_sorted = sorted(outputs, key=lambda x: (sum([token_counts[token] for token in x]) / len(x), outputs_copy.index(x)))
-    print("finished soering the sequences based on rarity")
-    
-    merged_inputs = dp_merge_inputs(outputs_sorted, CONTEXT_LENGTH, TOKENIZER.eos_token_id)
-    print("finished merging the tokenized sequences with dp")
-
+def tokenize(element):
+    outputs = TOKENIZER(element["text"], truncation=False)   
+    merged_inputs = dp_merge_inputs(outputs["input_ids"], CONTEXT_LENGTH, TOKENIZER.eos_token_id)
     return {"input_ids": merged_inputs}
-
