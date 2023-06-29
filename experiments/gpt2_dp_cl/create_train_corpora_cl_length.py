@@ -9,8 +9,13 @@ def read_lines(filenames):
         with open(filename) as reader:
             for line in reader:
                 line = line.strip()
-                if len(line) > 0:
-                    yield {'text': line}            
+                bar_count =  line.count('|')
+                exclamation_count = line.count('!')
+                line = line.replace("= = =", "")
+                if len(line) > 0 and line[0] == "-":
+                    line = line[1:]
+                if len(line) > 0 and bar_count < 2 and bar_count + exclamation_count < 2:
+                    yield {'text': line}                       
 
 def create_dataset(filenames):
     return Dataset.from_generator(lambda: read_lines(filenames))
@@ -52,8 +57,11 @@ sorted_indecies = sorted(dict_ind_token_length, key=lambda k:dict_ind_token_leng
 list_train_dataset_raw = list(raw_datasets["train"]["text"])
 sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indecies]
 
+#remove repeating instances from the list preserving the order
+sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))
+
 #write the reordered dataset to a new file
-with open('train_data_cl_length.txt', 'w') as f:
+with open('train_data_cl_length_modified.txt', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
         
