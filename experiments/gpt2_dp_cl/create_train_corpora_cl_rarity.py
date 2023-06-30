@@ -4,6 +4,9 @@ from DP_merging import dp_merge_inputs
 import random
 from transformers import BertTokenizerFast, RobertaTokenizer
 from collections import Counter
+import math
+import numpy as np
+from tqdm import tqdm
 
 def read_lines(filenames):
     for filename in filenames:
