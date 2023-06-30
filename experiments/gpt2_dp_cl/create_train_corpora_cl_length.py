@@ -3,6 +3,10 @@ from datasets import Dataset, DatasetDict
 from DP_merging import dp_merge_inputs
 import random
 from transformers import BertTokenizerFast, RobertaTokenizer
+import math
+import numpy as np
+from tqdm import tqdm
+
 
 def read_lines(filenames):
     for filename in filenames:
@@ -60,9 +64,18 @@ sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indec
 #remove repeating instances from the list preserving the order
 sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))
 
-#write the reordered dataset to a new file
-with open('train_data_cl_length_modified.txt', 'w') as f:
-    for sent in sorted_list_train_dataset_raw:
-        f.write(f"{sent}\n")
-        
+#cut the first 70,000 lines that are almost all one word
+sorted_list_train_dataset_raw = sorted_list_train_dataset_raw[70000:]
 
+#sampling with the square root function
+batch_size = 32
+t_competent = int((800000/32)*5) #5 epochs to competence, 800000 sentences in batches of 32 
+c0_squared = (1/t_competent)**2
+num_sent = len(sorted_list_train_dataset_raw)
+with open('train_data_length_cl_sampling.txt', 'w') as f:
+    for t in tqdm(range(t_competent)):
+        c_sqrt = min(1, math.sqrt(t * ((1 - c0_squared) / t_competent) + c0_squared))
+        max_ind = max(batch_size, int(c_sqrt * num_sent))
+        sample_inds = np.random.randint(low = 0,high=max_ind,size=batch_size)
+        for ind in sample_inds:
+            f.write(f"{sorted_list_train_dataset_raw[ind]}\n")

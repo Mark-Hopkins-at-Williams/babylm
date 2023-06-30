@@ -8,3 +8,5 @@
 #SBATCH --gres=gpu:2        # Request two GPUs
 
 python /mnt/storage/nasimb/babylm/experiments/gpt2_dp_cl/train_gpt2_dp_cl.py
+cd ../evaluation-pipeline
+python babylm_eval.py /mnt/storage/nasimb/babylm/gpt2-cl-length-sampling/checkpoint-**** decoder

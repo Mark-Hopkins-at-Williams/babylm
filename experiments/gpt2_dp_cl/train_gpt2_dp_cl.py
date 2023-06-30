@@ -7,7 +7,7 @@ from transformers import Trainer, TrainingArguments
 raw_datasets = create_multiple_files_dataset_dict()
 tokenized_datasets = raw_datasets.map(
     tokenize, batched=True, remove_columns=raw_datasets["train"].column_names,
-    load_from_cache_file=False
+    #load_from_cache_file=False
 )
 
 TOKENIZER.pad_token = TOKENIZER.eos_token
@@ -16,6 +16,7 @@ data_collator = DataCollatorForLanguageModeling(tokenizer=TOKENIZER, mlm=False)
 tokenized_datasets.set_format("torch")
 train_dataloader = DataLoader(tokenized_datasets["train"], batch_size=32, collate_fn=data_collator)
 eval_dataloader = DataLoader(tokenized_datasets["valid"], batch_size=32,  collate_fn=data_collator)
+test_dataloader = DataLoader(tokenized_datasets["test"], batch_size=32,  collate_fn=data_collator)
 
 
 config = AutoConfig.from_pretrained(
@@ -30,14 +31,14 @@ model = GPT2LMHeadModel(config)
 eval_logging_ckp_steps = 500
 
 args = TrainingArguments(
-    output_dir="gpt2-dp-cl-rarity-2",
+    output_dir="gpt2-cl-length-sampling",
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     evaluation_strategy="steps",
     eval_steps=eval_logging_ckp_steps,
     logging_steps=eval_logging_ckp_steps,
     gradient_accumulation_steps=1,
-    num_train_epochs=7,
+    num_train_epochs=1,
     weight_decay=0.1,
     warmup_steps=1_000,
     lr_scheduler_type="cosine",
@@ -45,6 +46,8 @@ args = TrainingArguments(
     save_steps=eval_logging_ckp_steps,
     fp16=True,
     push_to_hub=True,
+    save_total_limit = 1,
+    load_best_model_at_end=True,
 )
 
 
@@ -58,5 +61,9 @@ trainer = Trainer(
 )
 
 trainer.train()
+print("test set evaluation")
+print("*******************************************")
+print(trainer.evaluate(eval_dataset=tokenized_datasets["test"]))
+print("*******************************************")
 trainer.push_to_hub()
 

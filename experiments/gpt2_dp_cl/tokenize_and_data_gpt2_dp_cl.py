@@ -15,10 +15,11 @@ def read_lines(filenames):
 def create_dataset(filenames):
     return Dataset.from_generator(lambda: read_lines(filenames))
 
-def create_dataset_dict(train_file_names, valid_file_names):
+def create_dataset_dict(train_file_names, valid_file_names, test_file_names):
     result = DatasetDict()
     result['train'] = create_dataset(train_file_names)
     result['valid'] = create_dataset(valid_file_names)
+    result['test'] = create_dataset(test_file_names)
     return result
 
 def create_multiple_files_dataset_dict():
@@ -26,9 +27,10 @@ def create_multiple_files_dataset_dict():
                'children_stories', 'cbt', 'gutenberg', 
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     #train_corpora = [f'../babylm_data/babylm_10M/{corpus}.train' for corpus in corpora]
-    train_corpora = ['/mnt/storage/nasimb/babylm/train_data_cl_rarity_modified.txt']
+    train_corpora = ['/mnt/storage/nasimb/babylm/train_data_length_cl_sampling.txt']
     dev_corpora = [f'../babylm_data/babylm_dev/{corpus}.dev' for corpus in corpora]
-    return create_dataset_dict(train_corpora, dev_corpora)
+    test_corpora = [f'../babylm_data/babylm_test/{corpus}.test' for corpus in corpora]
+    return create_dataset_dict(train_corpora, dev_corpora, test_corpora)
    
 
 CONTEXT_LENGTH = 128
