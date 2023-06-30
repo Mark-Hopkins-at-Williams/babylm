@@ -46,8 +46,8 @@ args = TrainingArguments(
     save_steps=eval_logging_ckp_steps,
     fp16=True,
     push_to_hub=True,
-    save_total_limit = 1,
-    load_best_model_at_end=True,
+    #save_total_limit = 1,
+    #load_best_model_at_end=True,
 )
 
 
