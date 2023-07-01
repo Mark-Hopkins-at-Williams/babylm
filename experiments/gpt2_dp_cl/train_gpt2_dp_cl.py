@@ -31,7 +31,7 @@ model = GPT2LMHeadModel(config)
 eval_logging_ckp_steps = 500
 
 args = TrainingArguments(
-    output_dir="gpt2-cl-length-sampling-2",
+    output_dir="gpt2-cl-length-sampling-3",
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     evaluation_strategy="steps",
@@ -46,8 +46,8 @@ args = TrainingArguments(
     save_steps=eval_logging_ckp_steps,
     fp16=True,
     push_to_hub=True,
+    load_best_model_at_end=True,
     #save_total_limit = 1,
-    #load_best_model_at_end=True,
 )
 
 
