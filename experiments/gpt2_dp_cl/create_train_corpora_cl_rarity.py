@@ -79,12 +79,13 @@ batch_size = 32
 t_competent = 200000 #doubled #5 epochs to competence, 800000 sentences in batches of 32 
 c0_squared = (1/t_competent)**2
 num_sent = len(sorted_list_train_dataset_raw)
-with open('train_data_rarity_cl_sampling_3.txt', 'w') as f:
+with open('train_data_rarity_cl_sampling_3_200k.txt', 'w') as f:
     for t in tqdm(range(t_competent)):
         c_sqrt = min(1, math.sqrt(t * ((1 - c0_squared) / t_competent) + c0_squared))
         max_ind = max(batch_size, int(c_sqrt * num_sent))
         sample_inds = np.random.randint(low = 0,high=max_ind,size=batch_size)
         for ind in sample_inds:
             f.write(f"{sorted_list_train_dataset_raw[ind]}\n")
+    f.close()
         
 
