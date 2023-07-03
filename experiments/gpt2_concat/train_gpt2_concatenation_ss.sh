@@ -8,3 +8,5 @@
 #SBATCH --gres=gpu:2        # Request two GPUs
 
 python /home/nasimb/babylm/experiments/gpt2_concat/train_gpt2_concatenation.py
+cd ../evaluation-pipeline
+python babylm_eval.py /mnt/storage/nasimb/babylm/gpt2-concat-gutenberg-fixed decoder

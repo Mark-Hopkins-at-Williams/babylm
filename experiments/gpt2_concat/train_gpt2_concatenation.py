@@ -15,8 +15,9 @@ TOKENIZER.pad_token = TOKENIZER.eos_token
 data_collator = DataCollatorForLanguageModeling(tokenizer=TOKENIZER, mlm=False)
 
 tokenized_datasets.set_format("torch")
-train_dataloader = DataLoader(tokenized_datasets["train"], batch_size=32, shuffle=True,  collate_fn=data_collator)
+train_dataloader = DataLoader(tokenized_datasets["train"], batch_size=32,  collate_fn=data_collator, shuffle=True)
 eval_dataloader = DataLoader(tokenized_datasets["valid"], batch_size=32,  collate_fn=data_collator)
+test_dataloader = DataLoader(tokenized_datasets["test"], batch_size=32,  collate_fn=data_collator)
 
 
 config = AutoConfig.from_pretrained(
@@ -31,7 +32,7 @@ model = GPT2LMHeadModel(config)
 eval_logging_ckp_steps = 500
 
 args = TrainingArguments(
-    output_dir="gpt2-concat-second",
+    output_dir="gpt2-concat-gutenberg-fixed",
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     evaluation_strategy="steps",
@@ -59,6 +60,10 @@ trainer = Trainer(
     eval_dataset=tokenized_datasets["valid"],
 )
 
-trainer.train(resume_from_checkpoint=False)
+trainer.train()
+print("test set evaluation")
+print("*******************************************")
+print(trainer.evaluate(eval_dataset=tokenized_datasets["test"]))
+print("*******************************************")
 trainer.push_to_hub()
 
