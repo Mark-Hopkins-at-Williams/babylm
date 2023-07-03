@@ -7,7 +7,7 @@ from transformers import Trainer, TrainingArguments
 raw_datasets = create_multiple_files_dataset_dict()
 tokenized_datasets = raw_datasets.map(
     tokenize, batched=True, remove_columns=raw_datasets["train"].column_names,
-    #load_from_cache_file=False
+    load_from_cache_file=False
 )
 
 TOKENIZER.pad_token = TOKENIZER.eos_token
@@ -31,7 +31,7 @@ model = GPT2LMHeadModel(config)
 eval_logging_ckp_steps = 500
 
 args = TrainingArguments(
-    output_dir="gpt2-cl-concat-rarity-138k",
+    output_dir="gpt2-cl-concat-rarity-mod-datasets-6",
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     evaluation_strategy="steps",
