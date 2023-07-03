@@ -7,4 +7,6 @@
 #SBATCH -e myerrors_%j.err  # File to which STDERR will be written, %j inserts jobid
 #SBATCH --gres=gpu:2        # Request two GPUs
 
-python /home/nasimb/babylm/experiments/gpt2_dp/train_gpt2_dp.py
+python /mnt/storage/nasimb/babylm/experiments/gpt2_dp/train_gpt2_dp.py
+cd ../evaluation-pipeline
+python babylm_eval.py /mnt/storage/nasimb/babylm/gpt2-dp-mod-cl-datasets decoder

@@ -15,20 +15,26 @@ def read_lines(filenames):
 def create_dataset(filenames):
     return Dataset.from_generator(lambda: read_lines(filenames))
 
-def create_dataset_dict(train_file_names, valid_file_names):
+def create_dataset_dict(train_file_names, valid_file_names, test_file_names):
     result = DatasetDict()
     result['train'] = create_dataset(train_file_names)
     result['valid'] = create_dataset(valid_file_names)
+    result['test'] = create_dataset(test_file_names)
     return result
 
 def create_multiple_files_dataset_dict():
     corpora = ['aochildes', 'open_subtitles', 'qed', 
-               'switchboard', 'children_stories', 'bnc_spoken',
+               'switchboard', 'children_stories', 'bnc_spoken', 'simple_wikipedia',
                'wikipedia', 'cbt', 'gutenberg',]
-    train_corpora = [f'../babylm_data/babylm_10M/{corpus}.train' for corpus in corpora]
+    
+    train_corpora = ['aochildes_modified_length_14k', 'bnc_spoken', 'open_subtitles',
+               'children_stories', 'cbt_modified_rarity_2k', 'gutenberg_modified_rarity_2.2k_1k', 
+               'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
+    
+    train_corpora = [f'../babylm_data/babylm_10M/{corpus}.train' for corpus in train_corpora]
     dev_corpora = [f'../babylm_data/babylm_dev/{corpus}.dev' for corpus in corpora]
-    #test_corpora = [f'../babylm_data/babylm_test/{corpus}.test' for corpus in corpora]
-    return create_dataset_dict(train_corpora, dev_corpora)
+    test_corpora = [f'../babylm_data/babylm_test/{corpus}.test' for corpus in corpora]
+    return create_dataset_dict(train_corpora, dev_corpora, train_corpora)
     
     
 
