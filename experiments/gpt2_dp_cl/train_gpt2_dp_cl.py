@@ -31,7 +31,7 @@ model = GPT2LMHeadModel(config)
 eval_logging_ckp_steps = 500
 
 args = TrainingArguments(
-    output_dir="gpt2-cl-rarity-sampling-4",
+    output_dir="gpt2-cl-rarity-sampling-5",
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     evaluation_strategy="steps",
@@ -63,7 +63,7 @@ trainer = Trainer(
 trainer.train()
 print("test set evaluation")
 print("*******************************************")
-print(trainer.predict(tokenized_datasets["test"]))
+print(trainer.evaluate(eval_dataset=tokenized_datasets["test"]))
 print("*******************************************")
 trainer.push_to_hub()
 

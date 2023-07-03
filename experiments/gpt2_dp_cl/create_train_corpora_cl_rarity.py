@@ -76,10 +76,10 @@ sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw
 
 #sampling with the square root function
 batch_size = 32
-t_competent = 150000 #doubled #5 epochs to competence, 800000 sentences in batches of 32 
+t_competent = 138000 #doubled #5 epochs to competence, 800000 sentences in batches of 32 
 c0_squared = (1/t_competent)**2
 num_sent = len(sorted_list_train_dataset_raw)
-with open('train_data_rarity_cl_sampling_4_150k.txt', 'w') as f:
+with open('train_data_rarity_cl_sampling_5_138k.txt', 'w') as f:
     for t in tqdm(range(t_competent)):
         c_sqrt = min(1, math.sqrt(t * ((1 - c0_squared) / t_competent) + c0_squared))
         max_ind = max(batch_size, int(c_sqrt * num_sent))
