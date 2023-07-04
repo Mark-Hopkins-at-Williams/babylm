@@ -30,8 +30,8 @@ def create_dataset_dict(train_file_names):
     return result
 
 def create_multiple_files_dataset_dict():
-    corpora = ['aochildes', 'bnc_spoken', 'open_subtitles',
-               'children_stories', 'cbt', 'gutenberg_fixed', 
+    corpora = ['aochild_rarity3_all_1k', 'bnc_spoken', 'open_subtitles',
+               'children_stories', 'cbt_rarity2_all_1k', 'gutenberg_rarity2_1k_1k', 
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     train_corpora = [f'/mnt/storage/nasimb/babylm_data/babylm_10M/{corpus}.train' for corpus in corpora]
     return create_dataset_dict(train_corpora)
@@ -81,10 +81,10 @@ sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw
 
 #sampling with the square root function
 batch_size = 32
-t_competent = 276000 #doubled #5 epochs to competence, 800000 sentences in batches of 32 
+t_competent = 210000 #doubled #5 epochs to competence, 800000 sentences in batches of 32 
 c0_squared = (1/t_competent)**2
 num_sent = len(sorted_list_train_dataset_raw)
-with open('train_data_log_rarity_cl_8_276k.txt', 'w') as f:
+with open('train_data_log_rarity_cl_9_210k_mod_datasets.txt', 'w') as f:
     for t in tqdm(range(t_competent)):
         c_sqrt = min(1, math.sqrt(t * ((1 - c0_squared) / t_competent) + c0_squared))
         max_ind = max(batch_size, int(c_sqrt * num_sent))
