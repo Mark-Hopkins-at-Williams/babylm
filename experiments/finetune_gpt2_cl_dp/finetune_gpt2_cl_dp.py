@@ -1,4 +1,4 @@
-from tokenizer_and_data_gpt2_dp import create_multiple_files_dataset_dict, tokenize, TOKENIZER, CONTEXT_LENGTH 
+from tokenize_and_data_gpt2_dp import create_multiple_files_dataset_dict, tokenize, TOKENIZER, CONTEXT_LENGTH 
 from transformers import GPT2LMHeadModel, AutoConfig
 from torch.utils.data.dataloader import DataLoader
 from transformers import DataCollatorForLanguageModeling
@@ -19,14 +19,6 @@ train_dataloader = DataLoader(tokenized_datasets["train"], batch_size=32,  colla
 eval_dataloader = DataLoader(tokenized_datasets["valid"], batch_size=32,  collate_fn=data_collator)
 test_dataloader = DataLoader(tokenized_datasets["test"], batch_size=32,  collate_fn=data_collator)
 
-
-config = AutoConfig.from_pretrained(
-    "gpt2",
-    vocab_size=len(TOKENIZER),
-    n_ctx=CONTEXT_LENGTH,
-    bos_token_id=TOKENIZER.bos_token_id,
-    eos_token_id=TOKENIZER.eos_token_id,
-)
 model = GPT2LMHeadModel.from_pretrained("/mnt/storage/nasimb/babylm/gpt2-cl-concat-rarity-mod-datasets-6")
 
 eval_logging_ckp_steps = 500
