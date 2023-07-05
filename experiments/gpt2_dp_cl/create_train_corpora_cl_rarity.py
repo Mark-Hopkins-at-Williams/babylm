@@ -31,7 +31,7 @@ def create_dataset_dict(train_file_names):
 
 def create_multiple_files_dataset_dict():
     corpora = ['aochildes_modified_length_14k', 'bnc_spoken', 'open_subtitles',
-               'children_stories', 'cbt_modified_rarity_2k', 'gutenberg_modified_rarity_2.2k_1k', 
+               'children_stories', 'cbt_modified_rarity_2k_.3k', 'gutenberg_modified_rarity_2.2k_1k', 
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     train_corpora = [f'/mnt/storage/nasimb/babylm_data/babylm_10M/{corpus}.train' for corpus in corpora]
     return create_dataset_dict(train_corpora)
@@ -72,17 +72,16 @@ sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indec
 #remove repeating instances from the list preserving the order
 sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))
     
-#no cuts in the rarity ordered dataset
 
-#sampling with the square root function
+#sampling with the root 3 function
 batch_size = 32
-t_competent = 138000 #doubled #5 epochs to competence, 800000 sentences in batches of 32 
-c0_squared = (1/t_competent)**2
+t_competent = 135000 #doubled #5 epochs to competence, 800000 sentences in batches of 32 
+c0_cubed = (1/t_competent)**3
 num_sent = len(sorted_list_train_dataset_raw)
-with open('train_data_rarity_cl_6_modified_138k.txt', 'w') as f:
+with open('train_data_rarity_cl_11_135k_mod_datasets_rarity1.txt', 'w') as f:
     for t in tqdm(range(t_competent)):
-        c_sqrt = min(1, math.sqrt(t * ((1 - c0_squared) / t_competent) + c0_squared))
-        max_ind = max(batch_size, int(c_sqrt * num_sent))
+        c_root_3 = min(1, (t * ((1 - c0_cubed) / t_competent) + c0_cubed) ** (1./3))
+        max_ind = max(batch_size, int(c_root_3 * num_sent))
         sample_inds = np.random.randint(low = 0,high=max_ind,size=batch_size)
         for ind in sample_inds:
             f.write(f"{sorted_list_train_dataset_raw[ind]}\n")
