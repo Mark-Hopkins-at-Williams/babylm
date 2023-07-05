@@ -9,4 +9,4 @@
 
 python /mnt/storage/nasimb/babylm/experiments/gpt2_concat_cl/train_gpt2_concat_cl.py
 cd ../evaluation-pipeline
-python babylm_eval.py /mnt/storage/nasimb/babylm/gpt2-cl-concat-log-rarity-8-276k decoder
+python babylm_eval.py /mnt/storage/nasimb/babylm/gpt2-concat-cl-log-rarity-10-220k-mod-datasets-rarity1-root3 decoder
