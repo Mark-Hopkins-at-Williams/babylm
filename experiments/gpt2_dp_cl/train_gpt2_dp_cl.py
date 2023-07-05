@@ -31,7 +31,7 @@ model = GPT2LMHeadModel(config)
 eval_logging_ckp_steps = 500
 
 args = TrainingArguments(
-    output_dir="gpt2-dp-cl-rarity-9-210k-mod-datasets",
+    output_dir="gpt2-dp-cl-log-rarity-10-220k-mod-datasets-rarity1-root3",
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     evaluation_strategy="steps",
