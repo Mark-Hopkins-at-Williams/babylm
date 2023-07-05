@@ -14,6 +14,9 @@ gpt2-concat-aochildes-16k:
 - 16k -> first time 7 out of 10 were good
 - sorted by length
 
+gpt2-concat-cbt-:
+- cbt siorted by length has 7 meaningful and grammatically correct sentences/phrases out of 10 at line 500
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
