@@ -64,6 +64,9 @@ gpt2-concat-cbt-rarity-all-no-cbt-7k-0.8k:
 - might be helpful as cbt contains a lof of rare words thatare not ptresent in otherdatasetsand we want to remove iunputs containing high number of rare words
 - cut inds are the same as prev best result
 
+gpt2-concat-cbt-rarity-all-12k-0.8k:
+- search for optimum cut for rarity sorted cbt 
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
