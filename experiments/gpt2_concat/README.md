@@ -27,6 +27,14 @@ gpt2-concat-aochildes-length-16k-rarity_all-4k-1.2k:
 - from the end of the dataset read 10 inputs every 500 lines and 38500 firstime 8 out of 10 were good
 - sorted by rarity of tokens among all tokens of strict small
 
+
+gpt2-concat-aochildes-length-16plus6k-rarity-all-3k-p6k
+- read every 10 sentences every 1000 lines
+- look for meaningful and grammatically correct sentences or phrases 
+- 3k -> first time 8 out of 10 were good
+- from the end of the dataset read 10 inputs every 500 lines and 33000 firstime 8 out of 10 were good
+- aochildes-length-16plus6k sorted by rarity of tokens among all tokens of strict small
+
 gpt2-concat-cbt-:
 - cbt siorted by length has 7 meaningful and grammatically correct sentences/phrases out of 10 at line 500
 
