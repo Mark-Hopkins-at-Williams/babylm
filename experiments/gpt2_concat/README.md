@@ -20,10 +20,11 @@ gpt2-concat-aochildes-16k+6k:
 - 22k -> first time 10 out of 10 were good
 - sorted by length
 
-gpt2-concat-aochildes-16k-length-4k-rarity-all:
+gpt2-concat-aochildes-length-16k-rarity_all-4k-1.2k:
 - read every 10 sentences every 1000 lines
 - look for meaningful and grammatically correct sentences or phrases 
 - 4k -> first time 8 out of 10 were good
+- from the end of the dataset read 10 inputs every 500 lines and 38500 firstime 8 out of 10 were good
 - sorted by rarity of tokens among all tokens of strict small
 
 gpt2-concat-cbt-:

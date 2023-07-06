@@ -126,9 +126,9 @@ else:
 sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indecies]
 
 #remove repeating instances from the list preserving the order, and cut
-sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))[4000:]
+sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))[4000:38500]
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/aochildes_length_16k_rarity_all_4k.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/aochildes_length_16k_rarity_all_4k_1p2k.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
     
