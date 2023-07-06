@@ -44,5 +44,8 @@ gpt2-concat-len-16k-punc-dot:
 - there's a lot of mismatch between the meaning of the sent and punctuation mark in aochildes
 - experiment to see if fixing that helps
 
+gpt2-concat-aochildes-len-16plus3k:
+- binary search for optimum cut for length sorted aochildes
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh

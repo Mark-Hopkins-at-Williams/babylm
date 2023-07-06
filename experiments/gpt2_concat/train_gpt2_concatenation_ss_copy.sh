@@ -9,4 +9,4 @@
 
 python /mnt/storage/nasimb/babylm/experiments/gpt2_concat/train_gpt2_concatenation_copy.py
 cd ../evaluation-pipeline
-python babylm_eval.py /mnt/storage/nasimb/babylm/gpt2-concat-len-16k-punc-dot decoder
+python babylm_eval.py /mnt/storage/nasimb/babylm/gpt2-concat-aochildes-len-16plus3k decoder
