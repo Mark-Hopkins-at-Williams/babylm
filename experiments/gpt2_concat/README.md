@@ -59,5 +59,11 @@ gpt2_concat_aochildes_len_16k_rarity_all_2k_p7k:
 gpt2-concat-cbt-rarity-all-4.5k-0.3k:
 - search for optimum cut for rarity sorted cbt 
 
+gpt2-concat-cbt-rarity-all-no-cbt-7k-0.8k:
+- sort the inputs in cbtbased on token counts in all datasets besides cbt 
+- might be helpful as cbt contains a lof of rare words thatare not ptresent in otherdatasetsand we want to remove iunputs containing high number of rare words
+- cut inds are the same as prev best result
+
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
