@@ -56,5 +56,8 @@ gpt2_concat_aochildes_len_16k_rarity_all_6k_1.2k:
 gpt2_concat_aochildes_len_16k_rarity_all_2k_p7k:
 - search for optimum cut for rarity sorted aochildes after a 16k len based cut
 
+gpt2-concat-cbt-rarity-all-4.5k-0.3k:
+- search for optimum cut for rarity sorted cbt 
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh

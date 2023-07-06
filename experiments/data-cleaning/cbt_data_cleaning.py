@@ -109,7 +109,7 @@ dict_ind_token_log_rarity = {i:sum([math.log(token_counts[token]) for token in l
 
 #calculate the order of raw sentences based on token length
 tokenized_seq_lengths = [len(x) for x in tokenized_datasets["train"]["input_ids"]]
-dict_ind_token_length = {i:tokenized_seq_lengths[i] for i in range(len(tokenized_seq_lengths))}
+dict_ind_token_length = {i:tokenized_seq_lengths[i] for i in range(len(dict_ind_token_rarity))}
 
 
 #print({k: dict_ind_token_length[k] for k in list(dict_ind_token_length.keys())[:100]})
@@ -126,9 +126,9 @@ else:
 sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indecies]
 
 #remove repeating instances from the list preserving the order, and cut
-sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))[7000:24500]
+sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))[4500:25000]
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/cbt_rarity_all_7k_p8k.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/cbt_rarity_all_4p5k_p3k.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
     
