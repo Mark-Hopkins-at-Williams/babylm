@@ -50,5 +50,8 @@ gpt2-concat-aochildes-len-16plus3k:
 gpt2-concat-aochildes-len-17p5k:
 - binary search for optimum cut for length sorted aochildes
 
+gpt2_concat_aochildes_len_16k_rarity_all_6k_1.2k:
+- binary search for optimum cut for rarity sorted aochildes after a 16k len based cut
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
