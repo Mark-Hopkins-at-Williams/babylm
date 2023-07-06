@@ -14,6 +14,12 @@ gpt2-concat-aochildes-16k:
 - 16k -> first time 7 out of 10 were good
 - sorted by length
 
+gpt2-concat-aochildes-16k+6k:
+- read every 10 sentences every 1000 lines
+- look for meaningful and grammatically correct sentences or phrases 
+- 22k -> first time 10 out of 10 were good
+- sorted by length
+
 gpt2-concat-cbt-:
 - cbt siorted by length has 7 meaningful and grammatically correct sentences/phrases out of 10 at line 500
 
