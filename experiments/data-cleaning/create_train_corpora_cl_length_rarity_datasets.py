@@ -40,9 +40,9 @@ def create_dataset_dict(train_file_names):
 
 def create_multiple_files_dataset_dict(one_dataset):
     if one_dataset:
-        corpora = ['aochildes']
+        corpora = ['aochildes_length_16k']
     else:
-        corpora = ['aochildes', 'bnc_spoken', 'open_subtitles',
+        corpora = ['aochildes_length_16k', 'bnc_spoken', 'open_subtitles',
                'children_stories', 'cbt', 'gutenberg_fixed', 
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     print(corpora)
@@ -97,7 +97,7 @@ dict_ind_token_rarity = {i:(sum([token_counts[token] for token in list_tokenized
                             / len(list_tokenized_seqs[i])) 
                          for i in range(len(list_tokenized_seqs))}
         
-#normalizing the counts
+"""#normalizing the counts
 for token_id, count in token_counts.items():
     token_counts[token_id] = count / total_num_tokens
 
@@ -105,7 +105,7 @@ for token_id, count in token_counts.items():
 #calculate the order of raw sentences based on the rarity of the tokens in each dataset      
 dict_ind_token_log_rarity = {i:sum([math.log(token_counts[token]) for token in list_tokenized_seqs[i]]) 
                          for i in range(len(list_tokenized_seqs))}
-
+"""
 
 #calculate the order of raw sentences based on token length
 tokenized_seq_lengths = [len(x) for x in tokenized_datasets["train"]["input_ids"]]
@@ -126,9 +126,9 @@ else:
 sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indecies]
 
 #remove repeating instances from the list preserving the order, and cut
-sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))[16000:]
+sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))[6000:]
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/aochildes_length_16k.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/aochildes_length_16plus6k.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
     
