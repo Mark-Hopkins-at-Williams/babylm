@@ -18,6 +18,8 @@ def read_lines(filenames):
                 if len(line) > 0 and line[0] == "-":
                     line = line[1:]
                 if len(line) > 0 and bar_count < 2 and bar_count + exclamation_count < 2:
+                    #aochildes punctuation fix
+                    line = line[:-2] + "."
                     yield {'text': line}   
                 """
                 #gutenberg
@@ -40,9 +42,9 @@ def create_dataset_dict(train_file_names):
 
 def create_multiple_files_dataset_dict(one_dataset):
     if one_dataset:
-        corpora = ['aochildes_length_16plus6k']
+        corpora = ['aochildes_length_16k']
     else:
-        corpora = ['aochildes_length_16plus6k', 'bnc_spoken', 'open_subtitles',
+        corpora = ['aochildes_length_16k', 'bnc_spoken', 'open_subtitles',
                'children_stories', 'cbt', 'gutenberg_fixed', 
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     print(corpora)
@@ -58,7 +60,7 @@ def tokenize(element):
     return {"input_ids": outputs["input_ids"]}
 
 
-Based_on_target_dataset = False
+Based_on_target_dataset = True
 
 if not Based_on_target_dataset:
 
@@ -115,7 +117,7 @@ dict_ind_token_length = {i:tokenized_seq_lengths[i] for i in range(len(tokenized
 #print({k: dict_ind_token_length[k] for k in list(dict_ind_token_length.keys())[:100]})
 #print({k: dict_ind_token_rarity[k] for k in list(dict_ind_token_rarity.keys())[:100]})
 
-sorted_indecies = sorted(dict_ind_token_rarity, key=lambda k:(dict_ind_token_rarity[k]))
+sorted_indecies = sorted(dict_ind_token_rarity, key=lambda k:(dict_ind_token_length[k]))
 
 #reorder the raw datatset
 if Based_on_target_dataset:
@@ -126,9 +128,9 @@ else:
 sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indecies]
 
 #remove repeating instances from the list preserving the order, and cut
-sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))[3000:33000]
+sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/aochildes_length_16plus6k_rarity_all_3k_p6k.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/aochildes_length_16k_punc_dot.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
     

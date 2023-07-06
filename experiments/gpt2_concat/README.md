@@ -40,5 +40,9 @@ gpt2-concat-cbt-rarity-all-7k-0.8k:
 - 7k first time 7 out of 10 sentences resemble modern english
 - from end, 24500 first time all 10 are meaning full, checked every 500, starting from 25000
 
+gpt2-concat-len-16k-punc-dot:
+- there's a lot of mismatch between the meaning of the sent and punctuation mark in aochildes
+- experiment to see if fixing that helps
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
