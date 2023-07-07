@@ -71,6 +71,10 @@ gpt2-concat-guten-rarity-all-5k-2.5k:
 - at 5k all sentences are meaningfule or are longer sentences with meaningful portions
 - for the most frequent: checked every 500 lines, at 19000 7 out of 10 were complete sentences
 
+gpt2-concat-guten-rarity-no-self-5k-2.5k:
+- gutenberg is not included in token counts
+- the cut placements roughly matches that of rarity-all in terms of numebr of meaningful sentences
+- aligned for purpose of comparison
 
 
 Run the following on Appa:
