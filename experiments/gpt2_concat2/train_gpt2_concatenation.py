@@ -60,7 +60,7 @@ trainer = Trainer(
     eval_dataset=tokenized_datasets["valid"],
 )
 
-trainer.train()
+trainer.train(resume_from_checkpoint=False)
 print("test set evaluation")
 print("*******************************************")
 print(trainer.evaluate(eval_dataset=tokenized_datasets["test"]))

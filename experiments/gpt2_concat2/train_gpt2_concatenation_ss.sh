@@ -7,6 +7,6 @@
 #SBATCH -e myerrors_%j.err  # File to which STDERR will be written, %j inserts jobid
 #SBATCH --gres=gpu:2        # Request two GPUs
 
-python /mnt/storage/nasimb/babylm/experiments/gpt2_concat/train_gpt2_concatenation.py
+python /mnt/storage/nasimb/babylm/experiments/gpt2_concat2/train_gpt2_concatenation.py
 cd ../evaluation-pipeline
 python babylm_eval.py /mnt/storage/nasimb/babylm/gpt2-concat-aochildes-len-16k-rarity-all-6k-1p2k decoder
