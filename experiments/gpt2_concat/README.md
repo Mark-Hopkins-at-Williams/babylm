@@ -67,6 +67,11 @@ gpt2-concat-cbt-rarity-all-no-cbt-7k-0.8k:
 gpt2-concat-cbt-rarity-all-12k-0.8k:
 - search for optimum cut for rarity sorted cbt 
 
+gpt2-concat-guten-rarity-all-5k-2.5k:
+- at 5k all sentences are meaningfule or are longer sentences with meaningful portions
+- for the most frequent: checked every 500 lines, at 19000 7 out of 10 were complete sentences
+
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
