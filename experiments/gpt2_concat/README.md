@@ -85,6 +85,9 @@ gpt2-concat-cbt-rarity-all-5.75k-.55k:
 gpt2-concat-guten-rarity-all-7k-3k:
 - search for optimum cut for rarity sorted gutenberg 
 
+gpt2_concat_aochildes_len_16k_rarity_all_3k_.95k:
+- binary search for optimum cut for rarity sorted aochildes after a 16k len based cut
+
 
 
 

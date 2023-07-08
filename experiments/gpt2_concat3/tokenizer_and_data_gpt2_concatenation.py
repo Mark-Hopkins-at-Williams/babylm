@@ -27,7 +27,7 @@ def create_multiple_files_dataset_dict():
                'switchboard', 'children_stories', 'bnc_spoken', 'simple_wikipedia',
                'wikipedia', 'cbt', 'gutenberg',]
     
-    train_corpora = ['aochildes_len_16k_rarity_all_2k_p7k', 'bnc_spoken', 'open_subtitles',
+    train_corpora = ['aochildes_len_16k_rarity_all_3k_p95k', 'bnc_spoken', 'open_subtitles',
                'children_stories', 'cbt', 'gutenberg_fixed', 
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     

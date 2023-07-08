@@ -40,9 +40,9 @@ def create_dataset_dict(train_file_names):
 
 def create_multiple_files_dataset_dict(one_dataset):
     if one_dataset:
-        corpora = ['gutenberg_fixed']
+        corpora = ['aochildes_length_16k']
     else:
-        corpora = ['aochildes', 'bnc_spoken', 'open_subtitles',
+        corpora = ['aochildes_length_16k', 'bnc_spoken', 'open_subtitles',
                'children_stories', 'cbt', 'gutenberg_fixed', 
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     print(corpora)
@@ -126,9 +126,9 @@ else:
 sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indecies]
 
 #remove repeating instances from the list preserving the order, and cut
-sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))[7000:18500]
+sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))[3000:-950]
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/gutenberg_rarity_all_7k_3k.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/aochildes_len_16k_rarity_all_3k_p95k.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
     
