@@ -89,6 +89,11 @@ gpt2_concat_aochildes_len_16k_rarity_all_3k_.95k:
 - binary search for optimum cut for rarity sorted aochildes after a 16k len based cut
 
 
+gpt2-concat-aochildes-length-16k-rarity-all-no-self-4k-1.2k:
+- rerun of the best result with aochildes
+-remove aochildes-len-16k from the token count database
+
+
 
 
 Run the following on Appa:
