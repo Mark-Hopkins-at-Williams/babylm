@@ -77,5 +77,12 @@ gpt2-concat-guten-rarity-no-self-5k-2.5k:
 - aligned for purpose of comparison
 
 
+- no self in rarity all does not work
+
+gpt2-concat-cbt-rarity-all-5.75k-.55k:
+- binary search for optimum cut for rarity sorted cbt
+
+
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
