@@ -113,10 +113,12 @@ gp2-concat-longer-top3-aochildes-cbt-guten:
 - cbt-rarity-all-4.5k-0.3k
 - guten-rarity-all-5k-2.5k
 
-
 gpt2-concat-guten-rarity-all-3.5k-1.8k:
 - binary search for optimum cut for rarity sorted guten 
 
+gpt2-concat-guten-rarity-5k-2.5k:
+- repetition of the most succesful cot for guten with a different sorting algorithm
+- based on the token counts of the dataset itself 
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh

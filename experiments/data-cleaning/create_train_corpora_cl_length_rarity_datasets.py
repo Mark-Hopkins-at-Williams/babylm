@@ -58,7 +58,7 @@ def tokenize(element):
     return {"input_ids": outputs["input_ids"]}
 
 
-Based_on_target_dataset = False
+Based_on_target_dataset = True
 
 if not Based_on_target_dataset:
 
@@ -126,9 +126,9 @@ else:
 sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indecies]
 
 #remove repeating instances from the list preserving the order, and cut
-sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))[3500:-1800]
+sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))[5000:19000]
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/guten_rarity_all_3p5k_1p8k.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/guten_rarity_5k_2p5k.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
     
