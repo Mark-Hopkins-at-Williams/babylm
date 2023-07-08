@@ -99,7 +99,6 @@ gp2-concat-top-for-aochildes-cbt-guten:
 - cbt-rarity-all-7k-0.8k
 - guten-rarity-all-5k-2.5k
 
-
 gpt2-concat-bnc-rarity-12k-1p5k:
 - 12k is first where 8 out 10 sentences or phrases are meaningful 
 - most frequent: checked every 500, at 69000 all meaningful but short sentences
@@ -107,6 +106,12 @@ gpt2-concat-bnc-rarity-12k-1p5k:
 gpt2-concat-bnc-rarity-all-15k-1k:
 - 15k is first where 8 out 10 sentences or phrases are meaningful 
 - most frequent: checked every 500, at 69500 all meaningful but short sentences
+
+gp2-concat-longer-top3-aochildes-cbt-guten:
+- a gpt2 conat model trained on the best results acuired form aochildes, cbt, and guten
+- aochildes-len-16k
+- cbt-rarity-all-4.5k-0.3k
+- guten-rarity-all-5k-2.5k
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
