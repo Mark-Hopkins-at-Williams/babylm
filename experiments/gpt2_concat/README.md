@@ -120,5 +120,13 @@ gpt2-concat-guten-rarity-5k-2.5k:
 - repetition of the most succesful cot for guten with a different sorting algorithm
 - based on the token counts of the dataset itself 
 
+gpt2-concat-all-rarity-all-29k-3k:
+- realized we could sort all sentences based on rarity all, probably much more efficient, 
+- then the only modification to each dataset is based on internal information i.e rarity based on self or length
+- aochildes unmodidies, gurtenberg-fixed
+- 29k -> 7 put of 10 were meaningful
+- -3k (740k) first where inputs were longer than a single word
+- read every 1000 lines
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
