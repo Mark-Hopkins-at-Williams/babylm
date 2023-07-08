@@ -128,5 +128,12 @@ gpt2-concat-all-rarity-all-29k-3k:
 - -3k (740k) first where inputs were longer than a single word
 - read every 1000 lines
 
+gpt2-concat-all-rarity-all-29k-3k:
+- aochildes_length_16k, gurtenberg-fixed
+- read every 1000 lines
+- 30k -> first time where 7 put of 10 were meaningful (8 out of 10 in hits case but in 29k 6out of 10)
+- -3k (724k) first where inputs were longer than a single word
+
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
