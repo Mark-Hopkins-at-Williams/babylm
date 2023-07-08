@@ -91,9 +91,13 @@ gpt2_concat_aochildes_len_16k_rarity_all_3k_.95k:
 
 gpt2-concat-aochildes-length-16k-rarity-all-no-self-4k-1.2k:
 - rerun of the best result with aochildes
--remove aochildes-len-16k from the token count database
+- remove aochildes-len-16k from the token count database
 
-
+gp2-concat-top-for-aochildes-cbt-guten:
+- a gpt2 conat model trained on the best results acuired form aochildes, cbt, and guten
+- aochildes-len-16k-rarity-all-4k-1.2k
+- cbt-rarity-all-7k-0.8k
+- guten-rarity-all-5k-2.5k
 
 
 Run the following on Appa:
