@@ -82,6 +82,10 @@ gpt2-concat-guten-rarity-no-self-5k-2.5k:
 gpt2-concat-cbt-rarity-all-5.75k-.55k:
 - binary search for optimum cut for rarity sorted cbt
 
+gpt2-concat-guten-rarity-all-7k-3k:
+- search for optimum cut for rarity sorted gutenberg 
+
+
 
 
 Run the following on Appa:
