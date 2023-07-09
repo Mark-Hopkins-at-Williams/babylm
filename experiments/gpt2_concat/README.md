@@ -177,5 +177,9 @@ gpt2-concat-cbt-rarity-iorder-2k-p3k:
 - rerun of e486cf0 (cbt-rarity-2k-p3k), the cut from the best result (cbt-rarity-all-4.5k-.3k) no applicable to due to signifacnt index difference
 - cbt-rarity-2k-p3k reordered to initial dataset order
 
+gpt2-concat-aochildes-length-iorder-16k:
+- rerun of 0709594 (aochildes-length-16k) but the dataset reordered
+
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
