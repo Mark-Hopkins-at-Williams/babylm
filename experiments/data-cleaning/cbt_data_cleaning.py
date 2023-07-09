@@ -19,7 +19,7 @@ def read_lines(filenames):
                     line = line[1:]
                 if len(line) > 0 and bar_count < 2 and bar_count + exclamation_count < 2:
                     yield {'text': line}   
-                
+                    
 
 def create_dataset(filenames):
     return Dataset.from_generator(lambda: read_lines(filenames))
@@ -33,7 +33,7 @@ def create_multiple_files_dataset_dict(one_dataset):
     if one_dataset:
         corpora = ['cbt']
     else:
-        corpora = ['aochildes', 'bnc_spoken', 'open_subtitles',
+        corpora = ['bnc_spoken', 'open_subtitles', 'aochildes', 
                'children_stories', 'cbt', 'gutenberg_fixed', 
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     print(corpora)
@@ -49,7 +49,7 @@ def tokenize(element):
     return {"input_ids": outputs["input_ids"]}
 
 
-Based_on_target_dataset = False
+Based_on_target_dataset = True
 
 if not Based_on_target_dataset:
 
@@ -100,7 +100,7 @@ dict_ind_token_log_rarity = {i:sum([math.log(token_counts[token]) for token in l
 
 #calculate the order of raw sentences based on token length
 tokenized_seq_lengths = [len(x) for x in tokenized_datasets["train"]["input_ids"]]
-dict_ind_token_length = {i:tokenized_seq_lengths[i] for i in range(len(dict_ind_token_rarity))}
+dict_ind_token_length = {i:tokenized_seq_lengths[i] for i in range(len(tokenized_seq_lengths))}
 
 
 #print({k: dict_ind_token_length[k] for k in list(dict_ind_token_length.keys())[:100]})
@@ -113,15 +113,19 @@ if Based_on_target_dataset:
     list_train_dataset_raw = list(raw_datasets["train"]["text"])
 else:
     list_train_dataset_raw = list(raw_datasets_one["train"]["text"])
-   
+    
+#theory: preservig the order of setences in a dataset matters
+sorted_indecies = sorted(sorted_indecies[2000:25699])
+
 sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indecies]
-
+   
 #remove repeating instances from the list preserving the order, and cut
-sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))[5750:-550]
+sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/cbt_rarity_all_5.75k_p55k.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/cbt_rarity_iorder_2k_p3k.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
+        
     
 
 

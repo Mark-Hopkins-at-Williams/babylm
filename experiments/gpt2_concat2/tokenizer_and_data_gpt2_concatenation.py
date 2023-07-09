@@ -28,11 +28,10 @@ def create_multiple_files_dataset_dict():
                'wikipedia', 'cbt', 'gutenberg',]
     
     train_corpora = ['aochildes', 'bnc_spoken', 'open_subtitles',
-               'children_stories', 'cbt', 'guten_rarity_all_3p5k_1p8k', 
+               'children_stories', 'cbt_rarity_iorder_2k_p3k', 'guten_fixed', 
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     
-    #train_corpora = [f'../babylm_data/babylm_10M/{corpus}.train' for corpus in train_corpora]
-    train_corpora = ['/mnt/storage/nasimb/babylm_data/babylm_10M/all_mod_datasets_rarity_all_iorder_e13k_e2p6k.train']
+    train_corpora = [f'../babylm_data/babylm_10M/{corpus}.train' for corpus in train_corpora]
     dev_corpora = [f'../babylm_data/babylm_dev/{corpus}.dev' for corpus in corpora]
     test_corpora = [f'../babylm_data/babylm_test/{corpus}.test' for corpus in corpora]
     return create_dataset_dict(train_corpora, dev_corpora, train_corpora)

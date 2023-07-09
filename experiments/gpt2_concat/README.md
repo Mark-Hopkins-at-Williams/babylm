@@ -173,7 +173,9 @@ gpt2-concat-guten-rarity-iroder-est-rarity-all-5k-2p5k:
 - gutenberg sorted based on internal rarity cut where the best result so far (guten-rarity-all-5k-2.5k) is cut
 - inputs reorderd after to replicate og datset minus the cut sentences 
 
-
+gpt2-concat-cbt-rarity-iorder-2k-p3k:
+- rerun of e486cf0 (cbt-rarity-2k-p3k), the cut from the best result (cbt-rarity-all-4.5k-.3k) no applicable to due to signifacnt index difference
+- cbt-rarity-2k-p3k reordered to initial dataset order
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
