@@ -181,8 +181,14 @@ gpt2-concat-aochildes-length-iorder-16k:
 - rerun of 0709594 (aochildes-length-16k) but the dataset reordered
 
 gpt2-concat-mod-datatsets-rarity-all-iorder-no-cut-repetition:
-- rerun of 3dd6518 45e8878
+- rerun of 3dd6518 
 - differences: repeated entries allowed to closer replicate 45e8878
+
+gpt2-concat-guten-rarity-all-mod-repetition-iorder-5k-p5k:
+- gutenberg sorted based on rarity of all tokens in strict small
+- repeated entries not removed
+- the refrences are removed with dtereministic text processing
+- initial order of the dataset preserved
 
 
 Run the following on Appa:
