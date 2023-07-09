@@ -165,6 +165,10 @@ gpt2-concat-mod-datatsets-rarity-all-iorder-e13k:
 gpt2-concat-mod-datatsets-rarity-all-iorder-end-e2p6k:
 - experiment to observe whether the worse performance is due to cutting the short but most frequent inputs
 
+gpt2-concat-mod-datatsets-rarity-all-iorder-no-cut:
+- rerun of 45e8878
+- differences: order of datastes and the writing all datasets to a single file
+
 
 
 Run the following on Appa:
