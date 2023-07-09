@@ -143,5 +143,11 @@ gpt2-concat-mod-datasets-rarity1-rarity-all-13k-2p6k:
 - 13k first place where 7 out of 10 are meaning ful phrases (not sentences)
 - -2.6k first place inputs are longer than one word (721000)
 
+gpt2-concat-mod-datatsets-rarity-all-iorder-e13k-e2.6k:
+- rerun of the "de48df1" (above) experiment, however preserving the order of the sentences in each dataset
+- sentences are ordered based on rarity, then a cut is estimated, list of ordered indicies of the sentences are cut, then the sentences are reordered based on the original order to preserve the context in shorter sentences
+- the cutts are places in the same place as teh above experiment aproximately (total diff in the datasets less than 150 sents for comparison)
+
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
