@@ -159,6 +159,9 @@ gpt2-concat-guten-mod-rarity-e1k-ep1k:
 - at 1000 3 out of 10 sentences were meaningful and at -100 
 - after finding the cuts the dataset is reordered to represent the original order for comparison of the effectivitiy of this method
 
+gpt2-concat-mod-datatsets-rarity-all-iorder-e13k:
+- experiment to observe whether the worse performance is due to cutting the least frequent inputs
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
