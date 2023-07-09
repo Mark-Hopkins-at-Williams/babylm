@@ -32,7 +32,7 @@ def create_multiple_files_dataset_dict():
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     
     #train_corpora = [f'../babylm_data/babylm_10M/{corpus}.train' for corpus in train_corpora]
-    train_corpora = ['/mnt/storage/nasimb/babylm_data/babylm_10M/all_mod_datasets_rarity_all_iorder_no_cut.train']
+    train_corpora = ['/mnt/storage/nasimb/babylm_data/babylm_10M/all_mod_datasets_rarity_all_iorder_no_cut_repetition.train']
     dev_corpora = [f'../babylm_data/babylm_dev/{corpus}.dev' for corpus in corpora]
     test_corpora = [f'../babylm_data/babylm_test/{corpus}.test' for corpus in corpora]
     return create_dataset_dict(train_corpora, dev_corpora, train_corpora)

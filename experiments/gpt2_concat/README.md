@@ -180,6 +180,10 @@ gpt2-concat-cbt-rarity-iorder-2k-p3k:
 gpt2-concat-aochildes-length-iorder-16k:
 - rerun of 0709594 (aochildes-length-16k) but the dataset reordered
 
+gpt2-concat-mod-datatsets-rarity-all-iorder-no-cut-repetition:
+- rerun of 3dd6518 45e8878
+- differences: repeated entries allowed to closer replicate 45e8878
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
