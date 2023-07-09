@@ -193,6 +193,10 @@ gpt2-concat-guten-rarity-all-mod-repetition-iorder-5k-p5k:
 gpt2-concat-cbt-rarity-2k-p3k-rerun:
 - rerun of e486cf0
 
+gpt2-concat-mod-datasets-rarity1-rerun:
+- rerun of 45e8878
+- excatly the same code
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
