@@ -175,6 +175,5 @@ gpt2-concat-guten-rarity-iroder-est-rarity-all-5k-2p5k:
 
 
 
-
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
