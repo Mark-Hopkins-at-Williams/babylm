@@ -137,5 +137,11 @@ gpt2-concat-all-rarity-all-29k-3k:
 gpt2-concat-aochildes-length-15k:
 - binary search for optimum cut for length sorted aochildes 
 
+gpt2-concat-mod-datasets-rarity1-rarity-all-13k-2p6k:
+- rerun of the "45e8878" experiment which includes 3 modified datasets aochildes-length-14k, cbt-rarity-2-.3, guten-2.2-1
+- with post processing of all rarity clean up 
+- 13k first place where 7 out of 10 are meaning ful phrases (not sentences)
+- -2.6k first place inputs are longer than one word (721000)
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
