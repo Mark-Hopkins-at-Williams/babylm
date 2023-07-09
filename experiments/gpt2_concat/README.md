@@ -169,6 +169,11 @@ gpt2-concat-mod-datatsets-rarity-all-iorder-no-cut:
 - rerun of 45e8878
 - differences: order of datastes and the writing all datasets to a single file
 
+gpt2-concat-guten-rarity-iroder-est-rarity-all-5k-2p5k:
+- gutenberg sorted based on internal rarity cut where the best result so far (guten-rarity-all-5k-2.5k) is cut
+- inputs reorderd after to replicate og datset minus the cut sentences 
+
+
 
 
 Run the following on Appa:
