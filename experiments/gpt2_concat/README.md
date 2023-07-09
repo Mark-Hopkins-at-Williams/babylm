@@ -134,6 +134,8 @@ gpt2-concat-all-rarity-all-29k-3k:
 - 30k -> first time where 7 put of 10 were meaningful (8 out of 10 in hits case but in 29k 6out of 10)
 - -3k (724k) first where inputs were longer than a single word
 
+gpt2-concat-aochildes-length-15k:
+- binary search for optimum cut for length sorted aochildes 
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
