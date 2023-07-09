@@ -190,6 +190,9 @@ gpt2-concat-guten-rarity-all-mod-repetition-iorder-5k-p5k:
 - the refrences are removed with dtereministic text processing
 - initial order of the dataset preserved
 
+gpt2-concat-cbt-rarity-2k-p3k-rerun:
+- rerun of e486cf0
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
