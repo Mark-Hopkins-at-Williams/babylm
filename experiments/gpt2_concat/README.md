@@ -162,6 +162,10 @@ gpt2-concat-guten-mod-rarity-e1k-ep1k:
 gpt2-concat-mod-datatsets-rarity-all-iorder-e13k:
 - experiment to observe whether the worse performance is due to cutting the least frequent inputs
 
+gpt2-concat-mod-datatsets-rarity-all-iorder-end-e2p6k:
+- experiment to observe whether the worse performance is due to cutting the short but most frequent inputs
+
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
