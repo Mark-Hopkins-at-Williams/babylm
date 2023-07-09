@@ -148,6 +148,17 @@ gpt2-concat-mod-datatsets-rarity-all-iorder-e13k-e2.6k:
 - sentences are ordered based on rarity, then a cut is estimated, list of ordered indicies of the sentences are cut, then the sentences are reordered based on the original order to preserve the context in shorter sentences
 - the cutts are places in the same place as teh above experiment aproximately (total diff in the datasets less than 150 sents for comparison)
 
+gpt2-concat-guten-mod-rarity-1k-p1k:
+- modified teh gutenberg dataset to remove most refrences with deterministic text processing
+- sorted teh resulting dataset based on gutenberg's internal token count
+- at 1000 3 out of 10 sentences were meaningful and at -100 
+
+gpt2-concat-guten-mod-rarity-e1k-ep1k:
+- modified teh gutenberg dataset to remove most refrences with deterministic text processing
+- sorted teh resulting dataset based on gutenberg's internal token count
+- at 1000 3 out of 10 sentences were meaningful and at -100 
+- after finding the cuts the dataset is reordered to represent the original order for comparison of the effectivitiy of this method
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
