@@ -202,6 +202,10 @@ gpt2-concat-aochildes-mod-no-repeating-sub-5p9k:
 - repeating lines in aochildes removed as well 80k -> 54k total
 - gutenberg fixed
 
+gpt2-concat-aochildes-mod-no-repeating-sub-5p9k-length-5k:
+- same as the above experiment (fd6c646) but sorted with length 5k removed 
+- at 5k 9 out of 10 are meaningful phrases
+- initial order not preserved
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh

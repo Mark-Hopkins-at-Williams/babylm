@@ -103,7 +103,7 @@ else:
     list_train_dataset_raw = list(raw_datasets_one["train"]["text"])
     
 #theory: preservig the order of setences in a dataset matters
-sorted_indecies = sorted(sorted_indecies)
+#sorted_indecies = sorted(sorted_indecies)
 
 sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indecies]
    
@@ -126,9 +126,9 @@ for ogsent in sorted_list_train_dataset_raw:
         sorted_list_train_dataset_raw_final.append(ogsent)
         
 print(n)
-sorted_list_train_dataset_raw = sorted_list_train_dataset_raw_final
+sorted_list_train_dataset_raw = sorted_list_train_dataset_raw_final[5000:]
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/aochildes_mod_no_repeating_sub.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/aochildes_mod_no_repeating_sub_5p9k_length_5k.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
         
