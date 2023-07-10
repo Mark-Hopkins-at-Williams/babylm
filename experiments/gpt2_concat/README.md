@@ -225,10 +225,17 @@ gpt2-cocnat-aochildes-mod-no-repreating-sub-5p9k-length-15p5k:
 - initial order not preserved
 - initial readline reset
 
-gpt2-concat-cbt-mod-formatting:
+gpt2-concat-cbt-mod-formatting-iorder:
 - removed mid sentence captions, revoed distance between n't and 's
 - unified "
 - original order preserved
+
+gpt2-concat-cbt-mod-formatting-rarity-all-4k:
+- formatting as above
+- original order not preserved
+- 4k cur botha based on manual evaluation and cbt-rarity-all-4.5k-.8k
+
+
 
 
 

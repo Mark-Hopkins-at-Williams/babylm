@@ -13,7 +13,9 @@ def read_lines(filenames):
             n = 0
             for line in reader:
                 line = line.strip()
-                while "-L" in line:
+                if len(line) > 0:
+                    yield {'text': line}
+                """while "-L" in line:
                     n += 1
                     #print(line, end = "        ")
                     s = line.find("-L")
@@ -30,8 +32,7 @@ def read_lines(filenames):
                     line = line.replace("``", '"')
                     line = line.replace(" n't", "n't")
                     line = line.replace(" 's", "'s")
-                    yield {'text': line} 
-            print(n)
+                    yield {'text': line} """
                     
 
 def create_dataset(filenames):
@@ -44,10 +45,10 @@ def create_dataset_dict(train_file_names):
 
 def create_multiple_files_dataset_dict(one_dataset):
     if one_dataset:
-        corpora = ['cbt']
+        corpora = ['cbt_mod_formatting_iorder']
     else:
         corpora = ['bnc_spoken', 'open_subtitles', 'aochildes', 
-               'children_stories', 'cbt', 'gutenberg_fixed', 
+               'children_stories', 'cbt_mod_formatting_iorder', 'gutenberg_fixed', 
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     print(corpora)
     train_corpora = [f'/mnt/storage/nasimb/babylm_data/babylm_10M/{corpus}.train' for corpus in corpora]
@@ -62,7 +63,7 @@ def tokenize(element):
     return {"input_ids": outputs["input_ids"]}
 
 
-Based_on_target_dataset = True
+Based_on_target_dataset = False
 
 if not Based_on_target_dataset:
 
@@ -114,14 +115,14 @@ else:
     list_train_dataset_raw = list(raw_datasets_one["train"]["text"])
     
 #theory: preservig the order of setences in a dataset matters
-sorted_indecies = sorted(sorted_indecies)
+#sorted_indecies = sorted(sorted_indecies)
 
 sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indecies]
    
 #remove repeating instances from the list preserving the order, and cut
-sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))
+sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))[4000:]
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/cbt_mod_formatting_iorder.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/cbt_mod_formatting_rarity_all_4k.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
         
