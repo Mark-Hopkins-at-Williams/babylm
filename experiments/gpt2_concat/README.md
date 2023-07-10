@@ -213,6 +213,13 @@ gpt2-concat-guten-mod-rm-refrences-1p7k:
 - repetition removed
 - tottal 2k sentences are the difference between this dataset and gutenberg_fixed
 
+gpt2-concat-guten-mod-rm-ref-2k-rarity-2p5k-p13k:
+- fixed gutenberg to add space when merges happen (IMPORTANT) and slight modification to rm refrences which only works for arity sorted guten -> 2k removed this way
+- repetition removed
+- original order not preserved
+- intrnal rarity sorted -> read every 500 lines from least frequent at 2500 8 out of 10 score
+- at -130 of most frequent 9 out of 10 meaningful phrases/sentences
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
