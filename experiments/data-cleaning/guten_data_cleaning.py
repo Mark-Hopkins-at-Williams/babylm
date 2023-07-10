@@ -128,9 +128,9 @@ print(n)
 sorted_list_train_dataset_raw = sorted_list_train_dataset_raw_final
 
 #remove repeating instances from the list preserving the order, and cut
-sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))[4000:20000]
+sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))[5000:19900]
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/guten_mod_rarity_all_4k_p12k.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/guten_mod_rm_2p3_rarity_all_5k_p22k.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
         
