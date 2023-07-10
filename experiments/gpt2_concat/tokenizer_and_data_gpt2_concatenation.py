@@ -34,7 +34,7 @@ def create_multiple_files_dataset_dict():
     train_corpora = [f'../babylm_data/babylm_10M/{corpus}.train' for corpus in train_corpora]
     dev_corpora = [f'../babylm_data/babylm_dev/{corpus}.dev' for corpus in corpora]
     test_corpora = [f'../babylm_data/babylm_test/{corpus}.test' for corpus in corpora]
-    return create_dataset_dict(train_corpora, dev_corpora, train_corpora)
+    return create_dataset_dict(train_corpora, dev_corpora, test_corpora)
 
 
 CONTEXT_LENGTH = 128

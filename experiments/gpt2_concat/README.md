@@ -225,5 +225,12 @@ gpt2-cocnat-aochildes-mod-no-repreating-sub-5p9k-length-15p5k:
 - initial order not preserved
 - initial readline reset
 
+gpt2-concat-cbt-mod-formatting:
+- removed mid sentence captions, revoed distance between n't and 's
+- unified "
+
+
+
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh

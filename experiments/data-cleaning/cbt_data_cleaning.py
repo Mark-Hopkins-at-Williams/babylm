@@ -10,15 +10,28 @@ from tqdm import tqdm
 def read_lines(filenames):
     for filename in filenames:
         with open(filename) as reader:
+            n = 0
             for line in reader:
                 line = line.strip()
-                bar_count =  line.count('|')
-                exclamation_count = line.count('!')
-                line = line.replace("= = =", "")
-                if len(line) > 0 and line[0] == "-":
-                    line = line[1:]
-                if len(line) > 0 and bar_count < 2 and bar_count + exclamation_count < 2:
-                    yield {'text': line}   
+                while "-L" in line:
+                    n += 1
+                    #print(line, end = "        ")
+                    s = line.find("-L")
+                    e = line.find("-R")
+                    if e == -1:
+                        line = line[:s]
+                    else:
+                        line = line[:s] + line[e+5:]
+                    #print(line)
+                dot_count = line.count('.')
+                if len(line) > 0 and dot_count < 9:
+                    line = line.replace('...', ',')
+                    line = line.replace("''", '"')
+                    line = line.replace("``", '"')
+                    line = line.replace(" n't", "n't")
+                    line = line.replace(" 's", "'s")
+                    yield {'text': line} 
+            print(n)
                     
 
 def create_dataset(filenames):
@@ -58,7 +71,7 @@ if not Based_on_target_dataset:
     raw_datasets_one = create_multiple_files_dataset_dict(not Based_on_target_dataset)
     tokenized_datasets_one = raw_datasets_one.map(
         tokenize, batched=True, remove_columns=raw_datasets["train"].column_names,
-        #load_from_cache_file=False
+        load_from_cache_file=False
     )
     
 else:
@@ -67,7 +80,7 @@ else:
 
 tokenized_datasets = raw_datasets.map(
     tokenize, batched=True, remove_columns=raw_datasets["train"].column_names,
-    #load_from_cache_file=False
+    load_from_cache_file=False
 )
 
 #count number of tokens in the train dataset
@@ -87,24 +100,10 @@ if not Based_on_target_dataset:
 dict_ind_token_rarity = {i:(sum([token_counts[token] for token in list_tokenized_seqs[i]]) 
                             / len(list_tokenized_seqs[i])) 
                          for i in range(len(list_tokenized_seqs))}
-        
-"""#normalizing the counts
-for token_id, count in token_counts.items():
-    token_counts[token_id] = count / total_num_tokens
-
-        
-#calculate the order of raw sentences based on the rarity of the tokens in each dataset      
-dict_ind_token_log_rarity = {i:sum([math.log(token_counts[token]) for token in list_tokenized_seqs[i]]) 
-                         for i in range(len(list_tokenized_seqs))}
-"""
 
 #calculate the order of raw sentences based on token length
 tokenized_seq_lengths = [len(x) for x in tokenized_datasets["train"]["input_ids"]]
 dict_ind_token_length = {i:tokenized_seq_lengths[i] for i in range(len(tokenized_seq_lengths))}
-
-
-#print({k: dict_ind_token_length[k] for k in list(dict_ind_token_length.keys())[:100]})
-#print({k: dict_ind_token_rarity[k] for k in list(dict_ind_token_rarity.keys())[:100]})
 
 sorted_indecies = sorted(dict_ind_token_rarity, key=lambda k:(dict_ind_token_rarity[k]))
 
@@ -115,14 +114,14 @@ else:
     list_train_dataset_raw = list(raw_datasets_one["train"]["text"])
     
 #theory: preservig the order of setences in a dataset matters
-sorted_indecies = sorted(sorted_indecies[2000:25699])
+#sorted_indecies = sorted(sorted_indecies[2000:25699])
 
 sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indecies]
    
 #remove repeating instances from the list preserving the order, and cut
 sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/cbt_rarity_iorder_2k_p3k.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/cbt_mod_formatting.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
         
