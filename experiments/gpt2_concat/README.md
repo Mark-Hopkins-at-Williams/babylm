@@ -263,5 +263,8 @@ gpt2-concat-all-new-mod-datasets-rarity-all-iorder-13k-2p6k:
 gpt2-dp-all-mod-datasets-rarity-all-iorder-13k-2p6k:
 - rerun of above with dp bfe2c1f
 
+gpt2-cocnat-aochildes-mod-sub-length-10k:
+- binary search for optimum cut after text processing
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh

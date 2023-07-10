@@ -121,9 +121,9 @@ for ogsent in sorted_list_train_dataset_raw:
         sorted_list_train_dataset_raw_final.append(ogsent)
         
 print(n)
-sorted_list_train_dataset_raw = sorted_list_train_dataset_raw_final[15500:]
+sorted_list_train_dataset_raw = sorted_list_train_dataset_raw_final[10000:]
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/aochildes_mod_no_repeating_sub_5p9k_length_15p5k.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/aochildes_mod_sub_length_10k.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
         
