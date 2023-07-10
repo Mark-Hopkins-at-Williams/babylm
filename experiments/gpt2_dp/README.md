@@ -12,6 +12,8 @@ no shuffle 2:
 - order of datasets is based on a manual evaulation of sentence lenghts and word rarity in each dataset
 
 
+README updated in gpt2_concat readme
+
 Run the following on Appa:
     sbatch train_gpt2_dp_ss.sh
 

@@ -9,4 +9,4 @@
 
 python /mnt/storage/nasimb/babylm/experiments/gpt2_dp/train_gpt2_dp.py
 cd ../evaluation-pipeline
-python babylm_eval.py /mnt/storage/nasimb/babylm/gpt2-dp-mod-datasets-rarity1-rerun decoder
+python babylm_eval.py /mnt/storage/nasimb/babylm/gpt2-dp-mod-datasets-txt-processing decoder

@@ -251,7 +251,11 @@ gpt2-cocnat-mod-datasets-txt-processing:
 - guten_mod_rm_refrences_1p7k.train
 - simple_wiki_mod.train
 
-
+gpt2-dp-mod-datasets-txt-processing:
+- aochildes_mod_no_repeating_sub.train
+- cbt_mod_formatting_iorder.train
+- guten_mod_rm_refrences_1p7k.train
+- simple_wiki_mod.train
 
 
 
