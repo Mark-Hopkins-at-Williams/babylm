@@ -207,5 +207,11 @@ gpt2-concat-aochildes-mod-no-repeating-sub-5p9k-length-5k:
 - at 5k 9 out of 10 are meaningful phrases
 - initial order not preserved
 
+gpt2-concat-guten-mod-rm-refrences-1p7k:
+- sam deterministic text processing as "3c9c06e", effect isolated
+- repetition removed
+- tottal 2k sentences are the difference between this dataset and gutenberg_fixed
+
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh

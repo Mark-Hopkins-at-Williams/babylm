@@ -111,26 +111,28 @@ else:
     list_train_dataset_raw = list(raw_datasets_one["train"]["text"])
     
 #theory: preservig the order of setences in a dataset matters
-sorted_indecies = sorted(sorted_indecies[5000:])
+sorted_indecies = sorted(sorted_indecies)
 
 sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indecies]
    
 sorted_list_train_dataset_raw_final = []
+n = 1
 for i in range(len(sorted_list_train_dataset_raw)):
     sent = sorted_list_train_dataset_raw[i]
     num_count = sum(c.isdigit() for c in sent)
     comma_count = sum(c == ',' for c in sent)
     if not (num_count > 2 and (comma_count > 1 or sent[-1].isdigit() or sent[-2].isdigit() or sent[-3].isdigit()) and len(sent) < 150):
         sorted_list_train_dataset_raw_final.append(sent)
-    #else:
-        #print(sent)
+    else:
+        n += 1
         
-sorted_list_train_dataset_raw = sorted_list_train_dataset_raw_final[:-500]
+print(n)
+sorted_list_train_dataset_raw = sorted_list_train_dataset_raw_final
 
 #remove repeating instances from the list preserving the order, and cut
-#sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))
+sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/guten_rarity_all_mod_iorder_repetition_5k_p5k.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/guten_mod_rm_refrences_1p7k.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
         
