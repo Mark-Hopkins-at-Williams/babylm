@@ -228,6 +228,7 @@ gpt2-cocnat-aochildes-mod-no-repreating-sub-5p9k-length-15p5k:
 gpt2-concat-cbt-mod-formatting:
 - removed mid sentence captions, revoed distance between n't and 's
 - unified "
+- original order preserved
 
 
 

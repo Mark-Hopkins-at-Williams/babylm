@@ -114,14 +114,14 @@ else:
     list_train_dataset_raw = list(raw_datasets_one["train"]["text"])
     
 #theory: preservig the order of setences in a dataset matters
-#sorted_indecies = sorted(sorted_indecies[2000:25699])
+sorted_indecies = sorted(sorted_indecies)
 
 sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indecies]
    
 #remove repeating instances from the list preserving the order, and cut
 sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/cbt_mod_formatting.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/cbt_mod_formatting_iorder.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
         
