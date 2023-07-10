@@ -266,5 +266,11 @@ gpt2-dp-all-mod-datasets-rarity-all-iorder-13k-2p6k:
 gpt2-cocnat-aochildes-mod-sub-length-10k:
 - binary search for optimum cut after text processing
 
+gpt2-concat-mod-datasets-txt-processing-rarity-all:
+- aochildes_mod_no_repeating_sub_5p9k_length_15p5k.train
+- cbt_mod_formatting_rarity_all_4k.train
+- guten_mod_rarity_all_4k_p12k.train
+- simple_wiki_mod.train
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
