@@ -208,7 +208,7 @@ gpt2-concat-aochildes-mod-no-repeating-sub-5p9k-length-5k:
 - initial order not preserved
 
 gpt2-concat-guten-mod-rm-refrences-1p7k:
-- fixed gutenberg to add space when merges happen (IMPORTANT)
+- fixed gutenberg to add space when merges happen (IMPORTANT) and slight modification to rm refrences which only works for arity sorted guten
 - same deterministic text processing as "3c9c06e", effect isolated
 - repetition removed
 - tottal 2k sentences are the difference between this dataset and gutenberg_fixed

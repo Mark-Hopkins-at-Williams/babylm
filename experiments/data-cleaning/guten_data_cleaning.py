@@ -10,19 +10,13 @@ from tqdm import tqdm
 def read_lines(filenames):
     for filename in filenames:
         with open(filename) as reader:
-            gutenberg_line = ""
-            n = 0
+            #gutenberg_line = ""
             for line in reader:
-                """line = line.strip()
-                bar_count =  line.count('|')
-                exclamation_count = line.count('!')
-                line = line.replace("= = =", "")
-                if len(line) > 0 and line[0] == "-":
-                    line = line[1:]
-                if len(line) > 0 and bar_count < 2 and bar_count + exclamation_count < 2:
-                    yield {'text': line}   """
+                line = line.strip()
+                if len(line) > 0:
+                    yield {'text': line}   
                 
-                #gutenberg
+                """#gutenberg
                 line = line.strip()
                 bar_count =  line.count('|')
                 exclamation_count = line.count('!')
@@ -33,7 +27,7 @@ def read_lines(filenames):
                     gutenberg_line += line
                 if len(line) == 0 and len(gutenberg_line) > 1:
                     yield {'text': gutenberg_line}    
-                    gutenberg_line = "" 
+                    gutenberg_line = "" """
 
 def create_dataset(filenames):
     return Dataset.from_generator(lambda: read_lines(filenames))
@@ -45,7 +39,7 @@ def create_dataset_dict(train_file_names):
 
 def create_multiple_files_dataset_dict(one_dataset):
     if one_dataset:
-        corpora = ['gutenberg']
+        corpora = ['gutenberg_fixed']
     else:
         corpora = ['bnc_spoken', 'open_subtitles', 'aochildes', 
                'children_stories', 'cbt', 'gutenberg_fixed', 
@@ -116,6 +110,7 @@ else:
     list_train_dataset_raw = list(raw_datasets_one["train"]["text"])
     
 #theory: preservig the order of setences in a dataset matters
+rarity_order = False
 sorted_indecies = sorted(sorted_indecies)
 
 sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indecies]
@@ -126,9 +121,10 @@ for i in range(len(sorted_list_train_dataset_raw)):
     sent = sorted_list_train_dataset_raw[i]
     num_count = sum(c.isdigit() for c in sent)
     comma_count = sum(c == ',' for c in sent)
-    if not (num_count > 2 and (comma_count > 1 or sent[-1].isdigit() or sent[-2].isdigit() or sent[-3].isdigit()) and len(sent) < 150):
-        sorted_list_train_dataset_raw_final.append(sent)
+    if (not (len(sent) < 25 and i > 20000 and rarity_order)) and (not (num_count > 2 and (comma_count > 1 or sent[-1].isdigit() or sent[-2].isdigit() or sent[-3].isdigit()) and len(sent) < 150)):
+        sorted_list_train_dataset_raw_final.append(sent)       
     else:
+        #print(sent)
         n += 1
         
 print(n)
