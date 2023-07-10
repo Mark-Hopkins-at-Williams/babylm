@@ -27,9 +27,9 @@ def create_multiple_files_dataset_dict():
                'switchboard', 'children_stories', 'bnc_spoken', 'simple_wikipedia',
                'wikipedia', 'cbt', 'gutenberg',]
     
-    train_corpora = ['aochildes_mod_no_repeating_sub', 'bnc_spoken', 'open_subtitles',
-               'children_stories', 'cbt_mod_formatting_iorder', 'guten_mod_rm_refrences_1p7k', 
-               'qed', 'simple_wiki_mod', 'switchboard', 'wikipedia']
+    train_corpora = ['aochildes', 'bnc_spoken', 'open_subtitles',
+               'children_stories', 'cbt', 'gutenberg_rarity_all_5k_2p5k', 
+               'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     
     train_corpora = [f'../babylm_data/babylm_10M/{corpus}.train' for corpus in train_corpora]
     dev_corpora = [f'../babylm_data/babylm_dev/{corpus}.dev' for corpus in corpora]

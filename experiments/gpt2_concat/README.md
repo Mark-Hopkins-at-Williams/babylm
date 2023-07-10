@@ -281,5 +281,8 @@ gp2-concat-guten-mod-rm-2p3k-rarity-all-5k-p22k:
 gpt2-concat-cbt-mod-formatting-iorder-rarity-all-4k:
 - same as 0ce07fb but preserving the initial order
 
+gpt2-dp-guten-rarity-all-5k-2.5k:
+- repetition og the most successful cut (guten-rarity-all-5k-2.5k) for dp "d496465"
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
