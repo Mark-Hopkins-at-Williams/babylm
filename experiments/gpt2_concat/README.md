@@ -275,5 +275,9 @@ gpt2-concat-mod-datasets-txt-processing-rarity-all:
 gpt2-dp-mod-datasets-txt-processing-rarity-all:
 - dp version of the above (fb03238)
 
+gp2-concat-guten-mod-rm-2p3k-rarity-all-5k-p22k:
+- gutenberg removed refrences, raity all sorted cut around best results sofar
+
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
