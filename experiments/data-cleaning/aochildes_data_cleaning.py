@@ -13,12 +13,7 @@ def read_lines(filenames):
         with open(filename) as reader:
             for line in reader:
                 line = line.strip()
-                bar_count =  line.count('|')
-                exclamation_count = line.count('!')
-                line = line.replace("= = =", "")
-                if len(line) > 0 and line[0] == "-":
-                    line = line[1:]
-                if len(line) > 0 and bar_count < 2 and bar_count + exclamation_count < 2:
+                if len(line) > 0:
                     yield {'text': line}   
                     
 
@@ -126,9 +121,9 @@ for ogsent in sorted_list_train_dataset_raw:
         sorted_list_train_dataset_raw_final.append(ogsent)
         
 print(n)
-sorted_list_train_dataset_raw = sorted_list_train_dataset_raw_final[5000:]
+sorted_list_train_dataset_raw = sorted_list_train_dataset_raw_final[15500:]
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/aochildes_mod_no_repeating_sub_5p9k_length_5k.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/aochildes_mod_no_repeating_sub_5p9k_length_15p5k.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
         

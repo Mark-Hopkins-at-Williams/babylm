@@ -220,6 +220,10 @@ gpt2-concat-guten-mod-rm-ref-2k-rarity-2p5k-p13k:
 - intrnal rarity sorted -> read every 500 lines from least frequent at 2500 8 out of 10 score
 - at -130 of most frequent 9 out of 10 meaningful phrases/sentences
 
+gpt2-cocnat-aochildes-mod-no-repreating-sub-5p9k-length-15p5k:
+- length sorted with length 15.5k removed, estimated based on best prev result (aochildes-len-16k) 
+- initial order not preserved
+- initial readline reset
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
