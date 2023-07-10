@@ -278,6 +278,8 @@ gpt2-dp-mod-datasets-txt-processing-rarity-all:
 gp2-concat-guten-mod-rm-2p3k-rarity-all-5k-p22k:
 - gutenberg removed refrences, raity all sorted cut around best results sofar
 
+gpt2-concat-cbt-mod-formatting-iorder-rarity-all-4k:
+- same as 0ce07fb but preserving the initial order
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
