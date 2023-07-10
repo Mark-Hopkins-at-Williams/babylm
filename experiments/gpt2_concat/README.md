@@ -197,6 +197,11 @@ gpt2-concat-mod-datasets-rarity1-rerun:
 - rerun of 45e8878
 - excatly the same code
 
+gpt2-concat-aochildes-mod-no-repeating-sub-5p9k:
+- removed inputs that have a repeating substring more than 3 times, 5.9k removed this way
+- repeating lines in aochildes removed as well 80k -> 54k total
+- gutenberg fixed
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh

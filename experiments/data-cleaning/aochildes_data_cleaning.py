@@ -6,6 +6,7 @@ from collections import Counter
 import math
 import numpy as np
 from tqdm import tqdm
+import string
 
 def read_lines(filenames):
     for filename in filenames:
@@ -102,14 +103,32 @@ else:
     list_train_dataset_raw = list(raw_datasets_one["train"]["text"])
     
 #theory: preservig the order of setences in a dataset matters
-sorted_indecies = sorted(sorted_indecies[37989:])
+sorted_indecies = sorted(sorted_indecies)
 
 sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indecies]
    
 #remove repeating instances from the list preserving the order, and cut
 sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/aochildes_length_iroder_16k.train', 'w') as f:
+#removing strings that are a repetition of substrings or strings that have a substring repeated at least 3 times
+sorted_list_train_dataset_raw_final = []
+n = 0
+for ogsent in sorted_list_train_dataset_raw:
+    sent = ogsent.translate(str.maketrans('', '', string.punctuation))
+    for i in range(0, len(sent)//2 + 1):
+        for j in range(min(len(sent)//2 + 1, i + 3), len(sent)):
+            if sent[i:j] * (len(sent)//len(sent[i:j])) == sent or sent[i:j] * 3 in sent:
+                n += 1
+                #print(sent)
+                ogsent = None
+                break
+    if ogsent:
+        sorted_list_train_dataset_raw_final.append(ogsent)
+        
+print(n)
+sorted_list_train_dataset_raw = sorted_list_train_dataset_raw_final
+
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/aochildes_mod_no_repeating_sub.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
         
