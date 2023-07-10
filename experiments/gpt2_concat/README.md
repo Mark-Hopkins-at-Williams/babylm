@@ -257,6 +257,9 @@ gpt2-dp-mod-datasets-txt-processing:
 - guten_mod_rm_refrences_1p7k.train
 - simple_wiki_mod.train
 
+gpt2-concat-all-uni-mod-datasets-rarity-all-iorder-13k-2p6k:
+- rerun of c48e930 but few details in dataset generation fixed
+
 
 
 Run the following on Appa:

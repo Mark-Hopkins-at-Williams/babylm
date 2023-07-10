@@ -12,12 +12,7 @@ def read_lines(filenames):
         with open(filename) as reader:
             for line in reader:
                 line = line.strip()
-                bar_count =  line.count('|')
-                exclamation_count = line.count('!')
-                line = line.replace("= = =", "")
-                if len(line) > 0 and line[0] == "-":
-                    line = line[1:]
-                if len(line) > 0 and bar_count < 2 and bar_count + exclamation_count < 2:
+                if len(line) > 0:
                     yield {'text': line}   
                 
                 
@@ -115,14 +110,14 @@ else:
 
 
 #theory: preservig the order of setences in a dataset matters
-metric_sorted_indicies_cut = sorted_indecies#[16000:859500]
+metric_sorted_indicies_cut = sorted_indecies[16000:859500]
 
 train_dataset_raw_cleaned = [list_train_dataset_raw[i] for i in sorted(metric_sorted_indicies_cut)]
 
 #remove repeating instances from the list preserving the order => after the cut indivies are known 
-#train_dataset_raw_cleaned = list(dict.fromkeys(train_dataset_raw_cleaned))
+train_dataset_raw_cleaned = list(dict.fromkeys(train_dataset_raw_cleaned))
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/all_mod_datasets_rarity_all_iorder_no_cut_repetition.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/all_new_mod_dataset_rarity_all_iorder_13k_2.6k.train', 'w') as f:
     for sent in train_dataset_raw_cleaned:
         f.write(f"{sent}\n")
     
