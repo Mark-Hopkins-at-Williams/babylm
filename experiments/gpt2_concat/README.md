@@ -239,6 +239,11 @@ gpt2-concat-guten-mod-2k-rarity-all-4k-p12k:
 - guten same text processing, sorted based on rarity all tokens
 - cut placement both based on best result from guten-rarity-all-5k-2.5k and manual eval
 
+gpt2-concat-simple-wiki-mod:
+- deterministic text processing
+- removed meaningless lines about style or web address
+- removed the name before each definition
+- removed cities aftyer line 60000
 
 
 
