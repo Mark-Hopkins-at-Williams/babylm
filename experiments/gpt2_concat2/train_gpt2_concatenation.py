@@ -32,7 +32,7 @@ model = GPT2LMHeadModel(config)
 eval_logging_ckp_steps = 500
 
 args = TrainingArguments(
-    output_dir="gpt2-concat-aochildes-mod-no-repeating-sub-5p9k-length-5k",
+    output_dir="gpt2-concat-guten-mod-2k-rarity-all-4k-p12k",
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     evaluation_strategy="steps",

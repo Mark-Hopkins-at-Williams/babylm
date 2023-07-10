@@ -235,6 +235,10 @@ gpt2-concat-cbt-mod-formatting-rarity-all-4k:
 - original order not preserved
 - 4k cur botha based on manual evaluation and cbt-rarity-all-4.5k-.8k
 
+gpt2-concat-guten-mod-2k-rarity-all-4k-p12k:
+- guten same text processing, sorted based on rarity all tokens
+- cut placement both based on best result from guten-rarity-all-5k-2.5k and manual eval
+
 
 
 

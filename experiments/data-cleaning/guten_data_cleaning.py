@@ -18,9 +18,6 @@ def read_lines(filenames):
                 
                 """#gutenberg
                 line = line.strip()
-                bar_count =  line.count('|')
-                exclamation_count = line.count('!')
-                line = line.replace("= = =", "")
                 if len(gutenberg_line) > 1:
                     gutenberg_line = gutenberg_line + " " + line
                 else:
@@ -57,7 +54,7 @@ def tokenize(element):
     return {"input_ids": outputs["input_ids"]}
 
 
-Based_on_target_dataset = True
+Based_on_target_dataset = False
 
 if not Based_on_target_dataset:
 
@@ -131,9 +128,9 @@ print(n)
 sorted_list_train_dataset_raw = sorted_list_train_dataset_raw_final
 
 #remove repeating instances from the list preserving the order, and cut
-sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))[2500:20200]
+sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))[4000:20000]
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/guten_mod_rm_ref_2k_rarity_2p5k_p13k.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/guten_mod_rarity_all_4k_p12k.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
         

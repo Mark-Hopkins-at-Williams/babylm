@@ -27,14 +27,14 @@ def create_multiple_files_dataset_dict():
                'switchboard', 'children_stories', 'bnc_spoken', 'simple_wikipedia',
                'wikipedia', 'cbt', 'gutenberg',]
     
-    train_corpora = ['aochildes_mod_no_repeating_sub_5p9k_length_5k', 'bnc_spoken', 'open_subtitles',
-               'children_stories', 'cbt', 'gutenberg_fixed', 
+    train_corpora = ['aochildes', 'bnc_spoken', 'open_subtitles',
+               'children_stories', 'cbt', 'guten_mod_rarity_all_4k_p12k', 
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     
     train_corpora = [f'../babylm_data/babylm_10M/{corpus}.train' for corpus in train_corpora]
     dev_corpora = [f'../babylm_data/babylm_dev/{corpus}.dev' for corpus in corpora]
     test_corpora = [f'../babylm_data/babylm_test/{corpus}.test' for corpus in corpora]
-    return create_dataset_dict(train_corpora, dev_corpora, train_corpora)
+    return create_dataset_dict(train_corpora, dev_corpora, test_corpora)
 
 
 CONTEXT_LENGTH = 128
