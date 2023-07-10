@@ -272,5 +272,8 @@ gpt2-concat-mod-datasets-txt-processing-rarity-all:
 - guten_mod_rarity_all_4k_p12k.train
 - simple_wiki_mod.train
 
+gpt2-dp-mod-datasets-txt-processing-rarity-all:
+- dp version of the above (fb03238)
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
