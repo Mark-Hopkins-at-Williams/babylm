@@ -10,25 +10,30 @@ from tqdm import tqdm
 def read_lines(filenames):
     for filename in filenames:
         with open(filename) as reader:
+            gutenberg_line = ""
+            n = 0
             for line in reader:
-                line = line.strip()
+                """line = line.strip()
                 bar_count =  line.count('|')
                 exclamation_count = line.count('!')
                 line = line.replace("= = =", "")
                 if len(line) > 0 and line[0] == "-":
                     line = line[1:]
                 if len(line) > 0 and bar_count < 2 and bar_count + exclamation_count < 2:
-                    yield {'text': line}   
-                """
+                    yield {'text': line}   """
+                
                 #gutenberg
                 line = line.strip()
                 bar_count =  line.count('|')
                 exclamation_count = line.count('!')
                 line = line.replace("= = =", "")
-                gutenberg_line += line
+                if len(gutenberg_line) > 1:
+                    gutenberg_line = gutenberg_line + " " + line
+                else:
+                    gutenberg_line += line
                 if len(line) == 0 and len(gutenberg_line) > 1:
-                    yield {'text': gutenberg_line}         
-                    gutenberg_line = ""  """        
+                    yield {'text': gutenberg_line}    
+                    gutenberg_line = "" 
 
 def create_dataset(filenames):
     return Dataset.from_generator(lambda: read_lines(filenames))
@@ -40,7 +45,7 @@ def create_dataset_dict(train_file_names):
 
 def create_multiple_files_dataset_dict(one_dataset):
     if one_dataset:
-        corpora = ['gutenberg_fixed']
+        corpora = ['gutenberg']
     else:
         corpora = ['bnc_spoken', 'open_subtitles', 'aochildes', 
                'children_stories', 'cbt', 'gutenberg_fixed', 
@@ -58,7 +63,7 @@ def tokenize(element):
     return {"input_ids": outputs["input_ids"]}
 
 
-Based_on_target_dataset = False
+Based_on_target_dataset = True
 
 if not Based_on_target_dataset:
 
