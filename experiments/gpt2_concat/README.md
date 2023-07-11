@@ -309,5 +309,10 @@ gpt2-concat-all-mod-datasets2-rarity-all-2k-13k:
 - guten-rarity-all-5k-2.5k, aochildes-len-16k, cbt-rarity-all-4.5k-.8k 
 - sorted all datasets based on rarity all, 2k from most frequent, 13k from least is cut
 
+gpt2-cocnat-mod-datasets4-rarity-all-cbt-no-cut:
+- aochildes_length_16k.train
+- cbt_mod_formatting_rarity_all_no_cut.train
+- gutenberg_rarity_all_5k_2p5k.train
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
