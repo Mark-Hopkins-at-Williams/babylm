@@ -284,5 +284,9 @@ gpt2-concat-cbt-mod-formatting-iorder-rarity-all-4k:
 gpt2-dp-guten-rarity-all-5k-2.5k:
 - repetition og the most successful cut (guten-rarity-all-5k-2.5k) for dp "d496465"
 
+gpt2-concat-cbt-mod-formatting-rarity-all-no-cut:
+- based on experiments whenever ioder was introduced regardless of teh cut, performance decreased
+- test to see if rarity all order has any effect
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
