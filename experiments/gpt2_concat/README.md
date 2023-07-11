@@ -288,7 +288,12 @@ gpt2-concat-cbt-mod-formatting-rarity-all-no-cut:
 - based on experiments whenever ioder was introduced regardless of teh cut, performance decreased
 - test to see if rarity all order has any effect
 
-gpt2__concat_all_mod_datasets1_rarity_all_iorder_c13k_c2p6k
+gpt2-concat-all-mod-datasets1-rarity-all-iorder-c13k-c2p6k:
+- rerun of "bfe2c1f" with currect end point cut, prev was cut at around 5k
+
+gpt2-concat-all-mod-datasets1-rarity-all-iorder-c13k:
+- rerun of above with only the inital 13k cut
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
