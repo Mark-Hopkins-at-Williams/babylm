@@ -327,6 +327,9 @@ gpt2-concat-mod-datasets1-rarity-all-no-cut:
 gpt2-cocnat-mod-datasets1-rarity-all-5p5k-mostf:
 - repetition of the b7e2c1f end cut (most frequent) preserving the rarity all sort order
 
+gpt2-concat-mod-datasets1-iorder-rarity-all-5p5k:
+- repetition of the b7e2c1f end cut (most frequent) reversed to initial order
+
 
 
 Run the following on Appa:
