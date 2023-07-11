@@ -324,6 +324,8 @@ gpt2-concat-mod-datasets1-rarity-all-no-cut:
 - experiment to see if just sorting all datasets based on rarity all the same as cl but with no sampling works
 - mod datasets 1 -> aochildes 14k ...
 
+gpt2-cocnat-mod-datasets1-rarity-all-5p5k-mostf:
+- repetition of the b7e2c1f end cut (most frequent) preserving the rarity all sort order
 
 
 
