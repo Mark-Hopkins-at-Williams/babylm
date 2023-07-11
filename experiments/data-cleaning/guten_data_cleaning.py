@@ -112,7 +112,7 @@ rarity_order = True
 
 sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indecies]
    
-sorted_list_train_dataset_raw_final = []
+"""sorted_list_train_dataset_raw_final = []
 n = 1
 for i in range(len(sorted_list_train_dataset_raw)):
     sent = sorted_list_train_dataset_raw[i]
@@ -125,12 +125,12 @@ for i in range(len(sorted_list_train_dataset_raw)):
         n += 1
         
 print(n)
-sorted_list_train_dataset_raw = sorted_list_train_dataset_raw_final
+sorted_list_train_dataset_raw = sorted_list_train_dataset_raw_final"""
 
 #remove repeating instances from the list preserving the order, and cut
 sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/guten_mod_rm_2p3_rarity_all_no_cut.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/guten_rarity_all_no_cut.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
         

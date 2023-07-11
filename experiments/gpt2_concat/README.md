@@ -317,5 +317,8 @@ gpt2-cocnat-mod-datasets4-rarity-all-cbt-no-cut:
 gpt2-concat-mod-rm-2p3k-guten-rarity-all-no-cut:
 - gutenberg sorted based on rarity of all datasets, no cut , modified to remove refrences
 
+gpt2-concat-guten-rarity-all-no-cut:
+- gutenberg sorted based on rarity of all datasets, no cut , no modification 
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
