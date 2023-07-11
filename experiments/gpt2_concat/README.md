@@ -294,6 +294,8 @@ gpt2-concat-all-mod-datasets1-rarity-all-iorder-c13k-c2p6k:
 gpt2-concat-all-mod-datasets1-rarity-all-iorder-c13k:
 - rerun of above with only the inital 13k cut
 
+gpt2-concat-all-mod-datasets1-rarity-all-iorder-end-c2p6k:
+- rerun of above with only the end 2p6 cut
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
