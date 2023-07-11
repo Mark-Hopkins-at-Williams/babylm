@@ -300,5 +300,10 @@ gpt2-concat-all-mod-datasets1-rarity-all-iorder-end-c2p6k:
 gpt2-concat-all-mod-datasets1-rarity-all-c13k-c2p6k-rev:
 - rerun of above "8de31b6" with rarity all order (from eleast frequent to most) preserved
 
+gpt2-cocnat-mod-datasets3-rarity-all:
+- aochildes_length_16k.train
+- cbt_mod_formatting_rarity_all_4k.train
+- gutenberg_rarity_all_5k_2p5k.train
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
