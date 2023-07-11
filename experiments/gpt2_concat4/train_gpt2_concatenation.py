@@ -32,7 +32,7 @@ model = GPT2LMHeadModel(config)
 eval_logging_ckp_steps = 500
 
 args = TrainingArguments(
-    output_dir="gpt2-cocnat-mod-datasets-txt-processing",
+    output_dir="gpt2-concat-all-mod-datasets1-rarity-all-c13k-c2p6k-rev",
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     evaluation_strategy="steps",

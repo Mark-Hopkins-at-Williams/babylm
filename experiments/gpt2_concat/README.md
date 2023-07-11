@@ -292,10 +292,13 @@ gpt2-concat-all-mod-datasets1-rarity-all-iorder-c13k-c2p6k:
 - rerun of "bfe2c1f" with currect end point cut, prev was cut at around 5k
 
 gpt2-concat-all-mod-datasets1-rarity-all-iorder-c13k:
-- rerun of above with only the inital 13k cut
+- rerun of above "8de31b6" with only the inital 13k cut
 
 gpt2-concat-all-mod-datasets1-rarity-all-iorder-end-c2p6k:
-- rerun of above with only the end 2p6 cut
+- rerun of above "8de31b6" with only the end 2p6 cut
+
+gpt2-concat-all-mod-datasets1-rarity-all-c13k-c2p6k-rev:
+- rerun of above "8de31b6" with rarity all order (from eleast frequent to most) preserved
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh

@@ -100,7 +100,7 @@ dict_ind_token_log_rarity = {i:sum([math.log(token_counts[token]) for token in l
 tokenized_seq_lengths = [len(x) for x in tokenized_datasets["train"]["input_ids"]]
 dict_ind_token_length = {i:tokenized_seq_lengths[i] for i in range(len(tokenized_seq_lengths))}
 
-sorted_indecies = sorted(dict_ind_token_rarity, key=lambda k:(dict_ind_token_rarity[k]))
+sorted_indecies = sorted(dict_ind_token_rarity, key=lambda k:(dict_ind_token_rarity[k]), reverse=True)
 
 #reorder the raw datatset
 if Based_on_target_dataset:
@@ -110,15 +110,15 @@ else:
 
 
 #theory: preservig the order of setences in a dataset matters
-sorted_indecies = sorted_indecies[:866000]#[16000:866000]
-sorted_indecies = sorted(sorted_indecies)
+#sorted_indecies = sorted_indecies[16000:866000]
+#sorted_indecies = sorted(sorted_indecies)
 
 train_dataset_raw_cleaned = [list_train_dataset_raw[i] for i in sorted_indecies]
 
 #remove repeating instances from the list preserving the order => after the cut indivies are known 
-train_dataset_raw_cleaned = list(dict.fromkeys(train_dataset_raw_cleaned))
+train_dataset_raw_cleaned = list(dict.fromkeys(train_dataset_raw_cleaned))[2600:-13000]
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/all_mod_datasets1_rarity_all_iorder_end_c2p6k.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/all_new_mod_datasets1_rarity_all_c13k_c2p6k_rev.train', 'w') as f:
     for sent in train_dataset_raw_cleaned:
         f.write(f"{sent}\n")
     
