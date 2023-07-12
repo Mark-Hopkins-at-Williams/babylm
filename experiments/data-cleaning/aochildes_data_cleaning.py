@@ -29,7 +29,7 @@ def create_multiple_files_dataset_dict(one_dataset):
     if one_dataset:
         corpora = ['aochildes']
     else:
-        corpora = ['bnc_spoken', 'open_subtitles', 'aochildes', 
+        corpora = ['aochildes','bnc_spoken', 'open_subtitles',  
                'children_stories', 'cbt', 'gutenberg_fixed', 
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     print(corpora)
@@ -45,7 +45,7 @@ def tokenize(element):
     return {"input_ids": outputs["input_ids"]}
 
 
-Based_on_target_dataset = True
+Based_on_target_dataset = False
 
 if not Based_on_target_dataset:
 
@@ -89,7 +89,7 @@ dict_ind_token_rarity = {i:(sum([token_counts[token] for token in list_tokenized
 tokenized_seq_lengths = [len(x) for x in tokenized_datasets["train"]["input_ids"]]
 dict_ind_token_length = {i:tokenized_seq_lengths[i] for i in range(len(tokenized_seq_lengths))}
 
-sorted_indecies = sorted(dict_ind_token_rarity, key=lambda k:(dict_ind_token_length[k]))
+sorted_indecies = sorted(dict_ind_token_rarity, key=lambda k:(dict_ind_token_rarity[k]))
 
 #reorder the raw datatset
 if Based_on_target_dataset:
@@ -121,9 +121,9 @@ for ogsent in sorted_list_train_dataset_raw:
         sorted_list_train_dataset_raw_final.append(ogsent)
         
 print(n)
-sorted_list_train_dataset_raw = sorted_list_train_dataset_raw_final[10000:]
+sorted_list_train_dataset_raw = sorted_list_train_dataset_raw_final[::-1]
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/aochildes_mod_sub_length_10k.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/aochildes_mod_sub_rarity_all_no_cut_rev.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
         
