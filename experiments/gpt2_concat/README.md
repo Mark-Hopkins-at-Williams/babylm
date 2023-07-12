@@ -342,5 +342,8 @@ gpt2-concat-guten-mod-rm-rarity-all-no-cut-rev:
 gpt2-concat-aochildes-mod-sub-rarity-all-no-cut-rev:
 - aochildes modified (substring text processing) sorted based on all token counts no cutes in rev order
 
+gpt2-concat-all-indv-rarity-all-no-cut:
+- individually sorted based on all token counts
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
