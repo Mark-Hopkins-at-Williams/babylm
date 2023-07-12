@@ -330,7 +330,8 @@ gpt2-cocnat-mod-datasets1-rarity-all-5p5k-mostf:
 gpt2-concat-mod-datasets1-iorder-rarity-all-5p5k:
 - repetition of the b7e2c1f end cut (most frequent) reversed to initial order
 
-
+gpt2-concat-guten-rarity-no-cut:
+- baseline with gutenberg sorted based on internal token count and no cut
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
