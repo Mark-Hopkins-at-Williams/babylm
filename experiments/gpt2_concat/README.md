@@ -352,6 +352,9 @@ gpt2-concat-all-base-rarity-all-iorder-est-5p5k:
 - repetition of gpt2-concat-mod-datasets1-iorder-rarity-all-5p5k 76682dc but using base datasets with no modification besides guten
 - cut estimated based on cut in 76682dc
 
+gpt2-concat-all-text-processign-rarity-all-iorder-est-5p5k:
+- repetition of gpt2-concat-mod-datasets1-iorder-rarity-all-5p5k 76682dc but using base datasets modified with text processing
+- cut estimated based on cut in 76682dc
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
