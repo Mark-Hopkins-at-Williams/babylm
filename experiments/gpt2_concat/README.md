@@ -336,5 +336,10 @@ gpt2-concat-guten-rarity-no-cut:
 gpt2-concat-cbt-mod-formatting-rarity-all-no-cut-rev:
 - 962efc8 reverse order
 
+gpt2-concat-guten-mod-rm-rarity-all-no-cut-rev:
+- 6e86132 reverse order
+
+
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
