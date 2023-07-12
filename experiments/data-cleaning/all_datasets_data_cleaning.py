@@ -27,9 +27,9 @@ def create_dataset_dict(train_file_names):
 def create_multiple_files_dataset_dict(one_dataset):
     if one_dataset:
         #datasets ordered based on a manual difficulty evaluaiton
-        corpora = ['aochildes_modified_length_14k', 'open_subtitles', 'qed', 
+        corpora = ['aochildes', 'open_subtitles', 'qed', 
                'switchboard', 'children_stories', 'bnc_spoken', 'simple_wikipedia',
-               'wikipedia', 'cbt_modified_rarity_2k_.3k','gutenberg_modified_rarity_2.2k_1k']
+               'wikipedia', 'cbt','gutenberg_fixed']
     else:
         corpora = ['bnc_spoken', 'open_subtitles', 'aochildes', 
                'children_stories', 'cbt', 'gutenberg_fixed', 
@@ -110,7 +110,7 @@ else:
 
 
 #theory: preservig the order of setences in a dataset matters
-sorted_indecies = sorted_indecies[39350:]
+sorted_indecies = sorted_indecies[39050:]
 sorted_indecies = sorted(sorted_indecies)
 
 train_dataset_raw_cleaned = [list_train_dataset_raw[i] for i in sorted_indecies]
@@ -118,7 +118,7 @@ train_dataset_raw_cleaned = [list_train_dataset_raw[i] for i in sorted_indecies]
 #remove repeating instances from the list preserving the order => after the cut indivies are known 
 train_dataset_raw_cleaned = list(dict.fromkeys(train_dataset_raw_cleaned))
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/all_mod_datasets_rarity_all_iorder_5p5k.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/all_base_rarity_all_iorder_est_5p5k.train', 'w') as f:
     for sent in train_dataset_raw_cleaned:
         f.write(f"{sent}\n")
     

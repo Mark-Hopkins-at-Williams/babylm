@@ -345,8 +345,12 @@ gpt2-concat-aochildes-mod-sub-rarity-all-no-cut-rev:
 gpt2-concat-all-indv-rarity-all-no-cut:
 - individually sorted based on all token counts
 
-gpt2-concat-all-ind-txt-processing-indv-rarity-all:
+gpt2-concat-all-ind-txt-processing-rarity-all:
 - same as above 46ad9cc just with the texy processed files
+
+gpt2-concat-all-base-rarity-all-iorder-est-5p5k:
+- repetition of gpt2-concat-mod-datasets1-iorder-rarity-all-5p5k 76682dc but using base datasets with no modification besides guten
+- cut estimated based on cut in 76682dc
 
 
 Run the following on Appa:
