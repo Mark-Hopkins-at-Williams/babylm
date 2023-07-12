@@ -345,5 +345,9 @@ gpt2-concat-aochildes-mod-sub-rarity-all-no-cut-rev:
 gpt2-concat-all-indv-rarity-all-no-cut:
 - individually sorted based on all token counts
 
+gpt2-concat-all-ind-txt-processing-indv-rarity-all:
+- same as above 46ad9cc just with the texy processed files
+
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh

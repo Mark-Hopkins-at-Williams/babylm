@@ -28,9 +28,9 @@ def create_multiple_files_dataset_dict(one_dataset, corpus=None):
     if one_dataset:
         corpora = [corpus]
     else:
-        corpora = ['bnc_spoken', 'open_subtitles', 'aochildes', 
-               'children_stories', 'cbt', 'gutenberg_fixed', 
-               'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
+        corpora = ['aochildes_mod_no_repeating_sub', 'bnc_spoken', 'open_subtitles',
+               'children_stories', 'cbt_mod_formatting_iorder', 'guten_mod_rm_refrences_1p7k', 
+               'qed', 'simple_wiki_mod', 'switchboard', 'wikipedia']
     print(corpora)
     train_corpora = [f'/mnt/storage/nasimb/babylm_data/babylm_10M/{corpus}.train' for corpus in corpora]
     return create_dataset_dict(train_corpora)
@@ -59,9 +59,9 @@ for seq in list_tokenized_seqs:
         token_counts[token] += 1
         total_num_tokens += 1
 
-corpora = ['aochildes', 'open_subtitles', 'qed', 'switchboard',
-           'children_stories', 'bnc_spoken', 'simple_wikipedia',
-           'wikipedia', 'cbt','gutenberg_fixed'] 
+corpora = ['aochildes_mod_no_repeating_sub', 'bnc_spoken', 'open_subtitles',
+               'children_stories', 'cbt_mod_formatting_iorder', 'guten_mod_rm_refrences_1p7k', 
+               'qed', 'simple_wiki_mod', 'switchboard', 'wikipedia']
 
 for i in range(10):       
     raw_datasets_one = create_multiple_files_dataset_dict(True, corpora[i])
@@ -86,7 +86,7 @@ for i in range(10):
     print(len(train_dataset_raw_cleaned))
     train_dataset_raw_cleaned = list(dict.fromkeys(train_dataset_raw_cleaned))
 
-    with open(f'/mnt/storage/nasimb/babylm_data/babylm_10M/rarity_all/{corpora[i]}.train', 'w') as f:
+    with open(f'/mnt/storage/nasimb/babylm_data/babylm_10M/rarity_all_text_processing/{corpora[i]}.train', 'w') as f:
         for sent in train_dataset_raw_cleaned:
             f.write(f"{sent}\n")
     
