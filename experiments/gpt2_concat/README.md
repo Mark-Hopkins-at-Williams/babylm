@@ -333,5 +333,8 @@ gpt2-concat-mod-datasets1-iorder-rarity-all-5p5k:
 gpt2-concat-guten-rarity-no-cut:
 - baseline with gutenberg sorted based on internal token count and no cut
 
+gpt2-concat-cbt-mod-formatting-rarity-all-no-cut-rev:
+- 962efc8 reverse order
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
