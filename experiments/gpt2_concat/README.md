@@ -362,6 +362,9 @@ gpt2-concat-cbt-mod-formatting-rarity-no-cut:
 gpt2-concat-cbt-rarity-no-cut:
 - cbt no modification with rarity sort
 
+gpt2-concat-cbt-rarity-all-no-cut:
+- cbt rarity all sorted no modifications
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
