@@ -55,7 +55,7 @@ def tokenize(element):
     return {"input_ids": outputs["input_ids"]}
 
 
-Based_on_target_dataset = True
+Based_on_target_dataset = False
 
 if not Based_on_target_dataset:
 
@@ -93,22 +93,12 @@ if not Based_on_target_dataset:
 dict_ind_token_rarity = {i:(sum([token_counts[token] for token in list_tokenized_seqs[i]]) 
                             / len(list_tokenized_seqs[i])) 
                          for i in range(len(list_tokenized_seqs))}
-        
-"""#normalizing the counts
-for token_id, count in token_counts.items():
-    token_counts[token_id] = count / total_num_tokens
 
-        
-#calculate the order of raw sentences based on the rarity of the tokens in each dataset      
-dict_ind_token_log_rarity = {i:sum([math.log(token_counts[token]) for token in list_tokenized_seqs[i]]) 
-                         for i in range(len(list_tokenized_seqs))}
-
-"""
 #calculate the order of raw sentences based on token length
 tokenized_seq_lengths = [len(x) for x in tokenized_datasets["train"]["input_ids"]]
 dict_ind_token_length = {i:tokenized_seq_lengths[i] for i in range(len(tokenized_seq_lengths))}
 
-sorted_indecies = sorted(dict_ind_token_rarity, key=lambda k:(dict_ind_token_length[k]))
+sorted_indecies = sorted(dict_ind_token_rarity, key=lambda k:(dict_ind_token_rarity[k]))
 
 #reorder the raw datatset
 if Based_on_target_dataset:
@@ -118,14 +108,14 @@ else:
 
 
 #theory: preservig the order of setences in a dataset matters
-sorted_indecies = sorted(sorted_indecies)#[16000:859500]
+#sorted_indecies = sorted(sorted_indecies)#[16000:859500]
 
 train_dataset_raw_cleaned = [list_train_dataset_raw[i] for i in sorted_indecies]
 
 #remove repeating instances from the list preserving the order => after the cut indivies are known 
 train_dataset_raw_cleaned = list(dict.fromkeys(train_dataset_raw_cleaned))
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/simple_wiki_mod.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/simple_wiki_mod_rarity_all_no_cut.train', 'w') as f:
     for sent in train_dataset_raw_cleaned:
         f.write(f"{sent}\n")
     

@@ -385,6 +385,9 @@ gpt2-concat-simple-wiki-rarity-no-cut:
 
 gpt2-concat-simple-wiki-rarity-all-no-cut:
 
+gpt2-concat-simple-wiki-mod-rarity-all-no-cut:
+- modified to remove the few word title before each definition
+
 
 
 Run the following on Appa:
