@@ -383,6 +383,8 @@ gpt2-concat-bnc-rarity-no-cut:
 
 gpt2-concat-simple-wiki-rarity-no-cut:
 
+gpt2-concat-simple-wiki-rarity-all-no-cut:
+
 
 
 Run the following on Appa:
