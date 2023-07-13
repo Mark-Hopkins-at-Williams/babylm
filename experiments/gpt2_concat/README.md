@@ -388,7 +388,9 @@ gpt2-concat-simple-wiki-rarity-all-no-cut:
 gpt2-concat-simple-wiki-mod-rarity-all-no-cut:
 - modified to remove the few word title before each definition
 
-
+gpt2-concat-all-base-rarity-all-iorder-8k:
+- base datasets (no mod) cut 8k after rarity all sort
+- initial order preserved
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh

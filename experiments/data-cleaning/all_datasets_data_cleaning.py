@@ -26,10 +26,9 @@ def create_dataset_dict(train_file_names):
 
 def create_multiple_files_dataset_dict(one_dataset):
     if one_dataset:
-        #datasets ordered based on a manual difficulty evaluaiton
-        corpora = ['aochildes_mod_no_repeating_sub', 'bnc_spoken', 'open_subtitles',
-               'children_stories', 'cbt_mod_formatting_iorder', 'guten_mod_rm_refrences_1p7k', 
-               'qed', 'simple_wiki_mod', 'switchboard', 'wikipedia']
+        corpora = ['bnc_spoken', 'open_subtitles', 'aochildes', 
+               'children_stories', 'cbt', 'gutenberg_fixed', 
+               'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     else:
         corpora = ['bnc_spoken', 'open_subtitles', 'aochildes', 
                'children_stories', 'cbt', 'gutenberg_fixed', 
@@ -86,15 +85,6 @@ dict_ind_token_rarity = {i:(sum([token_counts[token] for token in list_tokenized
                             / len(list_tokenized_seqs[i])) 
                          for i in range(len(list_tokenized_seqs))}
         
-"""#normalizing the counts
-for token_id, count in token_counts.items():
-    token_counts[token_id] = count / total_num_tokens
-
-        
-#calculate the order of raw sentences based on the rarity of the tokens in each dataset      
-dict_ind_token_log_rarity = {i:sum([math.log(token_counts[token]) for token in list_tokenized_seqs[i]]) 
-                         for i in range(len(list_tokenized_seqs))}
-"""
 
 #calculate the order of raw sentences based on token length
 tokenized_seq_lengths = [len(x) for x in tokenized_datasets["train"]["input_ids"]]
@@ -110,7 +100,7 @@ else:
 
 
 #theory: preservig the order of setences in a dataset matters
-sorted_indecies = sorted_indecies[36889:]
+sorted_indecies = sorted_indecies[48989:]
 sorted_indecies = sorted(sorted_indecies)
 
 train_dataset_raw_cleaned = [list_train_dataset_raw[i] for i in sorted_indecies]
@@ -118,7 +108,7 @@ train_dataset_raw_cleaned = [list_train_dataset_raw[i] for i in sorted_indecies]
 #remove repeating instances from the list preserving the order => after the cut indivies are known 
 train_dataset_raw_cleaned = list(dict.fromkeys(train_dataset_raw_cleaned))
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/all_txt_processing_rarity_all_iorder_est_5p5k.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/all_base_rarity_all_iorder_8k.train', 'w') as f:
     for sent in train_dataset_raw_cleaned:
         f.write(f"{sent}\n")
     
