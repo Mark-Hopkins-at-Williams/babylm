@@ -392,5 +392,8 @@ gpt2-concat-all-base-rarity-all-iorder-8k:
 - base datasets (no mod) cut 8k after rarity all sort
 - initial order preserved
 
+gpt2-concat-guten-rarity-all-end-2p5k:
+- guten sorted by rarity all, only cutting the most frequent cut of the most successful result
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
