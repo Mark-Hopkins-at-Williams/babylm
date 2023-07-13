@@ -395,5 +395,8 @@ gpt2-concat-all-base-rarity-all-iorder-8k:
 gpt2-concat-guten-rarity-all-end-2p5k:
 - guten sorted by rarity all, only cutting the most frequent cut of the most successful result
 
+gpt2-concat-cbt-rarity-all-end-p5k:
+- cbt sorted by rarity all, only cutting the average of most frequent cut of the two most successful result
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
