@@ -371,5 +371,8 @@ gpt2-cocnat-guten-mod-rm-2k-rarity-no-cut:
 gpt2-concat-aochildes-len-no-cut:
 - aochildes length order no cut
 
+gpt2-concat-aochildes-rarity-no-cut:
+- aochildes rarity order no cut
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
