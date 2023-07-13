@@ -359,5 +359,9 @@ gpt2-concat-all-text-processign-rarity-all-iorder-est-5p5k:
 gpt2-concat-cbt-mod-formatting-rarity-no-cut:
 - repetition of b723054 with rarity sort instead of rarity all
 
+gpt2-concat-cbt-rarity-no-cut:
+- cbt no modification with rarity sort
+
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
