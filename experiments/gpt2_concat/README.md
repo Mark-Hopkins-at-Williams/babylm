@@ -374,5 +374,8 @@ gpt2-concat-aochildes-len-no-cut:
 gpt2-concat-aochildes-rarity-no-cut:
 - aochildes rarity order no cut
 
+gpt2-concat-aochildes-rarity-all-no-cut:
+- aochildes rarity all order no cut
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
