@@ -381,6 +381,9 @@ gpt2-concat-bnc-rarity-all-cut:
 
 gpt2-concat-bnc-rarity-no-cut:
 
+gpt2-concat-simple-wiki-rarity-no-cut:
+
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
