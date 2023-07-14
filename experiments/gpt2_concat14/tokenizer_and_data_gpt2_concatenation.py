@@ -27,12 +27,12 @@ def create_multiple_files_dataset_dict():
                'switchboard', 'children_stories', 'bnc_spoken', 'simple_wikipedia',
                'wikipedia', 'cbt', 'gutenberg',]
     
-    """train_corpora = ['aochildes', 'bnc_rarity_all', 'open_subtitles',
+    train_corpora = ['aochildes', 'bnc_spoken', 'open_subtitles',
                'children_stories', 'cbt', 'gutenberg_fixed', 
-               'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']"""
+               'qed', 'simple_wikipedia', 'switch_rarity_no_cut', 'wikipedia']
     
-    #train_corpora = [f'../babylm_data/babylm_10M/{corpus}.train' for corpus in train_corpora]
-    train_corpora = ['/mnt/storage/nasimb/babylm_data/babylm_10M/all_base_rarity_all_iorder_8k.train']
+    train_corpora = [f'../babylm_data/babylm_10M/{corpus}.train' for corpus in train_corpora]
+    #train_corpora = ['/mnt/storage/nasimb/babylm_data/babylm_10M/all_base_rarity_all_iorder_8k.train']
     dev_corpora = [f'../babylm_data/babylm_dev/{corpus}.dev' for corpus in corpora]
     test_corpora = [f'../babylm_data/babylm_test/{corpus}.test' for corpus in corpora]
     return create_dataset_dict(train_corpora, dev_corpora, test_corpora)
