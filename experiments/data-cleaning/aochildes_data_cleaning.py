@@ -45,7 +45,7 @@ def tokenize(element):
     return {"input_ids": outputs["input_ids"]}
 
 
-Based_on_target_dataset = False
+Based_on_target_dataset = True
 
 if not Based_on_target_dataset:
 
@@ -121,9 +121,9 @@ for ogsent in sorted_list_train_dataset_raw:
         sorted_list_train_dataset_raw_final.append(ogsent)
         
 print(n)
-sorted_list_train_dataset_raw = sorted_list_train_dataset_raw_final[::-1]
+sorted_list_train_dataset_raw = sorted_list_train_dataset_raw_final
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/aochildes_mod_sub_rarity_all_no_cut_rev.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/aochildes_mod_sub_rarity_no_cut.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
         

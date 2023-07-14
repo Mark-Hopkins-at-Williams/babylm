@@ -401,6 +401,9 @@ gpt2-concat-cbt-rarity-all-end-p5k:
 gpt2-concat-aochildes-rarity-end-3p3k:
 - aochildes sorted based on rarity (best order) most frequent read every 500 lines at 52400 majority meaningful phrases non-repetitive
 
+gpt2-concat-aochildes-mod-sub-1k-rarity-no-cut:
+- aochildes mod after repetition removal only deletes 1k sentences, even tho the reported number is 5.9 before repetition removal
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
