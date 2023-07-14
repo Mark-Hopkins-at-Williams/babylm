@@ -428,7 +428,10 @@ gpt2-concat-qed-rarity-no-cut:
 - qed sorted based on internal rarity, no cut
 
 gpt2-concat-qed-rarity-all-no-cut:
-- qed sorted based on rarity all tokens, no cu
+- qed sorted based on rarity all tokens, no cut
+
+gpt2-concat-switch-rarity-all-no-cut:
+- switch sorted based on rarity all tokens, no cut
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
