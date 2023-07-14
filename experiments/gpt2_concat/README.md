@@ -436,5 +436,8 @@ gpt2-concat-switch-rarity-all-no-cut:
 gpt2-concat-switch-rarity-no-cut:
 - switch sorted based on internal rarity, no cut
 
+gpt2-concat-wiki-rarity-no-cut:
+- wikipedia sorted based on internal rarity, no cut
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
