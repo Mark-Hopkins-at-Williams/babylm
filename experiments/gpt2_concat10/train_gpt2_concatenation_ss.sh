@@ -9,4 +9,4 @@
 
 python /mnt/storage/nasimb/babylm/experiments/gpt2_concat10/train_gpt2_concatenation.py
 cd ../evaluation-pipeline
-python babylm_eval.py /mnt/storage/nasimb/babylm/gpt2-concat-bnc-rarity-all-cut decoder
+python babylm_eval.py /mnt/storage/nasimb/babylm/gpt2-concat-children-rarity-no-cut decoder
