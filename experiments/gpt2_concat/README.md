@@ -412,6 +412,9 @@ guten_mod_rm_2p3_rarity_all_no_cut
 gpt2-concat-bnc-rarity-end-1p6:
 - bnc soretd a=based on rarity 1600 cut from most frequent
 
+gpt-concat-open-rarity-no-cut:
+- open_subtitles sorted based on internal rarity, no cut
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
