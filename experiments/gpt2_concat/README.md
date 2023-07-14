@@ -418,6 +418,8 @@ gpt-concat-open-rarity-no-cut:
 gpt2-concat-open-rarity-all-no-cut:
 - open_subtitles sorted based on rarity all tokens, no cut
 
+gpt2-concat-children-rarity-all-no-cut:
+- children_stories sorted based on rarity all tokens, no cut
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
