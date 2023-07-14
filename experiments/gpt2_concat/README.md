@@ -442,5 +442,10 @@ gpt2-concat-wiki-rarity-no-cut:
 gpt2-concat-wiki-rarity-all-no-cut:
 - wikipedia sorted based on rarity all tokens, no cut
 
+gpt2-concat-simple-wiki-mod-rarity-no-cut:
+- modified to remove the few word title before each definition
+- rarity sorted to test the superiority of rarity sort mixed with mod
+
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
