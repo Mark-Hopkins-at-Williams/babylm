@@ -446,6 +446,9 @@ gpt2-concat-simple-wiki-mod-rarity-no-cut:
 - modified to remove the few word title before each definition
 - rarity sorted to test the superiority of rarity sort mixed with mod
 
+gpt2-concat-rarity-all-guten-2p5k-cbt-p5k:
+- guten_rarity_all_end_2p5k.train
+- cbt_rarity_all_end_p5k.train
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
