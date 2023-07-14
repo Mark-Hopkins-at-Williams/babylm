@@ -404,11 +404,14 @@ gpt2-concat-aochildes-rarity-end-3p3k:
 gpt2-concat-aochildes-mod-sub-1k-rarity-no-cut:
 - aochildes mod after repetition removal only deletes 1k sentences, even tho the reported number is 5.9 before repetition removal
 
-
 gpt2-concat-guten-mod-rarity-all-bnc-rarity:
 - baseline plus:
 bnc_rarity_no_cut
 guten_mod_rm_2p3_rarity_all_no_cut
+
+gpt2-concat-bnc-rarity-end-1p6:
+- bnc soretd a=based on rarity 1600 cut from most frequent
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
