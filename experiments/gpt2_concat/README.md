@@ -461,5 +461,11 @@ guten-rarity-end-cut-19k:
 gpt2-concat-cbt-rarity-end-p5k:
 - same as gpt2-concat-cbt-rarity-all-end-p5k 032a290 with a rarity sort instead
 
+guten-rarity-all-end-19k-ctx-512:
+- changing context length to 512 for 4209713
+
+rarity-guten-end-19k-cbt-p5k:
+
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
