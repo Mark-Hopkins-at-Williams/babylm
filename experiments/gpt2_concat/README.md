@@ -504,5 +504,9 @@ cbt-mod-rarity-all-end-p5k:
 guten-mod-rarity-all-end-est-19k:
 - gutenberg modified then cut at the same place an gutenberg-fixed-rarity-all-end-19k
 
+aochildes-log-rarity-all-no-cut:
+
+cbt-log-rarity-all-no-cut:
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
