@@ -513,10 +513,14 @@ cbt-guten-log-rarity-all-no-cut:
 - guten_log_rarity_all_no_cut.train
 
 guten_rarity_all_cut_19k_shuffled:
-- items of the final list swaped with a probability of 40% with items at most 100 lines before
+- items of the final list swaped with a probability of 40% with items at most 1000 lines before
 
 guten-rarity-all-no-cut-shuffled:
-- items of the final list (that is not cut) swaped with a probability of 40% with items at most 100 lines before
+- items of the final list (that is not cut) swaped with a probability of 40% with items at most 1000 lines before
+
+bnc-rarity-no-cut-shuffled:
+- items of the final list (not cut) swaped with a probability of 40% with items at most 3000 lines before
+- 3000 instead of 1000 beacuse number of lines in bnc is more than 3x guten
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
