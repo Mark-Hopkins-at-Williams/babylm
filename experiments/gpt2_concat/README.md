@@ -457,7 +457,9 @@ gpt2-concat-rarity-guten-bnc-no-cut:
 guten-rarity-end-cut-19k:
 - gutenberg sorted based on internal rarity, cut at 19000 ([:19000])
 - cut the same place as gpt2-concat-guten-rarity-all-end-2p5k, however more than 2p5k is actually cut in gpt2-concat-guten-rarity-all-end-2p5k
- 
+
+gpt2-concat-cbt-rarity-end-p5k:
+- same as gpt2-concat-cbt-rarity-all-end-p5k 032a290 with a rarity sort instead
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
