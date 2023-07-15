@@ -485,7 +485,9 @@ children-rarity-all-guten-rarity-all-2p5k:
 - guten_rarity_all_end_2p5k.train
 
 rarity-guten-end-19k-cbt-p5k:
-
+- cbt_rarity_end_p5k.train
+- guten_rarity_end_cut_19k.train
+- test to see if rarity auccumulates better
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
