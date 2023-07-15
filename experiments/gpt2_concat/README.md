@@ -508,5 +508,9 @@ aochildes-log-rarity-all-no-cut:
 
 cbt-log-rarity-all-no-cut:
 
+cbt-guten-log-rarity-all-no-cut:
+- cbt_log_rarity_all_no_cut.train
+- guten_log_rarity_all_no_cut.train
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
