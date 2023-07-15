@@ -450,5 +450,9 @@ gpt2-concat-rarity-all-guten-2p5k-cbt-p5k:
 - guten_rarity_all_end_2p5k.train
 - cbt_rarity_all_end_p5k.train
 
+gpt2-concat-rarity-guten-bnc-no-cut:
+- guten_rarity_no_cut.train
+- bnc_rarity_no_cut.train
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
