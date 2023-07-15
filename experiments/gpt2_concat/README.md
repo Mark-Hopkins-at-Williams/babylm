@@ -489,5 +489,14 @@ rarity-guten-end-19k-cbt-p5k:
 - guten_rarity_end_cut_19k.train
 - test to see if rarity auccumulates better
 
+aggregate-all-best-so-far:
+- cbt_rarity_all_end_p5k.train
+- guten_rarity_all_end_2p5k.train
+- simple_wiki_mod_rarity_all_no_cut.train
+- bnc_rarity_no_cut.train
+- children_rarity_all_no_cut.train
+- main focus is on the orderin only < 4k lines cut
+- all results over 75
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
