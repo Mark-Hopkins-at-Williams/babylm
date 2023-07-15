@@ -470,6 +470,9 @@ guten-rarity-all-end-19k-ctx-64:
 guten-log-rarity-all-no-cut:
 - gutenberg fixed sorted by log rarity all
 
+guten-rarity-all-2p5k-log-rarity-all-sort:
+- sorted guten_rarity_all_end_2p5k based on log rarity all inclufding guten_rarity_all_end_2p5k
+
 
 
 
