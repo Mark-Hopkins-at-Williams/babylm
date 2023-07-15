@@ -512,5 +512,8 @@ cbt-guten-log-rarity-all-no-cut:
 - cbt_log_rarity_all_no_cut.train
 - guten_log_rarity_all_no_cut.train
 
+guten_rarity_all_cut_19k_shuffled:
+- items of the final list swaped with a probability of 40% with items at most 100 lines before
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh

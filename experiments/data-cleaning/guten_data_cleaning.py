@@ -112,7 +112,7 @@ rarity_order = True
 
 sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indecies]
    
-sorted_list_train_dataset_raw_final = []
+"""sorted_list_train_dataset_raw_final = []
 n = 1
 for i in range(len(sorted_list_train_dataset_raw)):
     sent = sorted_list_train_dataset_raw[i]
@@ -125,12 +125,22 @@ for i in range(len(sorted_list_train_dataset_raw)):
         n += 1
         
 print(n)
-sorted_list_train_dataset_raw = sorted_list_train_dataset_raw_final
+sorted_list_train_dataset_raw = sorted_list_train_dataset_raw_final"""
 
 #remove repeating instances from the list preserving the order, and cut
-sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))[:18242]
+sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))[:19000]
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/guten_mod_sub_rarity_all_end_est_19k.train', 'w') as f:
+#shuffling the order to thest the theory that some added randomeness adds to the compilability of the results
+random.seed(1)
+swap_prob = 0.4
+swap_range = 1000
+for i in range(len(sorted_list_train_dataset_raw)-1, 0, -1): 
+    s_prob = random.random()
+    if s_prob < swap_prob: 
+        j = random.randint(max(0,i - swap_range), i + 1)
+        sorted_list_train_dataset_raw[i], sorted_list_train_dataset_raw[j] = sorted_list_train_dataset_raw[j], sorted_list_train_dataset_raw[i]
+
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/guten_rarity_all_cut_19K_shuffled.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
         
