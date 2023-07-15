@@ -498,5 +498,10 @@ aggregate-all-best-so-far:
 - main focus is on the orderin only < 4k lines cut
 - all results over 75
 
+cbt-mod-rarity-all-end-p5k:
+- formatting modified version of gpt2-concat-cbt-rarity-all-end-p5k
+
+guten-mod-rarity-all-
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
