@@ -36,10 +36,10 @@ def create_dataset_dict(train_file_names):
 
 def create_multiple_files_dataset_dict(one_dataset):
     if one_dataset:
-        corpora = ['guten_mod_rm_refrences_1p7k']
+        corpora = ['gutenberg_fixed']#gutenberg_fixed #guten_mod_rm_refrences_1p7k
     else:
         corpora = ['bnc_spoken', 'open_subtitles', 'aochildes', 
-               'children_stories', 'cbt', 'guten_mod_rm_refrences_1p7k', 
+               'children_stories', 'cbt', 'gutenberg_fixed', 
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     print(corpora)
     train_corpora = [f'/mnt/storage/nasimb/babylm_data/babylm_10M/{corpus}.train' for corpus in corpora]
@@ -54,7 +54,7 @@ def tokenize(element):
     return {"input_ids": outputs["input_ids"]}
 
 
-Based_on_target_dataset = True
+Based_on_target_dataset = False
 
 if not Based_on_target_dataset:
 
@@ -128,9 +128,9 @@ print(n)
 sorted_list_train_dataset_raw = sorted_list_train_dataset_raw_final
 
 #remove repeating instances from the list preserving the order, and cut
-sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))
+sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))[:18242]
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/guten_mod_rm_2k_rarity_no_cut.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/guten_mod_sub_rarity_all_end_est_19k.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
         

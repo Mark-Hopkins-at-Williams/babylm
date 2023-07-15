@@ -501,7 +501,8 @@ aggregate-all-best-so-far:
 cbt-mod-rarity-all-end-p5k:
 - formatting modified version of gpt2-concat-cbt-rarity-all-end-p5k
 
-guten-mod-rarity-all-
+guten-mod-rarity-all-end-est-19k:
+- gutenberg modified then cut at the same place an gutenberg-fixed-rarity-all-end-19k
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
