@@ -522,5 +522,8 @@ bnc-rarity-no-cut-shuffled:
 - items of the final list (not cut) swaped with a probability of 40% with items at most 3000 lines before
 - 3000 instead of 1000 beacuse number of lines in bnc is more than 3x guten
 
+guten-rarity-all-cut-20k:
+- search for the best cut of guten rarity all
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
