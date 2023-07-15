@@ -473,7 +473,8 @@ guten-log-rarity-all-no-cut:
 guten-rarity-all-2p5k-log-rarity-all-sort:
 - sorted guten_rarity_all_end_2p5k based on log rarity all inclufding guten_rarity_all_end_2p5k
 
-
+guten_rarity_all_iorder_cut_19k:
+- guten rarity all end 2p5k sorted back to inital order to isolate the effect of the cut and order
 
 
 rarity-guten-end-19k-cbt-p5k:
