@@ -467,6 +467,12 @@ guten-rarity-all-end-19k-ctx-512:
 guten-rarity-all-end-19k-ctx-64:
 - changing context length to 64 for 4209713
 
+guten-log-rarity-all-no-cut:
+- gutenberg fixed sorted by log rarity all
+
+
+
+
 rarity-guten-end-19k-cbt-p5k:
 
 
