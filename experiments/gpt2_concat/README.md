@@ -476,9 +476,13 @@ guten-rarity-all-2p5k-log-rarity-all-sort:
 guten_rarity_all_iorder_cut_19k:
 - guten rarity all end 2p5k sorted back to inital order to isolate the effect of the cut and order
 
-children_rarity_all_bnc_rarity:
+children-rarity-all-bnc-rarity:
 - bnc_rarity_no_cut.train
 - children_rarity_all_no_cut.train
+
+children-rarity-all-guten-rarity-all-2p5k:
+- children_rarity_all_no_cut.train
+- guten_rarity_all_end_2p5k.train
 
 rarity-guten-end-19k-cbt-p5k:
 
