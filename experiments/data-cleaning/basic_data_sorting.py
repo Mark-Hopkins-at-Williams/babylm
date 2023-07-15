@@ -26,7 +26,7 @@ def create_dataset_dict(train_file_names):
 
 def create_multiple_files_dataset_dict(one_dataset):
     if one_dataset:
-        corpora = ['gutenberg_fixed']
+        corpora = ['aochildes']
     else:
         corpora = ['bnc_spoken', 'open_subtitles', 'aochildes', 
                'children_stories', 'cbt', 'gutenberg_fixed', 
@@ -82,20 +82,19 @@ if not Based_on_target_dataset:
 dict_ind_token_rarity = {i:(sum([token_counts[token] for token in list_tokenized_seqs[i]]) 
                             / len(list_tokenized_seqs[i])) 
                          for i in range(len(list_tokenized_seqs))}
-
-"""#normalizing the counts
+#normalizing the counts
 for token_id, count in token_counts.items():
     token_counts[token_id] = count / total_num_tokens
         
 #calculate the order of raw sentences based on the rarity of the tokens in each dataset      
 dict_ind_token_log_rarity = {i:sum([math.log(token_counts[token]) for token in list_tokenized_seqs[i]]) 
-                         for i in range(len(list_tokenized_seqs))}"""
+                         for i in range(len(list_tokenized_seqs))}
 
 #calculate the order of raw sentences based on token length
 tokenized_seq_lengths = [len(x) for x in tokenized_datasets["train"]["input_ids"]]
 dict_ind_token_length = {i:tokenized_seq_lengths[i] for i in range(len(tokenized_seq_lengths))}
 
-sorted_indecies = sorted(dict_ind_token_rarity, key=lambda k:(dict_ind_token_rarity[k]))
+sorted_indecies = sorted(dict_ind_token_rarity, key=lambda k:(dict_ind_token_log_rarity[k]))
 
 #reorder the raw datatset
 if Based_on_target_dataset:
@@ -105,14 +104,14 @@ else:
     
     
 #theory: preservig the order of setences in a dataset matters
-sorted_indecies = sorted(sorted_indecies[:19491])
+#sorted_indecies = sorted(sorted_indecies[:19491])
 
 sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indecies]
    
 #remove repeating instances from the list preserving the order, and cut
 sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/guten_rarity_all_iorder_cut_19k.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/aochildes_log_rarity_all_no_cut.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
         

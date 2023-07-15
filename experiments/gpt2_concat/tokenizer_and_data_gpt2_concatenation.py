@@ -27,8 +27,8 @@ def create_multiple_files_dataset_dict():
                'switchboard', 'children_stories', 'bnc_spoken', 'simple_wikipedia',
                'wikipedia', 'cbt', 'gutenberg',]
     
-    train_corpora = ['aochildes', 'bnc_spoken', 'open_subtitles',
-               'children_stories', 'cbt', 'guten_rarity_all_end_2p5k', 
+    train_corpora = ['aochildes_log_rarity_all_no_cut', 'bnc_spoken', 'open_subtitles',
+               'children_stories', 'cbt', 'gutenberg_fixed', 
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     
     train_corpora = [f'../babylm_data/babylm_10M/{corpus}.train' for corpus in train_corpora]
@@ -40,8 +40,8 @@ def create_multiple_files_dataset_dict():
     return create_dataset_dict(train_corpora, dev_corpora, test_corpora)
 
 """context length changed"""
-#CONTEXT_LENGTH = 128
-CONTEXT_LENGTH = 512
+CONTEXT_LENGTH = 128
+#CONTEXT_LENGTH = 512
 TOKENIZER = AutoTokenizer.from_pretrained("gpt2")
 
 
