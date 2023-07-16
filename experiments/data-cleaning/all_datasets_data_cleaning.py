@@ -26,13 +26,11 @@ def create_dataset_dict(train_file_names):
 
 def create_multiple_files_dataset_dict(one_dataset):
     if one_dataset:
-        corpora = ['bnc_spoken', 'open_subtitles', 'aochildes', 
+        corpora = ['bnc_rarity_no_cut', 'open_subtitles', 'aochildes', 
                'children_stories', 'cbt', 'gutenberg_fixed', 
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     else:
-        corpora = ['bnc_spoken', 'open_subtitles', 'aochildes', 
-               'children_stories', 'cbt', 'gutenberg_fixed', 
-               'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
+        corpora = []
     print(corpora)
     train_corpora = [f'/mnt/storage/nasimb/babylm_data/babylm_10M/{corpus}.train' for corpus in corpora]
     return create_dataset_dict(train_corpora)
@@ -90,7 +88,7 @@ dict_ind_token_rarity = {i:(sum([token_counts[token] for token in list_tokenized
 tokenized_seq_lengths = [len(x) for x in tokenized_datasets["train"]["input_ids"]]
 dict_ind_token_length = {i:tokenized_seq_lengths[i] for i in range(len(tokenized_seq_lengths))}
 
-sorted_indecies = sorted(dict_ind_token_rarity, key=lambda k:(dict_ind_token_rarity[k]), reverse=True)
+sorted_indecies = sorted(dict_ind_token_rarity, key=lambda k:(dict_ind_token_rarity[k]))
 
 #reorder the raw datatset
 if Based_on_target_dataset:
@@ -100,7 +98,7 @@ else:
 
 
 #theory: preservig the order of setences in a dataset matters
-sorted_indecies = sorted_indecies[48989:]
+sorted_indecies = sorted_indecies[:892298]
 sorted_indecies = sorted(sorted_indecies)
 
 train_dataset_raw_cleaned = [list_train_dataset_raw[i] for i in sorted_indecies]
@@ -108,7 +106,7 @@ train_dataset_raw_cleaned = [list_train_dataset_raw[i] for i in sorted_indecies]
 #remove repeating instances from the list preserving the order => after the cut indivies are known 
 train_dataset_raw_cleaned = list(dict.fromkeys(train_dataset_raw_cleaned))
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/all_base_rarity_all_iorder_8k.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/all_base_bnc_rarity_iorder_est_5p5k_mostf.train', 'w') as f:
     for sent in train_dataset_raw_cleaned:
         f.write(f"{sent}\n")
     

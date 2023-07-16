@@ -536,5 +536,10 @@ cbt-log-rarity-no-cut:
 guten-rarity-all-end-19k-ctx-512-finegrained-eval:
 - same as /mnt/storage/nasimb/babylm_data/babylm_10M/guten_rarity_all_end_2p5k.train, 4ceb2cb, with finegraned eval
 
+all-base-rarity-all-bnc-rarity-iorder-est-5p5k-mostf:
+- all base datasets besides bnc which is rarity sorted
+- 5.5k of most frequent cut based on rarity all order
+- initial order of datasets preserved
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
