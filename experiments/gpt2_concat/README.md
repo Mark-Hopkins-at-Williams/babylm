@@ -533,7 +533,8 @@ children-rarity-all-guten-log-rarity-all:
 cbt-log-rarity-no-cut:
 - trying log rarity rather than log rarity all on cbt, as cbt mostly performsa better with rarity than rarity all, and cbt didn;t perform well with log rarity all
 
-
+guten-rarity-all-end-19k-ctx-512-finegrained-eval:
+- same as /mnt/storage/nasimb/babylm_data/babylm_10M/guten_rarity_all_end_2p5k.train, 4ceb2cb, with finegraned eval
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
