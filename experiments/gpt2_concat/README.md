@@ -579,5 +579,8 @@ bnc-rarity-guten-rarity-all-shuffled:
 simple-wiki-log-rarity-all-no-cut:
 - modified simple wikipedia sorted based on log rarity all
 
+cbt-rarity-all-end-p8k:
+- cbt sorted based on rarity all 800 cut from the most frequent
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
