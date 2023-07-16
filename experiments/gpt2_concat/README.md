@@ -556,5 +556,9 @@ all-base-log-rarity-all-iorder-6p6k-mostf:
 - 6p6k (cut at 739k, with no repetition) of most frequent cut based on log rarity order
 - initial order of datasets preserved
 
+all-base-no-repetition-no-cut:
+- all base datasets passed through the datacleaning pipline but reverted to original order with no cut
+- the only change is the removal of repeated lines
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
