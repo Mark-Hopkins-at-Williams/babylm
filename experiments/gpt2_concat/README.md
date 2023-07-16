@@ -600,7 +600,13 @@ cbt-guten-rarity-all-no-cut:
 - guten_rarity_all_no_cut.train
 
 cbt-guten-rarity-all-no-cut-mixed:
-- cbt and gutenberg sorted based on rarity all togethers
+- cbt and gutenberg sorted based on rarity all together
+
+cbt-rarity-all-guten-rarity-all-shuffled:
+- cbt_rarity_all_no_cut.train
+- guten_rarity_all_no_cut_shuffled.train
+- test to see if shufling increase performance in mixing 
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
