@@ -576,5 +576,8 @@ bnc-rarity-guten-rarity-all-shuffled:
 - guten_rarity_all_no_cut_shuffled.train
 - experiment to see if shuffled datasets perform better when paired together
 
+simple-wiki-log-rarity-all-no-cut:
+- modified simple wikipedia sorted based on log rarity all
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
