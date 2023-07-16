@@ -541,5 +541,10 @@ all-base-rarity-all-bnc-rarity-iorder-est-5p5k-mostf:
 - 5.5k of most frequent cut based on rarity all order
 - initial order of datasets preserved
 
+all-base-rarity-all-children-rarity-all-iorder-est-5p5k-mostf:
+- all base datasets besides children_stories which is rarity all sorted
+- 5.5k of most frequent cut based on rarity all order
+- initial order of datasets preserved
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
