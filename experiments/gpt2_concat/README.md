@@ -599,5 +599,8 @@ cbt-guten-rarity-all-no-cut:
 - cbt_rarity_all_no_cut.train
 - guten_rarity_all_no_cut.train
 
+cbt-guten-rarity-all-no-cut-mixed:
+- cbt and gutenberg sorted based on rarity all togethers
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
