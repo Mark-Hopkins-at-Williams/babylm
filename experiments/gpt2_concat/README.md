@@ -588,6 +588,9 @@ aochildes-guten-log-rarity-all-no-cut:
 cbt-guten-log-rarity-all-no-cut-mixed:
 - cbt and guten log rarity all mixed together
 
+all-base-guten-rarity-all-end-19k-no-repetition:
+- guten_rarity_all_end_2p5k.train
+- guten and all 5.5k cut rarity all performed weel so now guten and no repetition (base: 75.4, 75.8)
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh

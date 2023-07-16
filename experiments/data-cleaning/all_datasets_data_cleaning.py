@@ -27,7 +27,7 @@ def create_dataset_dict(train_file_names):
 def create_multiple_files_dataset_dict(one_dataset):
     if one_dataset:
         corpora = ['bnc_spoken', 'open_subtitles', 'aochildes', 
-               'children_stories', 'cbt', 'gutenberg_fixed', 
+               'children_stories', 'cbt', 'guten_rarity_all_end_2p5k', 
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     else:
         corpora = []
@@ -96,7 +96,8 @@ dict_ind_token_log_rarity = {i:sum([math.log(token_counts[token]) for token in l
 tokenized_seq_lengths = [len(x) for x in tokenized_datasets["train"]["input_ids"]]
 dict_ind_token_length = {i:tokenized_seq_lengths[i] for i in range(len(tokenized_seq_lengths))}
 
-sorted_indecies = sorted(dict_ind_token_rarity, key=lambda k:(dict_ind_token_log_rarity[k]))
+#rarity *********
+sorted_indecies = sorted(dict_ind_token_rarity, key=lambda k:(dict_ind_token_rarity[k]))
 
 #reorder the raw datatset
 if Based_on_target_dataset:
@@ -114,7 +115,7 @@ train_dataset_raw_cleaned = [list_train_dataset_raw[i] for i in sorted_indecies]
 #remove repeating instances from the list preserving the order => after the cut indivies are known 
 train_dataset_raw_cleaned = list(dict.fromkeys(train_dataset_raw_cleaned))
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/all_base_no_repetition_no_cut.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/all_base_guten_rarity_all_end_19k_no_repetition.train', 'w') as f:
     for sent in train_dataset_raw_cleaned:
         f.write(f"{sent}\n")
     
