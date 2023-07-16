@@ -525,5 +525,11 @@ bnc-rarity-no-cut-shuffled:
 guten-rarity-all-cut-20k:
 - search for the best cut of guten rarity all
 
+children-rarity-all-guten-log-rarity-all:
+- children_rarity_all_no_cut.train
+- guten_log_rarity_all_no_cut.train
+- theory different sorts that result in senteces that are similar in diffrerent ways being close together might be combinable
+
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
