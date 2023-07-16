@@ -595,5 +595,9 @@ all-base-guten-rarity-all-end-19k-no-repetition:
 all-base-guten-rarity-all-iorder-rarity-all-est-5p5k-mostf:
 - repetition of gpt2-concat-all-base-rarity-all-iorder-est-5p5k with gutenberg ordered basede on rarity all and no cut
 
+cbt-guten-rarity-all-no-cut:
+- cbt_rarity_all_no_cut.train
+- guten_rarity_all_no_cut.train
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
