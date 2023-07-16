@@ -607,6 +607,8 @@ cbt-rarity-all-guten-rarity-all-shuffled:
 - guten_rarity_all_no_cut_shuffled.train
 - test to see if shufling increase performance in mixing 
 
+cbt-mod-log-rarity-all:
+- as cbt log rarity all performed better than all other orders for cbt, testing cbt-mod with log rarity all order
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
