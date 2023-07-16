@@ -29,12 +29,11 @@ config = AutoConfig.from_pretrained(
 )
 model = GPT2LMHeadModel(config)
 
-"eval_steps chaneged !!!!!"
-#eval_logging_ckp_steps = 500
-eval_logging_ckp_steps = 100
+eval_logging_ckp_steps = 500
+#eval_logging_ckp_steps = 100
 
 args = TrainingArguments(
-    output_dir="guten-rarity-all-end-19k-ctx-512-finegrained-eval",
+    output_dir="all-base-guten-rarity-all-iorder-rarity-all-est-5p5k-mostf",
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     evaluation_strategy="steps",
