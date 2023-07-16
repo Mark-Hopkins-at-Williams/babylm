@@ -568,5 +568,8 @@ rarity-all-guten-2p5k-cbt-p5k-mixed:
 children_bnc_rarity_all_no_cut:
 - children stories and bnc sopken base sorted based on rarity all together
 
+bnc-log-rarity-all-no-cut:
+- bnc spoken sorted based on log rarity all
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
