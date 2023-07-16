@@ -571,5 +571,10 @@ children_bnc_rarity_all_no_cut:
 bnc-log-rarity-all-no-cut:
 - bnc spoken sorted based on log rarity all
 
+bnc-rarity-guten-rarity-all-shuffled:
+- bnc_rarity_no_cut_shuffled.train
+- guten_rarity_all_no_cut_shuffled.train
+- experiment to see if shuffled datasets perform better when paired together
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
