@@ -9,4 +9,4 @@
 
 python /mnt/storage/nasimb/babylm/experiments/gpt2_concat9/train_gpt2_concatenation.py
 cd ../evaluation-pipeline
-python babylm_eval.py /mnt/storage/nasimb/babylm/aggregate-all-best-so-far decoder
+python babylm_eval.py /mnt/storage/nasimb/babylm/cbt-log-rarity-no-cut decoder

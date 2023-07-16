@@ -530,6 +530,10 @@ children-rarity-all-guten-log-rarity-all:
 - guten_log_rarity_all_no_cut.train
 - theory different sorts that result in senteces that are similar in diffrerent ways being close together might be combinable
 
+cbt-log-rarity-no-cut:
+- trying log rarity rather than log rarity all on cbt, as cbt mostly performsa better with rarity than rarity all, and cbt didn;t perform well with log rarity all
+
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
