@@ -585,6 +585,9 @@ cbt-rarity-all-end-p8k:
 aochildes-guten-log-rarity-all-no-cut:
 - aochildes and gutenberg_fixed mixed together sorted with log rarity all 
 
+cbt-guten-log-rarity-all-no-cut-mixed:
+- cbt and guten log rarity all mixed together
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
