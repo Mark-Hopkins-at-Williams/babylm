@@ -560,5 +560,10 @@ all-base-no-repetition-no-cut:
 - all base datasets passed through the datacleaning pipline but reverted to original order with no cut
 - the only change is the removal of repeated lines
 
+rarity-all-guten-2p5k-cbt-p5k-mixed:
+- cbt_rarity_all_end_p5k.train
+- guten_rarity_all_end_2p5k.train
+- sorted (rarity all) together
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
