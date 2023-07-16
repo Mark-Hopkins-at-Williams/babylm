@@ -582,5 +582,9 @@ simple-wiki-log-rarity-all-no-cut:
 cbt-rarity-all-end-p8k:
 - cbt sorted based on rarity all 800 cut from the most frequent
 
+aochildes-guten-log-rarity-all-no-cut:
+- aochildes and gutenberg_fixed mixed together sorted with log rarity all 
+
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
