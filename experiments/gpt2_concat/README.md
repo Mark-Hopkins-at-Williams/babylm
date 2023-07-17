@@ -624,5 +624,10 @@ cbt-mod-guten-mod-rarity-all-mixed:
 cbt-rarity-all-end-1p4k:
 - cbt sorted based on rarity all cut at 1.4k mostf
 
+all-base-rarity-all-cbt-rarity-all-p8k-iorder-est-5p5k:
+- all base datasets besides cbt_rarity_all_end_p8k 
+- sort all based on rarity all, then cut estimated 5p5k 
+- revert to original order of the datasets
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
