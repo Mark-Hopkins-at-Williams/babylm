@@ -639,6 +639,10 @@ dp-guten-rarity-all-end-2p5k-ctx-256:
 concat-cl-rarity-all-base-rarity-all-iorder-5p5k:
 - cl of best order-independent result with concat
 
+concat-cl-log-rarity-all-base-rarity-all-iorder-5p5k:
+- cl of best order-independent result with concat
+- using log rarity for cl sampling
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
