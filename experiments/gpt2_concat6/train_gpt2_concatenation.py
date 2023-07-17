@@ -29,10 +29,12 @@ config = AutoConfig.from_pretrained(
 )
 model = GPT2LMHeadModel(config)
 
-eval_logging_ckp_steps = 500
+"""eval steps changed!!!!!!"""
+#eval_logging_ckp_steps = 500
+eval_logging_ckp_steps = 200
 
 args = TrainingArguments(
-    output_dir="cbt-rarity-all-end-p8k",
+    output_dir="guten-rarity-all-end-2p5k-ctx-256",
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     evaluation_strategy="steps",

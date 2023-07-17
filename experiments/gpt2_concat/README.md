@@ -629,5 +629,8 @@ all-base-rarity-all-cbt-rarity-all-p8k-iorder-est-5p5k:
 - sort all based on rarity all, then cut estimated 5p5k 
 - revert to original order of the datasets
 
+guten-rarity-all-end-2p5k-ctx-256:
+- changing hte contest length of gpt2-concat-guten-rarity-all-end-2p5k to 256
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
