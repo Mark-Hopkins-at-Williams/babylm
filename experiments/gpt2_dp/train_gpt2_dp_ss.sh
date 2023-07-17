@@ -9,4 +9,4 @@
 
 python /mnt/storage/nasimb/babylm/experiments/gpt2_dp/train_gpt2_dp.py
 cd ../evaluation-pipeline
-python babylm_eval.py /mnt/storage/nasimb/babylm/gpt2-dp-guten-rarity-all-5k-2p5k decoder
+python babylm_eval.py /mnt/storage/nasimb/babylm/dp-guten-rarity-all-end-2p5k-ctx-256 decoder
