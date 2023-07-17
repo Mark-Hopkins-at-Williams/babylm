@@ -1,9 +1,37 @@
-from tokenizer_and_data_gpt2_concatenation import create_multiple_files_dataset_dict, tokenize, TOKENIZER, CONTEXT_LENGTH 
+from tokenizer_and_data_gpt2_concatenation import create_multiple_files_dataset_dict
 from transformers import GPT2LMHeadModel, AutoConfig
 from torch.utils.data.dataloader import DataLoader
 from transformers import DataCollatorForLanguageModeling
-from transformers import Trainer, TrainingArguments
+from transformers import Trainer, TrainingArguments, AutoTokenizer
 
+CONTEXT_LENGTH = 128
+
+class Gpt2Parameters:
+    model_arch = "gpt2"
+    is_mlm = False
+    explicit_bos_token = True
+    explicit_eos_token = True
+    pad_token = '[PAD]'
+    context_length = CONTEXT_LENGTH
+
+    def init_model(self, config):
+        return GPT2LMHeadModel(config)
+    
+params = Gpt2Parameters()
+TOKENIZER = AutoTokenizer.from_pretrained(params.model_arch)
+
+def tokenize(element):
+    outputs = TOKENIZER(element["text"], truncation=False)
+    input_batch = []
+    next_segment = []
+    
+    for input_ids in outputs["input_ids"]:
+        next_segment.extend(input_ids)
+        next_segment.append(TOKENIZER.eos_token_id)
+        while len(next_segment) >= CONTEXT_LENGTH:
+            input_batch.append(next_segment[:CONTEXT_LENGTH])
+            next_segment = next_segment[CONTEXT_LENGTH:]
+    return {"input_ids": input_batch}
 
 raw_datasets = create_multiple_files_dataset_dict()
 tokenized_datasets = raw_datasets.map(
@@ -11,7 +39,8 @@ tokenized_datasets = raw_datasets.map(
     load_from_cache_file=False
 )
 
-TOKENIZER.pad_token = TOKENIZER.eos_token
+if params.pad_token is not None:
+        TOKENIZER.add_special_tokens({'pad_token': params.pad_token})
 data_collator = DataCollatorForLanguageModeling(tokenizer=TOKENIZER, mlm=False)
 
 tokenized_datasets.set_format("torch")
@@ -19,20 +48,19 @@ train_dataloader = DataLoader(tokenized_datasets["train"], batch_size=32,  colla
 eval_dataloader = DataLoader(tokenized_datasets["valid"], batch_size=32,  collate_fn=data_collator)
 test_dataloader = DataLoader(tokenized_datasets["test"], batch_size=32,  collate_fn=data_collator)
 
-
 config = AutoConfig.from_pretrained(
-    "gpt2",
-    vocab_size=len(TOKENIZER),
-    n_ctx=CONTEXT_LENGTH,
-    bos_token_id=TOKENIZER.bos_token_id,
-    eos_token_id=TOKENIZER.eos_token_id,
-)
-model = GPT2LMHeadModel(config)
+        params.model_arch,
+        vocab_size=len(TOKENIZER),
+        n_ctx=params.context_length,
+        bos_token_id=TOKENIZER.bos_token_id,
+        eos_token_id=TOKENIZER.eos_token_id,
+    )
+model = params.init_model(config)
 
 eval_logging_ckp_steps = 500
 
 args = TrainingArguments(
-    output_dir="cbt-rarity-all-guten-rarity-all-end-19k-mixed",
+    output_dir="all-base-rarity-all-iorder-5p5k-rerun",
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     evaluation_strategy="steps",

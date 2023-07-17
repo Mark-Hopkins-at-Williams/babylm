@@ -652,5 +652,11 @@ finetune-cl-rarity-all-base-rarity-all-iorder-5p5k:
 cl-rarity-all-base-iorder-5p5k-finetune-guten-rarity-all-2p5k
 - cl model trained on all base rarity all iorder est 5p5k -> finetuned on base plus guten rarity all end 2p5k
 
+all-base-rarity-all-iorder-5p5k-rerun:
+- rerun of the successful results with new training loop
+
+all-base-guten-rarity-all-2p5k-rerun:
+- rerun of the successful results with new training loop
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
