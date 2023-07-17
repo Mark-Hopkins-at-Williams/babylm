@@ -13,13 +13,8 @@ def read_lines(filenames):
         with open(filename) as reader:
             for line in reader:
                 line = line.strip()
-                bar_count =  line.count('|')
-                exclamation_count = line.count('!')
-                line = line.replace("= = =", "")
-                if len(line) > 0 and line[0] == "-":
-                    line = line[1:]
-                if len(line) > 0 and bar_count < 2 and bar_count + exclamation_count < 2:
-                    yield {'text': line}           
+                if len(line) > 0:
+                    yield {'text': line}         
 
 def create_dataset(filenames):
     return Dataset.from_generator(lambda: read_lines(filenames))
@@ -30,11 +25,13 @@ def create_dataset_dict(train_file_names):
     return result
 
 def create_multiple_files_dataset_dict():
-    corpora = ['aochildes_modified_length_14k', 'bnc_spoken', 'open_subtitles',
+    """corpora = ['aochildes_modified_length_14k', 'bnc_spoken', 'open_subtitles',
                'children_stories', 'cbt_modified_rarity_2k_.3k', 'gutenberg_modified_rarity_2.2k_1k', 
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
-    train_corpora = [f'/mnt/storage/nasimb/babylm_data/babylm_10M/{corpus}.train' for corpus in corpora]
+    train_corpora = [f'/mnt/storage/nasimb/babylm_data/babylm_10M/{corpus}.train' for corpus in corpora]"""
+    train_corpora = ["/mnt/storage/nasimb/babylm_data/babylm_10M/all_base_rarity_all_iorder_est_5p5k.train"]
     return create_dataset_dict(train_corpora)
+      
       
 
 CONTEXT_LENGTH = 128
@@ -76,19 +73,19 @@ sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indec
 
 #remove repeating instances from the list preserving the order
 sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))
-    
-#sampling with the 3 root function
+     
 batch_size = 32
 t_competent = 220000 #doubled #5 epochs to competence, 800000 sentences in batches of 32 
-c0_cubed = (1/t_competent)**3
+c0_squared = (1/t_competent)**2
 num_sent = len(sorted_list_train_dataset_raw)
-with open('train_data_log_rarity_cl_10_220k_mod_datasets.txt', 'w') as f:
+with open('train_data_log_rarity_cl_base_rarity_all_iorder_end_5p5k.txt', 'w') as f:
     for t in tqdm(range(t_competent)):
-        c_root_3 = min(1, (t * ((1 - c0_cubed) / t_competent) + c0_cubed) ** (1./3))
-        max_ind = max(batch_size, int(c_root_3 * num_sent))
+        c_sqrt = min(1, math.sqrt(t * ((1 - c0_squared) / t_competent) + c0_squared))
+        max_ind = max(batch_size, int(c_sqrt * num_sent))
         sample_inds = np.random.randint(low = 0,high=max_ind,size=batch_size)
         for ind in sample_inds:
             f.write(f"{sorted_list_train_dataset_raw[ind]}\n")
     f.close()
+        
         
 
