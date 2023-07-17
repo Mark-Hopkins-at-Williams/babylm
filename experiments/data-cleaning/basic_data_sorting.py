@@ -26,10 +26,10 @@ def create_dataset_dict(train_file_names):
 
 def create_multiple_files_dataset_dict(one_dataset):
     if one_dataset:
-        corpora = ['gutenberg_fixed','cbt_rarity_all_end_p8k']
+        corpora = ['guten_mod_rm_2p3_rarity_all_no_cut','cbt_mod_formatting_rarity_all_no_cut']
     else:
         corpora = ['bnc_spoken', 'open_subtitles', 'aochildes', 
-               'children_stories', 'cbt_rarity_all_end_p8k', 'gutenberg_fixed', 
+               'children_stories', 'cbt_mod_formatting_rarity_all_no_cut', 'guten_mod_rm_2p3_rarity_all_no_cut', 
                'qed', 'simple_wiki_mod', 'switchboard', 'wikipedia']
     print(corpora)
     train_corpora = [f'/mnt/storage/nasimb/babylm_data/babylm_10M/{corpus}.train' for corpus in corpora]
@@ -83,14 +83,14 @@ dict_ind_token_rarity = {i:(sum([token_counts[token] for token in list_tokenized
                             / len(list_tokenized_seqs[i])) 
                          for i in range(len(list_tokenized_seqs))}
 
-#normalizing the counts
+"""#normalizing the counts
 for token_id, count in token_counts.items():
     token_counts[token_id] = count / total_num_tokens
         
 #calculate the order of raw sentences based on the rarity of the tokens in each dataset      
 dict_ind_token_log_rarity = {i:sum([math.log(token_counts[token]) for token in list_tokenized_seqs[i]]) 
                          for i in range(len(list_tokenized_seqs))}
-
+"""
 #calculate the order of raw sentences based on token length
 tokenized_seq_lengths = [len(x) for x in tokenized_datasets["train"]["input_ids"]]
 dict_ind_token_length = {i:tokenized_seq_lengths[i] for i in range(len(tokenized_seq_lengths))}
@@ -113,7 +113,7 @@ sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indec
 #remove repeating instances from the list preserving the order, and cut
 sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/cbt_rarity_all_end_p8k_guten_rarity_all_mixed.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/cbt_mod_guten_mod_rarity_all_mixed.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
         

@@ -616,6 +616,11 @@ cbt-rarity-all-guten-rarity-all-end-19k-mixed:
 cbt-rarity-all-end-p8k-guten-rarity-all-mixed:
 - cbt_rarity_all_end_p8k.train and gutenberg_fixed sorted together based on rarity all
 
+cbt-mod-guten-mod-rarity-all-mixed:
+- guten_mod_rm_2p3_rarity_all_no_cut.train
+- cbt_mod_formatting_rarity_all_no_cut.train
+- sorted based on rarity all together
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
