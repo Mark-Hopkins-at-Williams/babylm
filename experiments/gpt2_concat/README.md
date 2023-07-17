@@ -610,5 +610,8 @@ cbt-rarity-all-guten-rarity-all-shuffled:
 cbt-mod-log-rarity-all:
 - as cbt log rarity all performed better than all other orders for cbt, testing cbt-mod with log rarity all order
 
+cbt-rarity-all-guten-rarity-all-end-19k-mixed:
+- guten_rarity_all_end_2p5k.train and cbt sorted based on rarity all together
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
