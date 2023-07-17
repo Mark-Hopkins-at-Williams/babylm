@@ -643,6 +643,9 @@ concat-cl-log-rarity-all-base-rarity-all-iorder-5p5k:
 - cl of best order-independent result with concat
 - using log rarity for cl sampling
 
+cbt_rarity-all-p5k-guten-rarity-all-mixed:
+- cbt rarity all end p5k and gutenberg_fixed sorted based on rarity all together
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
