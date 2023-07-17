@@ -621,6 +621,8 @@ cbt-mod-guten-mod-rarity-all-mixed:
 - cbt_mod_formatting_rarity_all_no_cut.train
 - sorted based on rarity all together
 
+cbt-rarity-all-end-1p4k:
+- cbt sorted based on rarity all cut at 1.4k mostf
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
