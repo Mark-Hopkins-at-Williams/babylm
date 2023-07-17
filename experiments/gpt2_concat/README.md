@@ -636,6 +636,9 @@ dp-guten-rarity-all-end-2p5k-ctx-256:
 - changing hte contest length of gpt2-concat-guten-rarity-all-end-2p5k to 256
 - dp for data augmentation
 
+concat-cl-rarity-all-base-rarity-all-iorder-5p5k:
+- cl of best order-independent result with concat
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh

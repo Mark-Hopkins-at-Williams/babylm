@@ -32,14 +32,14 @@ model = GPT2LMHeadModel(config)
 eval_logging_ckp_steps = 500
 
 args = TrainingArguments(
-    output_dir="aochildes-guten-log-rarity-all-no-cut",
+    output_dir="concat-cl-rarity-all-base-rarity-all-iorder-5p5k",
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     evaluation_strategy="steps",
     eval_steps=eval_logging_ckp_steps,
     logging_steps=eval_logging_ckp_steps,
     gradient_accumulation_steps=1,
-    num_train_epochs=6,
+    num_train_epochs=1, #num epochs changed!!!!!!!
     weight_decay=0.1,
     warmup_steps=1_000,
     lr_scheduler_type="cosine",
