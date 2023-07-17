@@ -9,4 +9,4 @@
 
 python /mnt/storage/nasimb/babylm/experiments/finetune_gpt2_cl_concat/finetune_gpt2_cl_concat.py
 cd ../evaluation-pipeline
-python babylm_eval.py /mnt/storage/nasimb/babylm/gpt2-concat-finetune-cl-mod-datasets-rarity1 decoder
+python babylm_eval.py /mnt/storage/nasimb/babylm/finetune-cl-rarity-all-base-rarity-all-iorder-5p5k decoder

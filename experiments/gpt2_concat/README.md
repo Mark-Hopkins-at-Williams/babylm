@@ -646,6 +646,8 @@ concat-cl-log-rarity-all-base-rarity-all-iorder-5p5k:
 cbt_rarity-all-p5k-guten-rarity-all-mixed:
 - cbt rarity all end p5k and gutenberg_fixed sorted based on rarity all together
 
+finetune-cl-rarity-all-base-rarity-all-iorder-5p5k:
+cl model trained on all base rarity all iorder est 5p5k -> finetuned on hte same dataset 
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh

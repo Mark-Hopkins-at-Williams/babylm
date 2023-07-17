@@ -20,12 +20,12 @@ eval_dataloader = DataLoader(tokenized_datasets["valid"], batch_size=32,  collat
 test_dataloader = DataLoader(tokenized_datasets["test"], batch_size=32,  collate_fn=data_collator)
 
 
-model = GPT2LMHeadModel.from_pretrained("/mnt/storage/nasimb/babylm/gpt2-cl-concat-rarity-mod-datasets-6")
+model = GPT2LMHeadModel.from_pretrained("/mnt/storage/nasimb/babylm/concat-cl-rarity-all-base-rarity-all-iorder-5p5k")
 
 eval_logging_ckp_steps = 500
 
 args = TrainingArguments(
-    output_dir="gpt2-concat-finetune-cl-mod-datasets-rarity1",
+    output_dir="finetune-cl-rarity-all-base-rarity-all-iorder-5p5k",
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     evaluation_strategy="steps",
