@@ -26,9 +26,7 @@ def train(model_dir):
     tokenizer = AutoTokenizer.from_pretrained(params.model_arch)
     
     def tokenize(element):
-        outputs = tokenizer(
-            element["text"], 
-            truncation=False)
+        outputs = tokenizer(element["text"], truncation=False, return_length=True)
         """truncation=True,
         max_length=params.context_length,
         return_overflowing_tokens=True, # if a document goes over the context length, split it into multiple segments
@@ -46,7 +44,8 @@ def train(model_dir):
 
     raw_datasets = create_multiple_files_dataset_dict()
     tokenized_datasets = raw_datasets.map(
-        tokenize, batched=True, remove_columns=raw_datasets["train"].column_names
+        tokenize, batched=True, remove_columns=raw_datasets["train"].column_names,
+        load_from_cache_file=False
     )
  
     if params.pad_token is not None:
