@@ -670,6 +670,8 @@ guten-rarity-all-2p5k-new-loop-truncation-f:
 
 cbt-rarity-all-p8k-new-loop
 
+cbt-rarity-all-p8k-new-loop-2-pad
+adding padding to the model
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
