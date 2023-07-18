@@ -118,8 +118,8 @@ sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indec
 sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))
 
 i = 1
-with open('/mnt/storage/nasimb/babylm_data/wiki_syn.train', 'w') as f:
-    while i < len(sorted_list_train_dataset_raw)//2:
+with open('/mnt/storage/nasimb/babylm_data/wiki_syn_2.train', 'w') as f:
+    while i < len(sorted_list_train_dataset_raw):
         #txt = "The museum features exhibits showcasing"
         mostf_input = sorted_list_train_dataset_raw[-i]
         token_len_mostf_input = dict_ind_token_length[sorted_indecies[-i]]
@@ -133,21 +133,22 @@ with open('/mnt/storage/nasimb/babylm_data/wiki_syn.train', 'w') as f:
         
         model_inputs = tokenizer(start, return_tensors='pt').to(torch_device)
 
-        sample_output = model.generate(
+        output = model.generate(
         **model_inputs,
         max_new_tokens=128,
         do_sample=True,
         top_k=50,
         top_p=0.92,
         no_repeat_ngram_size=2,
+        min_new_tokens = max(5, len(model_inputs['input_ids'])*2/3)
         )
         
-
-        res=tokenizer.decode(sample_output[0], skip_special_tokens=True)
+        res=tokenizer.decode(output[0], skip_special_tokens=True)
         #f.write(f"{i}: {start}\n")
-        f.write(f"{res}\n\n")
+        f.write(f"{res}\n")
 
         i += 1
+        print(i, end = " ")
    
 
         
