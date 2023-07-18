@@ -662,5 +662,9 @@ bnc-rarity-no-cut-new-loop
 
 guten-rarity-all-2p5k-new-loop
 
+guten-rarity-all-2p5k-plus-wiki-syn:
+- best result so far plus the new synthetic data
+
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
