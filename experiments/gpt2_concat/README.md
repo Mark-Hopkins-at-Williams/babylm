@@ -665,6 +665,11 @@ guten-rarity-all-2p5k-new-loop
 guten-rarity-all-2p5k-plus-wiki-syn:
 - best result so far plus the new synthetic data
 
+guten-rarity-all-2p5k-new-loop-truncation-f:
+- changed triaining loop copied from gpt to not truncate in tokenizer
+
+cbt-rarity-all-p8k-new-loop
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
