@@ -1,8 +1,11 @@
 from tokenizer_and_data_gpt2_concatenation import create_multiple_files_dataset_dict
-from transformers import GPT2LMHeadModel, AutoConfig
-from torch.utils.data.dataloader import DataLoader
+import os
+import sys
+from transformers import AutoTokenizer, GPT2LMHeadModel, AutoConfig
 from transformers import DataCollatorForLanguageModeling
-from transformers import Trainer, TrainingArguments, AutoTokenizer
+from transformers import Trainer, TrainingArguments
+os.environ["TOKENIZERS_PARALLELISM"] = "false" # suppresses a transformers warning
+
 
 CONTEXT_LENGTH = 128
 
@@ -16,82 +19,86 @@ class Gpt2Parameters:
 
     def init_model(self, config):
         return GPT2LMHeadModel(config)
-    
-params = Gpt2Parameters()
-TOKENIZER = AutoTokenizer.from_pretrained(params.model_arch)
 
-def tokenize(element):
-    outputs = TOKENIZER(element["text"], truncation=False)
-    input_batch = []
-    next_segment = []
-    
-    for input_ids in outputs["input_ids"]:
-        next_segment.extend(input_ids)
-        next_segment.append(TOKENIZER.eos_token_id)
-        while len(next_segment) >= CONTEXT_LENGTH:
-            input_batch.append(next_segment[:CONTEXT_LENGTH])
-            next_segment = next_segment[CONTEXT_LENGTH:]
-    return {"input_ids": input_batch}
 
-raw_datasets = create_multiple_files_dataset_dict()
-tokenized_datasets = raw_datasets.map(
-    tokenize, batched=True, remove_columns=raw_datasets["train"].column_names,
-    load_from_cache_file=False
-)
+def train(model_dir):
+    params = Gpt2Parameters()
+    tokenizer = AutoTokenizer.from_pretrained(params.model_arch)
 
-if params.pad_token is not None:
-        TOKENIZER.add_special_tokens({'pad_token': params.pad_token})
-data_collator = DataCollatorForLanguageModeling(tokenizer=TOKENIZER, mlm=False)
+    def tokenize(element):
+        outputs = tokenizer(
+            element["text"], 
+            truncation=True,
+            max_length=params.context_length,
+            return_overflowing_tokens=True, # if a document goes over the context length, split it into multiple segments
+            return_length=True,
+        )
+        input_batch = []
+        next_segment = []
+        for length, input_ids in zip(outputs["length"], outputs["input_ids"]):
+            while length + len(next_segment) <= params.context_length:
+                next_segment.extend(input_ids)
+            else:
+                input_batch.append(next_segment)
+                next_segment = []
+                next_segment.extend(input_ids)
+        return {'input_ids': input_batch}
 
-tokenized_datasets.set_format("torch")
-train_dataloader = DataLoader(tokenized_datasets["train"], batch_size=32,  collate_fn=data_collator, shuffle=True)
-eval_dataloader = DataLoader(tokenized_datasets["valid"], batch_size=32,  collate_fn=data_collator)
-test_dataloader = DataLoader(tokenized_datasets["test"], batch_size=32,  collate_fn=data_collator)
-
-config = AutoConfig.from_pretrained(
-        params.model_arch,
-        vocab_size=len(TOKENIZER),
-        n_ctx=params.context_length,
-        bos_token_id=TOKENIZER.bos_token_id,
-        eos_token_id=TOKENIZER.eos_token_id,
+    raw_datasets = create_multiple_files_dataset_dict()
+    tokenized_datasets = raw_datasets.map(
+        tokenize, batched=True, remove_columns=raw_datasets["train"].column_names
     )
-model = params.init_model(config)
+ 
+    if params.pad_token is not None:
+        tokenizer.add_special_tokens({'pad_token': params.pad_token})
 
-eval_logging_ckp_steps = 500
+    data_collator = DataCollatorForLanguageModeling(tokenizer, mlm=params.is_mlm)
 
-args = TrainingArguments(
-    output_dir="all-base-guten-rarity-all-2p5k-rerun",
-    per_device_train_batch_size=32,
-    per_device_eval_batch_size=32,
-    evaluation_strategy="steps",
-    eval_steps=eval_logging_ckp_steps,
-    logging_steps=eval_logging_ckp_steps,
-    gradient_accumulation_steps=1,
-    num_train_epochs=6,
-    weight_decay=0.1,
-    warmup_steps=1_000,
-    lr_scheduler_type="cosine",
-    learning_rate=5e-4,
-    save_steps=eval_logging_ckp_steps,
-    fp16=True,
-    push_to_hub=True,
-)
+    config = AutoConfig.from_pretrained(
+        params.model_arch,
+        vocab_size=len(tokenizer),
+        n_ctx=params.context_length,
+        bos_token_id=tokenizer.bos_token_id,
+        eos_token_id=tokenizer.eos_token_id,
+    )
+    model = params.init_model(config)
 
+    eval_logging_ckp_steps = 500
+    
+    args = TrainingArguments(
+        output_dir=model_dir,
+        per_device_train_batch_size=32,
+        per_device_eval_batch_size=32,
+        evaluation_strategy="steps",
+        eval_steps=eval_logging_ckp_steps,
+        logging_steps=eval_logging_ckp_steps,
+        gradient_accumulation_steps=8,
+        num_train_epochs=9,
+        weight_decay=0.1,
+        warmup_steps=1_000,
+        lr_scheduler_type="cosine",
+        learning_rate=5e-4,
+        save_steps=eval_logging_ckp_steps,
+        fp16=True,
+        push_to_hub=True,
+    )
 
+    trainer = Trainer(
+        model=model,
+        tokenizer=tokenizer,
+        args=args,
+        data_collator=data_collator,
+        train_dataset=tokenized_datasets["train"],
+        eval_dataset=tokenized_datasets["valid"],
+    )
 
-trainer = Trainer(
-    model=model,
-    tokenizer=TOKENIZER,
-    args=args,
-    data_collator=data_collator,
-    train_dataset=tokenized_datasets["train"],
-    eval_dataset=tokenized_datasets["valid"],
-)
+    trainer.train()
+    print("test set evaluation")
+    print("*******************************************")
+    print(trainer.evaluate(eval_dataset=tokenized_datasets["test"]))
+    print("*******************************************")
+    trainer.push_to_hub()
 
-trainer.train()
-print("test set evaluation")
-print("*******************************************")
-print(trainer.evaluate(eval_dataset=tokenized_datasets["test"]))
-print("*******************************************")
-trainer.push_to_hub()
-
+if __name__ == "__main__":
+    train_dir = sys.argv[1]
+    train(train_dir)

@@ -658,5 +658,9 @@ all-base-rarity-all-iorder-5p5k-rerun:
 all-base-guten-rarity-all-2p5k-rerun:
 - rerun of the successful results with new training loop
 
+bnc-rarity-no-cut-new-loop
+
+guten-rarity-all-2p5k-new-loop
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
