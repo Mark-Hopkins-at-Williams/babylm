@@ -41,6 +41,7 @@ tokenized_datasets = raw_datasets.map(
 
 if params.pad_token is not None:
         TOKENIZER.add_special_tokens({'pad_token': params.pad_token})
+        
 data_collator = DataCollatorForLanguageModeling(tokenizer=TOKENIZER, mlm=False)
 
 tokenized_datasets.set_format("torch")
@@ -60,7 +61,7 @@ model = params.init_model(config)
 eval_logging_ckp_steps = 500
 
 args = TrainingArguments(
-    output_dir="all-base-rarity-all-iorder-5p5k-rerun",
+    output_dir="bnc-rarity-no-cut-new-loop",
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     evaluation_strategy="steps",
@@ -76,8 +77,6 @@ args = TrainingArguments(
     fp16=True,
     push_to_hub=True,
 )
-
-
 
 trainer = Trainer(
     model=model,
