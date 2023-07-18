@@ -8,4 +8,4 @@
 #SBATCH --gres=gpu:1        # Request one GPUs
 
 cd ../evaluation-pipeline
-./finetune_all_tasks.sh '/mnt/storage/nasimb/babylm/gpt2-concat-guten-rarity-all-end-2p5k'
+./finetune_all_tasks.sh '/mnt/storage/nasimb/babylm/all-base-guten-rarity-all-2p5k-rerun'
