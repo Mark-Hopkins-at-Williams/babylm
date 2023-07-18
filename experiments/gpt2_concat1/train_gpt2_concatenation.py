@@ -24,15 +24,15 @@ class Gpt2Parameters:
 def train(model_dir):
     params = Gpt2Parameters()
     tokenizer = AutoTokenizer.from_pretrained(params.model_arch)
-
+    
     def tokenize(element):
         outputs = tokenizer(
             element["text"], 
-            truncation=True,
-            max_length=params.context_length,
-            return_overflowing_tokens=True, # if a document goes over the context length, split it into multiple segments
-            return_length=True,
-        )
+            truncation=False)
+        """truncation=True,
+        max_length=params.context_length,
+        return_overflowing_tokens=True, # if a document goes over the context length, split it into multiple segments
+        return_length=True,"""
         input_batch = []
         next_segment = []
         for length, input_ids in zip(outputs["length"], outputs["input_ids"]):
@@ -82,6 +82,7 @@ def train(model_dir):
         fp16=True,
         push_to_hub=True,
     )
+    
 
     trainer = Trainer(
         model=model,
