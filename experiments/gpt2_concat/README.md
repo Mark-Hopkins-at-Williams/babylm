@@ -687,6 +687,9 @@ guten-rarity-all-2p5k-new-loop-pad:
 cbt-guten-rarity-all-mixed-cut-1p6k:
 - cbt and guten sorted together based on rarity all then cut 1600 from most common
 
+cbt-guten-rarity-all-mixed-cut-2p6k:
+- cbt and guten sorted together based on rarity all then cut 2600 from most common
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
