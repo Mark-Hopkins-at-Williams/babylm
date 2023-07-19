@@ -19,19 +19,29 @@ class Gpt2Parameters:
     
 params = Gpt2Parameters()
 TOKENIZER = AutoTokenizer.from_pretrained(params.model_arch)
+TOKENIZER.padding_side = "right"
+TOKENIZER.pad_token = TOKENIZER.eos_token
 
 def tokenize(element):
     outputs = TOKENIZER(element["text"], truncation=False)
     input_batch = []
     next_segment = []
-    
     for input_ids in outputs["input_ids"]:
         next_segment.extend(input_ids)
         next_segment.append(TOKENIZER.eos_token_id)
         while len(next_segment) >= CONTEXT_LENGTH:
             input_batch.append(next_segment[:CONTEXT_LENGTH])
             next_segment = next_segment[CONTEXT_LENGTH:]
-    return {"input_ids": input_batch}
+    
+    attention_batch = []
+    next_segment = []
+    for attention_mask in outputs["attention_mask"]:
+        next_segment.extend(attention_mask)
+        next_segment.append(0)
+        while len(next_segment) >= CONTEXT_LENGTH:
+            attention_batch.append(next_segment[:CONTEXT_LENGTH])
+            next_segment = next_segment[CONTEXT_LENGTH:]
+    return {"input_ids": input_batch, "attention_mask": attention_batch}
 
 raw_datasets = create_multiple_files_dataset_dict()
 tokenized_datasets = raw_datasets.map(
@@ -55,16 +65,16 @@ config = AutoConfig.from_pretrained(
         n_ctx=params.context_length,
         bos_token_id=TOKENIZER.bos_token_id,
         eos_token_id=TOKENIZER.eos_token_id,
-        pad_token_id = TOKENIZER.pad_token_id
     )
 model = params.init_model(config)
 
 model.resize_token_embeddings(len(TOKENIZER)) 
+model.config.pad_token_id = model.config.eos_token_id
 
 eval_logging_ckp_steps = 500
 
 args = TrainingArguments(
-    output_dir="guten-rarity-all-2p5k-new-loop-pad",
+    output_dir="guten-rarity-all-2p5k-new-loop-attention",
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     evaluation_strategy="steps",
