@@ -59,12 +59,12 @@ config = AutoConfig.from_pretrained(
     )
 model = params.init_model(config)
 
-#model.resize_token_embeddings(len(TOKENIZER)) 
+model.resize_token_embeddings(len(TOKENIZER)) 
 
 eval_logging_ckp_steps = 500
 
 args = TrainingArguments(
-    output_dir="cbt-rarity-all-p8k-new-loop-4-pad",
+    output_dir="guten-rarity-all-2p5k-new-loop-pad",
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     evaluation_strategy="steps",

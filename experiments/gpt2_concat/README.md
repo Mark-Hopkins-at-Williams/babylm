@@ -682,5 +682,8 @@ cbt-rarity-all-p8k-new-loop-4-pad
 base-plus-wiki-syn-2-14k:
 - base datasets plus generated gutenberg
 
+guten-rarity-all-2p5k-new-loop-pad:
+
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
