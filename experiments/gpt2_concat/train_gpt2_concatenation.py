@@ -19,7 +19,6 @@ class Gpt2Parameters:
     
 params = Gpt2Parameters()
 TOKENIZER = AutoTokenizer.from_pretrained(params.model_arch)
-#TOKENIZER.pad_token = TOKENIZER.eos_token
 
 def tokenize(element):
     outputs = TOKENIZER(element["text"], truncation=False)
@@ -60,13 +59,12 @@ config = AutoConfig.from_pretrained(
     )
 model = params.init_model(config)
 
-model.resize_token_embeddings(len(TOKENIZER)) 
-#model.config.pad_token_id = model.config.eos_token_id
+#model.resize_token_embeddings(len(TOKENIZER)) 
 
 eval_logging_ckp_steps = 500
 
 args = TrainingArguments(
-    output_dir="cbt-rarity-all-p8k-new-loop-3-pad",
+    output_dir="cbt-rarity-all-p8k-new-loop-4-pad",
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     evaluation_strategy="steps",

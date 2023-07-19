@@ -676,5 +676,8 @@ adding padding to the model
 guten-rarity-all-2p5k-plus-wiki-syn-2-14k
 - best result so far with 14k synthetic data made with wiki prefixes and no filtering
 
+cbt-rarity-all-p8k-new-loop-4-pad
+- removed resize, only addition is mode pad thing
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
