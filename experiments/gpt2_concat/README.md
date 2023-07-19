@@ -679,5 +679,8 @@ guten-rarity-all-2p5k-plus-wiki-syn-2-14k
 cbt-rarity-all-p8k-new-loop-4-pad
 - removed resize, only addition is mode pad thing
 
+base-plus-wiki-syn-2-14k:
+- base datasets plus generated gutenberg
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh

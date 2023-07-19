@@ -5,7 +5,7 @@
 #SBATCH --mem=100G           # Memory pool for all cores (see also --mem-per-cpu)
 #SBATCH -o myoutput_%j.out  # File to which STDOUT will be written, %j inserts jobid
 #SBATCH -e myerrors_%j.err  # File to which STDERR will be written, %j inserts jobid
-#SBATCH --gres=gpu:2        # Request two GPUs
+#SBATCH --gres=gpu:3        # Request two GPUs
 
 python /mnt/storage/nasimb/babylm/experiments/gpt2_concat/train_gpt2_concatenation.py
 cd ../evaluation-pipeline
