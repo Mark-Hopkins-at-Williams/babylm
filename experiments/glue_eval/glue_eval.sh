@@ -5,7 +5,7 @@
 #SBATCH --mem=100G           # Memory pool for all cores (see also --mem-per-cpu)
 #SBATCH -o myoutput_%j.out  # File to which STDOUT will be written, %j inserts jobid
 #SBATCH -e myerrors_%j.err  # File to which STDERR will be written, %j inserts jobid
-#SBATCH --gres=gpu:1        # Request one GPUs
+#SBATCH --gres=gpu:2        # Request one GPUs
 
 cd ../evaluation-pipeline
-./finetune_all_tasks.sh '/mnt/storage/nasimb/babylm/all-base-rarity-all-iorder-5p5k-rerun'
+./finetune_all_tasks.sh '/mnt/storage/nasimb/babylm/cbt-rarity-all-p8k-new-loop-3-pad'
