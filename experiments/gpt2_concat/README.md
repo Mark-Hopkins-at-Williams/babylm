@@ -693,6 +693,8 @@ cbt-guten-rarity-all-mixed-cut-2p6k:
 guten-rarity-all-2p5k-new-loop-attention:
 - added attention mask during tokenization
 
+guten-rarity-all-2p5k-new-loop-2-pad:
+- padding to the right and redo the pad token for tokenizer and model head
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
