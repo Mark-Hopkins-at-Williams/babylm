@@ -725,6 +725,8 @@ aochildes-norm-rarity-log-rarity-no-cut:
 cbt-guten-norm-rarity-log-rarity-mixed:
 - cbt and guten sorted based on new metric together
 
+all-base-norm-rarity-log-rarity:
+- sort all bse datasets based on new metric for comparison sake
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
