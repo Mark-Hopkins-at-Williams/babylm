@@ -702,5 +702,8 @@ cbt-guten-mod-rarity-all-mixed:
 cbt-guten-rarity-all-est-2p5k-guten:
 - cbt and guten sorted together based on rarity all cut where guten is cut
 
+guten-norm-rarity-log-rarity-no-cut:
+- gutenberg fixed sorted based on normalized rarity + log rarity
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
