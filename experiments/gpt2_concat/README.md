@@ -712,5 +712,9 @@ guten-norm-rarity-log-rarity-end-20k:
 cbt-norm-rarity-log-rarity-no-cut:
 - cbt sorted based on normalized rarity + log rarity
 
+cbt-norm-rarity-log-rarity-end-p5k:
+- cbt sorted based on normalized rarity + log rarity
+- cut the last 500 lines
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
