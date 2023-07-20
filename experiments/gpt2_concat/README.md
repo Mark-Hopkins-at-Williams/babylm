@@ -731,5 +731,9 @@ all-base-norm-rarity-log-rarity:
 all-indv-norm-rarity-log-rarity:
 - each dataset seperately soretd based on the new metric
 
+cl-norm-rarity-log-rarity-180k:
+- cl based on new metric
+- size is an average of rarity and log rarity optimal size
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
