@@ -696,7 +696,11 @@ guten-rarity-all-2p5k-new-loop-attention:
 guten-rarity-all-2p5k-new-loop-2-pad:
 - padding to the right and redo the pad token for tokenizer and model head
 
-cbt_guten_mod_rarity_all_mixed
+cbt-guten-mod-rarity-all-mixed:
+- cbt +guten mod 1p7k
+
+cbt-guten-rarity-all-est-2p5k-guten:
+- cbt and guten sorted together based on rarity all cut where guten is cut
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
