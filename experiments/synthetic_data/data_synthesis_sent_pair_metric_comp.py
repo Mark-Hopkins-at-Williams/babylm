@@ -100,6 +100,8 @@ if not Based_on_target_dataset:
 dict_ind_token_rarity = {i:(sum([token_counts[token] for token in list_tokenized_seqs[i]]) 
                             / len(list_tokenized_seqs[i])) 
                          for i in range(len(list_tokenized_seqs))}
+max_rarity = max(list(dict_ind_token_rarity.values()))
+
 
 #normalizing the counts
 normalized_token_counts = Counter()
@@ -107,8 +109,10 @@ for token_id, count in token_counts.items():
     normalized_token_counts[token_id] = count / total_num_tokens
         
 #calculate the order of raw sentences based on the rarity of the tokens in each dataset      
-dict_ind_token_log_rarity = {i:sum([math.log(normalized_token_counts[token]) for token in list_tokenized_seqs[i]]) 
+dict_ind_token_log_rarity = {i: -1 * sum([math.log(normalized_token_counts[token]) for token in list_tokenized_seqs[i]]) 
                          for i in range(len(list_tokenized_seqs))}
+max_log_rarity = max(list(dict_ind_token_log_rarity.values()))
+print(max_log_rarity, max_rarity)
 
 #calculate the order of raw sentences based on token length
 tokenized_seq_lengths = [len(x) for x in tokenized_datasets["train"]["input_ids"]]
@@ -129,10 +133,10 @@ sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indec
 sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))
 
 
-total_sim_metrics_all_sents = [0, 0, 0, 0, 0]
+total_sim_metrics_all_sents = [0, 0, 0, 0, 0, 0, 0, 0]
 
 linei = 1
-with open('/mnt/storage/nasimb/babylm_data/test_syn.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm/experiments/synthetic_data/wiki_sent_pair_metric_comp_norms.train', 'w') as f:
     while linei < 1000: #len(sorted_list_train_dataset_raw)//2:
         mostf_input = sorted_list_train_dataset_raw[-linei]
         start = mostf_input[:min(50, len(mostf_input)//2)].rsplit(" ", 1)[0]
@@ -198,6 +202,22 @@ with open('/mnt/storage/nasimb/babylm_data/test_syn.train', 'w') as f:
                                     + abs(abs(dict_ind_token_log_rarity[k])-abs(log_rarity_res))
                                     + abs(dict_ind_token_length[k] - len_res))
         closest_inputs_rarity_log_rarit_len = top_ten_most_similar_in_dataset(closest_ids_rarity_log_rarity_len)
+        
+        #normalized rarity + log_rarity 
+        closest_ids_normalized_rarity_log_rarity = sorted(dict_ind_token_log_rarity, 
+                                    key=lambda k:abs(abs(dict_ind_token_rarity[k]/max_rarity)-abs(rarity_res/max_rarity))
+                                    + abs(abs(dict_ind_token_log_rarity[k]/max_log_rarity)-abs(log_rarity_res/max_log_rarity)))
+        closest_inputs_normalized_rarity_log_rarity = top_ten_most_similar_in_dataset(closest_ids_normalized_rarity_log_rarity)
+        
+        # mormalized log-rarity as similarity metric
+        closest_ids_normalized_log_rarity = sorted(dict_ind_token_log_rarity, 
+                                           key=lambda k:(abs(abs(dict_ind_token_log_rarity[k]/max_log_rarity)-abs(log_rarity_res/max_log_rarity))))
+        closest_inputs_normalized_log_rarity = top_ten_most_similar_in_dataset(closest_ids_normalized_log_rarity)
+            
+        #normalized rarity
+        closest_ids_normalized_rarity = sorted(dict_ind_token_log_rarity, 
+                                    key=lambda k:abs(abs(dict_ind_token_rarity[k]/max_rarity)-abs(rarity_res/max_rarity)))
+        closest_inputs_normalized_rarity = top_ten_most_similar_in_dataset(closest_ids_normalized_rarity)
            
            
         res_tokenized = TOKENIZER(res, add_special_tokens=False, return_tensors='pt').to(torch_device)
@@ -213,25 +233,28 @@ with open('/mnt/storage/nasimb/babylm_data/test_syn.train', 'w') as f:
                 with torch.no_grad():
                     logits_sent = model(**tokenized_sent).logits[0]   
                 cos_sim = util.pytorch_cos_sim(logits.mean(dim=0), logits_sent.mean(dim=0))
-                total_sim_this_sent += cos_sim
+                total_sim_this_sent += float(cos_sim)
                 f.write(str(j) +  ")  "+ sent + "  sim: " + str(cos_sim) + "\n")
             f.write(f"total sum metric {metric_name} for this sent: {total_sim_this_sent}\n")
             f.write(f"\n")
             return float(total_sim_metric_all_sents) + float(total_sim_this_sent)
         
         metric_names = ["log-rarity", "rarity", "rarity + log-rarity",
-                        "len + rarity", "len + rarity + log-rarity"]
+                        "len + rarity", "len + rarity + log-rarity", 
+                        "normalized(rarity + log-rarity)", "normalized log-rarity", 
+                        "normalized rarity"]
         top_tens = [closest_inputs_log_rarity, closest_inputs_rarity,
                     closest_inputs_rarity_log_rarity, closest_inputs_rarity_len,
-                    closest_inputs_rarity_log_rarit_len]
-        for k in range(5):
+                    closest_inputs_rarity_log_rarit_len, closest_inputs_normalized_rarity_log_rarity,
+                    closest_inputs_normalized_log_rarity, closest_inputs_normalized_rarity]
+        for k in range(8):
             total_sim_metrics_all_sents[k] = compare_top_ten_metric(top_tens[k], 
                                                                     metric_names[k], 
                                                                     total_sim_metrics_all_sents[k])
                    
-        final_sims = [metric_names[i] + ": " + str(total_sim_metrics_all_sents[i]) for i in range(5)] 
+        final_sims = [metric_names[i] + ": " + str(total_sim_metrics_all_sents[i]) for i in range(8)] 
                
-        for i in range(5):
+        for i in range(8):
             f.write(final_sims[i] + "\n")
 
         linei += 1
