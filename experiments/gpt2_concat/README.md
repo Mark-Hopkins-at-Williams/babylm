@@ -728,5 +728,8 @@ cbt-guten-norm-rarity-log-rarity-mixed:
 all-base-norm-rarity-log-rarity:
 - sort all bse datasets based on new metric for comparison sake
 
+all-indv-norm-rarity-log-rarity:
+- each dataset seperately soretd based on the new metric
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
