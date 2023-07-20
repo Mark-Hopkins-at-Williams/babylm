@@ -719,5 +719,8 @@ cbt-norm-rarity-log-rarity-end-p5k:
 bnc-norm-rarity-log-rarity-no-cut:
 - bnc sorted based on normalized rarity + log rarity
 
+aochildes-norm-rarity-log-rarity-no-cut:
+- aochildes sorted based on normalized rarity + log rarity
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
