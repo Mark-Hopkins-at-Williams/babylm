@@ -8,4 +8,5 @@
 #SBATCH --gres=gpu:2        # Request one GPUs
 
 cd ../evaluation-pipeline
-./finetune_all_tasks.sh '/mnt/storage/nasimb/babylm/cbt-rarity-all-p8k-new-loop-3-pad'
+python babylm_eval.py /mnt/storage/nasimb/babylm/guten-rarity-all-2p5k-new-loop-2-pad decoder
+./finetune_all_tasks.sh /mnt/storage/nasimb/babylm/guten-rarity-all-2p5k-new-loop-2-pad
