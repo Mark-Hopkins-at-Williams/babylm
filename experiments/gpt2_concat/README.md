@@ -735,5 +735,8 @@ cl-norm-rarity-log-rarity-180k:
 - cl based on new metric
 - size is an average of rarity and log rarity optimal size
 
+bnc-rarity-no-cut-rerun-new-loop:
+
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
