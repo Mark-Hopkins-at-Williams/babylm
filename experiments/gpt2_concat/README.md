@@ -722,5 +722,9 @@ bnc-norm-rarity-log-rarity-no-cut:
 aochildes-norm-rarity-log-rarity-no-cut:
 - aochildes sorted based on normalized rarity + log rarity
 
+cbt-guten-norm-rarity-log-rarity-mixed:
+- cbt and guten sorted based on new metric together
+
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
