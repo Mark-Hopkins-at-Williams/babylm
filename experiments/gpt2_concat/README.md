@@ -737,6 +737,9 @@ cl-norm-rarity-log-rarity-180k:
 
 bnc-rarity-no-cut-rerun-new-loop:
 
+cbt-rarity-no-cut-rerun-new-loop:
+- rerun plus finetuning
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
