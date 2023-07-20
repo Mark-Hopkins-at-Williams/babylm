@@ -705,5 +705,9 @@ cbt-guten-rarity-all-est-2p5k-guten:
 guten-norm-rarity-log-rarity-no-cut:
 - gutenberg fixed sorted based on normalized rarity + log rarity
 
+guten-norm-rarity-log-rarity-end-20k:
+- gutenberg fixed sorted based on normalized rarity + log rarity
+- cut at 20k
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
