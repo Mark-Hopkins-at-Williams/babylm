@@ -795,6 +795,8 @@ all-base-norm-rarity-neg-log-rarity-rev-no-suffle:
 
 all_base_rarity_neg_log_rarity_rev_no_shuffle
 
+all_base_norm_rarity_neg_log_rarity_end_728k
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
