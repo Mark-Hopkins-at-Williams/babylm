@@ -32,13 +32,13 @@ def create_multiple_files_dataset_dict(bos_tok=None, eos_tok=None):
                'switchboard', 'children_stories', 'bnc_spoken', 'simple_wikipedia',
                'wikipedia', 'cbt', 'gutenberg',]
     
-    """train_corpora = ['aochildes', 'bnc_spoken', 'open_subtitles',
-               'children_stories', 'cbt_norm_rarity_log_rarity_no_cut', 'gutenberg_fixed', 
+    train_corpora = ['aochildes', 'bnc_spoken', 'open_subtitles',
+               'children_stories', 'cbt_rarity_neg_log_rarity_end_p8k', 'gutenberg_fixed', 
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     
-    train_corpora = [f'../babylm_data/babylm_10M/{corpus}.train' for corpus in train_corpora]"""
+    train_corpora = [f'../babylm_data/babylm_10M/{corpus}.train' for corpus in train_corpora]
     #train_corpora = [f'../babylm_data/babylm_10M/rarity_all/{corpus}.train' for corpus in train_corpora]
-    train_corpora = ["/mnt/storage/nasimb/babylm_data/babylm_10M/all_base_norm_rarity_log_rarity_cut_short_728k.train"]
+    #train_corpora = ["/mnt/storage/nasimb/babylm_data/babylm_10M/all_base_norm_rarity_log_rarity_cut_short_728k.train"]
     print(train_corpora)
     dev_corpora = [f'../babylm_data/babylm_dev/{corpus}.dev' for corpus in corpora]
     test_corpora = [f'../babylm_data/babylm_test/{corpus}.test' for corpus in corpora]

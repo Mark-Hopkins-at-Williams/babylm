@@ -9,5 +9,5 @@
 
 python /mnt/storage/nasimb/babylm/experiments/gpt2_concat02/train_gpt2_concatenation.py
 cd ../evaluation-pipeline
-python babylm_eval.py /mnt/storage/nasimb/babylm/all-base-norm-rarity-log-rarity-cut-short-728k decoder
+python babylm_eval.py /mnt/storage/nasimb/babylm/cbt-rarity-neg-log-rarity-end-p8k decoder
 #./finetune_all_tasks.sh /mnt/storage/nasimb/babylm/guten-rarity-all-2p5k-new-loop-pad
