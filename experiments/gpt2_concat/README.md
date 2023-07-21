@@ -768,6 +768,9 @@ guten_rarity_log_rarity_cut_19k:
 guten-rarity-neg-log-rarity-no-cut:
 - guten berg fixed based on raity and log rarity in the same order of least common to most common, log rarity has to be negative, least common has lower probability
 
+cbt-rarity-neg-log-rarity-no-cut:
+- cbt berg fixed based on raity and log rarity in the same order of least common to most common,
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh

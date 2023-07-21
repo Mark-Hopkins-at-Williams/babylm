@@ -33,12 +33,11 @@ def create_multiple_files_dataset_dict(bos_tok=None, eos_tok=None):
                'wikipedia', 'cbt', 'gutenberg',]
     
     train_corpora = ['aochildes', 'bnc_spoken', 'open_subtitles',
-               'children_stories', 'cbt', 'gutenberg_fixed', 
+               'children_stories', 'cbt_rarity_neg_log_rarity', 'gutenberg_fixed', 
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     
-    #changed directory !!!!
-    #train_corpora = [f'../babylm_data/babylm_10M/{corpus}.train' for corpus in train_corpora]
-    train_corpora = [f'../babylm_data/babylm_10M/norm_rarity_log_rarity/{corpus}.train' for corpus in train_corpora]
+    train_corpora = [f'../babylm_data/babylm_10M/{corpus}.train' for corpus in train_corpora]
+    #train_corpora = [f'../babylm_data/babylm_10M/norm_rarity_log_rarity/{corpus}.train' for corpus in train_corpora]
     #train_corpora = ["/mnt/storage/nasimb/babylm_data/babylm_10M/all_base_rarity_all_iorder_est_5p5k.train"]
     print(train_corpora)
     dev_corpora = [f'../babylm_data/babylm_dev/{corpus}.dev' for corpus in corpora]
