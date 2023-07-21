@@ -56,8 +56,6 @@ class Gpt2Parameters:
     
 params = Gpt2Parameters()
 TOKENIZER = AutoTokenizer.from_pretrained(params.model_arch)
-model = AutoModelForCausalLM.from_pretrained("/mnt/storage/nasimb/babylm/all-base-guten-rarity-all-2p5k-rerun").to(torch_device)
-
 
 def tokenize(element):
     outputs = TOKENIZER(element["text"], truncation=False)  
@@ -135,7 +133,10 @@ sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indec
 #remove repeating instances from the list preserving the order, and cut
 sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/all_base_norm_rarity_log_rarity.train', 'w') as f:
+sorted_list_train_dataset_raw = [sorted_list_train_dataset_raw[i] for i in range(len(sorted_list_train_dataset_raw))
+                                 if (i < 728000 or len(sorted_list_train_dataset_raw[i]) > 50)]
+
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/all_base_norm_rarity_log_rarity_cut_short_728k.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
         

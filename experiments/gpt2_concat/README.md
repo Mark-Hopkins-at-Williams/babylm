@@ -746,6 +746,10 @@ guten-raqrity-log-rarity-no-cut:
 cbt-raqrity-log-rarity-no-cut:
 - cbt sorted based on rarity +log rarity no cut
 
+all-base-norm-rarity-log-rarity-cut-short-728k:
+- all base datasets sorted based on nrlr
+- mostf cut after 728k if len input < 50 chars
+
 
 
 Run the following on Appa:
