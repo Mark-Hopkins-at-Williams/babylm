@@ -55,7 +55,7 @@ if params.pad_token is not None:
 data_collator = DataCollatorForLanguageModeling(tokenizer=TOKENIZER, mlm=False)
 
 tokenized_datasets.set_format("torch")
-train_dataloader = DataLoader(tokenized_datasets["train"], batch_size=32,  collate_fn=data_collator, shuffle=True)
+train_dataloader = DataLoader(tokenized_datasets["train"], batch_size=32,  collate_fn=data_collator)#, shuffle=True)
 eval_dataloader = DataLoader(tokenized_datasets["valid"], batch_size=32,  collate_fn=data_collator)
 test_dataloader = DataLoader(tokenized_datasets["test"], batch_size=32,  collate_fn=data_collator)
 
@@ -74,7 +74,7 @@ model.config.pad_token_id = model.config.eos_token_id
 eval_logging_ckp_steps = 500
 
 args = TrainingArguments(
-    output_dir="guten-rarity-neg-log-rarity-no-cut",
+    output_dir="all_base_rarity_neg_log_rarity_rev_no_shuffle", #####no shuffle
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     evaluation_strategy="steps",

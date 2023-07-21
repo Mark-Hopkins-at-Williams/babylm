@@ -793,6 +793,8 @@ all-base-rarity-neg-log-rarity
 all-base-norm-rarity-neg-log-rarity-rev-no-suffle:
 - sort all datasets rev from mostf to leastf for no shuffle
 
+all_base_rarity_neg_log_rarity_rev_no_shuffle
+
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
