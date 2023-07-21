@@ -757,7 +757,10 @@ guten-2p5k-new-loop-tokenize
 - guten rarity all 2p5k
 - new loop tokenize end token when merging removed
 
-
+guten-rarity-log-rarity-mod-2p3k-cut-20k
+- gutenberg sorted based on rarity + log rarity
+- modified to remov refrences
+- cut at 29k based on quality of sent
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
