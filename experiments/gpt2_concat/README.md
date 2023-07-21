@@ -753,6 +753,10 @@ all-base-norm-rarity-log-rarity-cut-short-728k:
 cbt-mod-formatting-noem-rarity-log-rarity:
 - cnt mod sorted based on nrlr
 
+guten-2p5k-new-loop-tokenize
+- guten rarity all 2p5k
+- new loop tokenize end token when merging removed
+
 
 
 Run the following on Appa:
