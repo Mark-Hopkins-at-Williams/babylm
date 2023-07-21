@@ -780,5 +780,8 @@ cbt-norm-rarity-neg-log-rarity:
 guten-norm-rarity-neg-log-rarity-end-19p5k:
 - cut at 19500
 
+guten-rarity-neg-log-rarity-end-19p1k:
+
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
