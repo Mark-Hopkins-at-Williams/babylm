@@ -762,5 +762,8 @@ guten-rarity-log-rarity-mod-2p3k-cut-20k
 - modified to remov refrences
 - cut at 29k based on quality of sent
 
+guten_rarity_log_rarity_cut_19k:
+- gutenberg sorted based on rarity + log rarity, cut at 19k
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
