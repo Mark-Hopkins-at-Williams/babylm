@@ -9,5 +9,5 @@
 
 python /mnt/storage/nasimb/babylm/experiments/gpt2_concat011/train_gpt2_concatenation.py
 cd ../evaluation-pipeline
-python babylm_eval.py /mnt/storage/nasimb/babylm/cbt-rarity-no-cut-rerun-new-loop decoder
-./finetune_all_tasks.sh /mnt/storage/nasimb/babylm/cbt-rarity-no-cut-rerun-new-loop
+python babylm_eval.py /mnt/storage/nasimb/babylm/guten-norm-rarity-neg-log-rarity-end-19p5k decoder
+#./finetune_all_tasks.sh /mnt/storage/nasimb/babylm/cbt-rarity-no-cut-rerun-new-loop

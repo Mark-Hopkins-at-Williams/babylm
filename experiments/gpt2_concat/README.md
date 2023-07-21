@@ -777,5 +777,8 @@ guten-norm-rarity-neg-log-rarity:
 cbt-norm-rarity-neg-log-rarity:
 - same as cbt-rarity-neg-log-rarity-no-cut but log rarity and rarity normalized
 
+guten-norm-rarity-neg-log-rarity-end-19p5k:
+- cut at 19500
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
