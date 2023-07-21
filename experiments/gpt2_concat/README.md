@@ -741,7 +741,11 @@ cbt-rarity-no-cut-rerun-new-loop:
 - rerun plus finetuning
 
 guten-raqrity-log-rarity-no-cut:
-guten sorted based on rarity +log rarity no cut
+- guten sorted based on rarity +log rarity no cut
+
+cbt-raqrity-log-rarity-no-cut:
+- cbt sorted based on rarity +log rarity no cut
+
 
 
 Run the following on Appa:
