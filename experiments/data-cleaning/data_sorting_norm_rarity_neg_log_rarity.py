@@ -33,11 +33,11 @@ def create_multiple_files_dataset_dict(one_dataset):
     if one_dataset:
         corpora = ['bnc_spoken', 'open_subtitles', 'aochildes', 
                'children_stories', 'cbt', 'gutenberg_fixed', 
-               'qed', 'simple_wiki_mod', 'switchboard', 'wikipedia']
+               'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     else:
         corpora = ['bnc_spoken', 'open_subtitles', 'aochildes', 
                'children_stories', 'cbt', 'gutenberg_fixed', 
-               'qed', 'simple_wiki_mod', 'switchboard', 'wikipedia']
+               'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     print(corpora)
     train_corpora = [f'/mnt/storage/nasimb/babylm_data/babylm_10M/{corpus}.train' for corpus in corpora]
     return create_dataset_dict(train_corpora)
