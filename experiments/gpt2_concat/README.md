@@ -795,7 +795,7 @@ all-base-norm-rarity-neg-log-rarity-rev-no-suffle:
 
 all_base_rarity_neg_log_rarity_rev_no_shuffle
 
-all_base_norm_rarity_neg_log_rarity_end_728k
+all_base_norm_rarity_neg_log_rarity_end_741k
 
 
 Run the following on Appa:
