@@ -771,6 +771,8 @@ guten-rarity-neg-log-rarity-no-cut:
 cbt-rarity-neg-log-rarity-no-cut:
 - cbt berg fixed based on raity and log rarity in the same order of least common to most common,
 
+guten-norm-rarity-neg-log-rarity:
+- same as guten-rarity-neg-log-rarity-no-cut, but log rarity and rarity normalized
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
