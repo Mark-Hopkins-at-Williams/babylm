@@ -129,9 +129,9 @@ else:
 sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indecies]
 
 #remove repeating instances from the list preserving the order, and cut
-sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))[:741000]
+sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))[23000:741000]
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/all_base_norm_rarity_neg_log_rarity_end_741k.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/all_base_norm_rarity_neg_log_rarity_23k_end_741k.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
         
