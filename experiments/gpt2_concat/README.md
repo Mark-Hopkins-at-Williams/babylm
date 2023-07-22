@@ -803,5 +803,10 @@ all_base_rarity_neg_log_rarity_22k_end_741k
 
 all_base_norm_rarity_neg_log_rarity_23k_end_741k
 
+guten_norm_rarity_neg_log_rarity_1p5k_end_19p5k
+
+guten-rarity-all-end-2p5k-finegrained:
+-rerun of the most successful result more finegrained
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
