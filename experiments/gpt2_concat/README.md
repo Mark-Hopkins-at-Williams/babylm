@@ -822,5 +822,8 @@ cl-log-rarity-220k:
 cl-rairty-138k:
 70875729 tokens
 
+all-base-rarity:
+no shuffling, no samplig, all base dtatsets
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh

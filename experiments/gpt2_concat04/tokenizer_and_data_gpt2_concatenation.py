@@ -38,7 +38,7 @@ def create_multiple_files_dataset_dict(bos_tok=None, eos_tok=None):
     
     train_corpora = [f'../babylm_data/babylm_10M/{corpus}.train' for corpus in train_corpora]"""
     #train_corpora = [f'../babylm_data/babylm_10M/rarity_all/{corpus}.train' for corpus in train_corpora]
-    train_corpora = ["/mnt/storage/nasimb/babylm_data/babylm_10M/all_base_rarity_neg_log_rarity.train"]
+    train_corpora = ["/mnt/storage/nasimb/babylm_data/babylm_10M/all_base_rarity.train"]
     print(train_corpora)
     dev_corpora = [f'../babylm_data/babylm_dev/{corpus}.dev' for corpus in corpora]
     test_corpora = [f'../babylm_data/babylm_test/{corpus}.test' for corpus in corpora]

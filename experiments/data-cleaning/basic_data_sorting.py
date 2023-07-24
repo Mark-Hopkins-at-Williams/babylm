@@ -26,11 +26,13 @@ def create_dataset_dict(train_file_names):
 
 def create_multiple_files_dataset_dict(one_dataset):
     if one_dataset:
-        corpora = ['cbt_rarity_all_no_cut', 'gutenberg_fixed']
+        corpora = ['bnc_spoken', 'open_subtitles', 'aochildes', 
+               'children_stories', 'cbt', 'gutenberg_fixed', 
+               'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     else:
         corpora = ['bnc_spoken', 'open_subtitles', 'aochildes', 
-               'children_stories', 'cbt_rarity_all_no_cut', 'gutenberg_fixed', 
-               'qed', 'simple_wiki_mod', 'switchboard', 'wikipedia']
+               'children_stories', 'cbt', 'gutenberg_fixed', 
+               'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     print(corpora)
     train_corpora = [f'/mnt/storage/nasimb/babylm_data/babylm_10M/{corpus}.train' for corpus in corpora]
     return create_dataset_dict(train_corpora)
@@ -79,7 +81,7 @@ if not Based_on_target_dataset:
     list_tokenized_seqs = list(tokenized_datasets_one["train"]["input_ids"])
 
 #calculate the order of raw sentences based on the rarity of the tokens in each dataset      
-dict_ind_token_rarity = {i:(sum([token_counts[token] for token in list_tokenized_seqs[i]]) 
+dict_ind_token_rarity = {i:-1 * (sum([token_counts[token] for token in list_tokenized_seqs[i]]) 
                             / len(list_tokenized_seqs[i])) 
                          for i in range(len(list_tokenized_seqs))}
 
@@ -88,7 +90,7 @@ for token_id, count in token_counts.items():
     token_counts[token_id] = count / total_num_tokens
         
 #calculate the order of raw sentences based on the rarity of the tokens in each dataset      
-dict_ind_token_log_rarity = {i:sum([math.log(token_counts[token]) for token in list_tokenized_seqs[i]]) 
+dict_ind_token_log_rarity = {i:-1 * sum([math.log(token_counts[token]) for token in list_tokenized_seqs[i]]) 
                          for i in range(len(list_tokenized_seqs))}
 """
 #calculate the order of raw sentences based on token length
@@ -111,9 +113,9 @@ else:
 sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indecies]
    
 #remove repeating instances from the list preserving the order, and cut
-sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))[:44228]
+sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/cbt_guten_rarity_all_est_2p5k_guten.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/all_base_rarity.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
         
