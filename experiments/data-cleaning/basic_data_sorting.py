@@ -44,7 +44,7 @@ def tokenize(element):
     return {"input_ids": outputs["input_ids"]}
 
 
-Based_on_target_dataset = True
+Based_on_target_dataset = False
 
 if not Based_on_target_dataset:
 
@@ -95,8 +95,8 @@ dict_ind_token_log_rarity = {i:-1 * sum([math.log(token_counts[token]) for token
 tokenized_seq_lengths = [len(x) for x in tokenized_datasets["train"]["input_ids"]]
 dict_ind_token_length = {i:tokenized_seq_lengths[i] for i in range(len(tokenized_seq_lengths))}
 
-#length*******
-sorted_indecies = sorted(dict_ind_token_length, key=lambda k:(dict_ind_token_length[k]))
+#rarity*******
+sorted_indecies = sorted(dict_ind_token_rarity, key=lambda k:(dict_ind_token_rarity[k]))
 
 #reorder the raw datatset
 if Based_on_target_dataset:
@@ -113,7 +113,7 @@ sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indec
 #remove repeating instances from the list preserving the order, and cut
 sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))
 
-with open('/mnt/storage/nasimb/babylm_data/babylm_10M/guten_len.train', 'w') as f:
+with open('/mnt/storage/nasimb/babylm_data/babylm_10M/guten_rarity.train', 'w') as f:
     for sent in sorted_list_train_dataset_raw:
         f.write(f"{sent}\n")
         
