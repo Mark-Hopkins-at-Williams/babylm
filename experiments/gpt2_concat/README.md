@@ -814,9 +814,13 @@ guten-rarity-all-beg-2k:
 - guten sprted absed on rarity all 2k cut from most frequent
 
 cl-length-260k
+64994301 tokens
 
 cl-log-rarity-220k:
-13187063 tokens
+55404592 tokens
+
+cl-rairty-138k:
+70875729 tokens
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
