@@ -827,5 +827,7 @@ no shuffling, no samplig, all base dtatsets
 
 all-base-log-rarity
 
+all-base-len
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
