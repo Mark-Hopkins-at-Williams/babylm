@@ -849,5 +849,8 @@ aochildes-log-rarity
 
 aochildes-rarity
 
+guten-no-merge-rarity:
+og gutenberg file rarity sorted
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
