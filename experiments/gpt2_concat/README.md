@@ -815,5 +815,8 @@ guten-rarity-all-beg-2k:
 
 cl-length-260k
 
+cl-log-rarity-220k:
+13187063 tokens
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
