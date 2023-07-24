@@ -856,6 +856,9 @@ guten-no-merge-log-rarity
 
 guten-no-merge-len
 
+cbt-rarity-guten-no-merge
+cbt rarity sorted
+gutenberg not modifeid
 
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
