@@ -829,5 +829,7 @@ all-base-log-rarity
 
 all-base-len
 
+guten-len
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
