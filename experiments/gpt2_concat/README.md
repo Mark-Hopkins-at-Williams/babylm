@@ -834,5 +834,7 @@ guten-len
 guten-rarity:
 rarity all 
 
+guten-log-rarity
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
