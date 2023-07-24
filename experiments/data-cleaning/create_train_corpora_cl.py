@@ -87,8 +87,8 @@ tokenized_seq_lengths = [len(x) for x in tokenized_datasets["train"]["input_ids"
 dict_ind_token_length = {i:tokenized_seq_lengths[i] for i in range(len(tokenized_seq_lengths))}
 
 #soritng based log rarity!!
-sorted_indecies = sorted(dict_ind_token_length, 
-                         key=lambda k:dict_ind_token_length[k])
+sorted_indecies = sorted(dict_ind_token_log_rarity, 
+                         key=lambda k:dict_ind_token_log_rarity[k])
 
 #reorder the raw datatset
 list_train_dataset_raw = list(raw_datasets["train"]["text"])
@@ -98,12 +98,12 @@ sorted_list_train_dataset_raw = [list_train_dataset_raw[i] for i in sorted_indec
 final_sorted_list_train_dataset_raw = list(dict.fromkeys(sorted_list_train_dataset_raw))
 
 batch_size = 32
-t_competent = 260000 
+t_competent = 220000 
 c0_squared = (1/t_competent)**2
 num_sent = len(final_sorted_list_train_dataset_raw)
 total_tokens = 0
 random.seed(1)
-file_name = 'train_data_cl_length_260k.txt'
+file_name = 'train_data_cl_log_rarity_220k.txt'
 with open(file_name, 'w') as f:
     for t in tqdm(range(t_competent)):
         c_sqrt = min(1, math.sqrt(t * ((1 - c0_squared) / t_competent) + c0_squared))
