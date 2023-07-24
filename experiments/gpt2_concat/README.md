@@ -845,5 +845,7 @@ cbt-len
 
 aochildes-len
 
+aochildes-log-rarity
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
