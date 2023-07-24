@@ -825,5 +825,7 @@ cl-rairty-138k:
 all-base-rarity:
 no shuffling, no samplig, all base dtatsets
 
+all-base-log-rarity
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
