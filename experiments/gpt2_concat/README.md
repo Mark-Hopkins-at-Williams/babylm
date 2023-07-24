@@ -854,5 +854,8 @@ og gutenberg file rarity sorted
 
 guten-no-merge-log-rarity
 
+guten-no-merge-len
+
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
