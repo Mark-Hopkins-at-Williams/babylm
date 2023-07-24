@@ -813,5 +813,7 @@ all-base-rerun-new-loop
 guten-rarity-all-beg-2k:
 - guten sprted absed on rarity all 2k cut from most frequent
 
+cl-length-260k
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
