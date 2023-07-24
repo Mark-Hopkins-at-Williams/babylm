@@ -841,5 +841,7 @@ cbt-log-rarity
 cbt-rarity:
  rarity all new loop
 
+cbt-len
+
 Run the following on Appa:
     sbatch train_gpt2_concatenation_ss.sh
