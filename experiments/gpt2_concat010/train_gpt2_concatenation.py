@@ -74,7 +74,7 @@ model.config.pad_token_id = model.config.eos_token_id
 eval_logging_ckp_steps = 500
 
 args = TrainingArguments(
-    output_dir="cbt-norm-rarity-neg-log-rarity",
+    output_dir="cbt-log-rarity",
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     evaluation_strategy="steps",
