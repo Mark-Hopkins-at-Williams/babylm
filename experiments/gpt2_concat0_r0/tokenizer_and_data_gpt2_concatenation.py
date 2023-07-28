@@ -27,16 +27,19 @@ def create_dataset_dict(train_files, valid_files, test_files, bos_tok, eos_tok):
     return result
 
 
-def create_multiple_files_dataset_dict(bos_tok=None, eos_tok=None):
+def create_multiple_files_dataset_dict(rarity_dataset, bos_tok=None, eos_tok=None):
     corpora = ['aochildes', 'open_subtitles', 'qed', 
                'switchboard', 'children_stories', 'bnc_spoken', 'simple_wikipedia',
                'wikipedia', 'cbt', 'gutenberg',]
     
     train_corpora = ['aochildes', 'bnc_spoken', 'open_subtitles',
-               'children_stories', '10M_rarity/cbt_rarity', 'gutenberg_fixed', 
+               'children_stories', 'gutenberg_fixed', 'cbt',
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
     
+    train_corpora = [dataset for dataset in train_corpora if dataset != rarity_dataset]
+    
     train_corpora = [f'../babylm_data/babylm_10M/{corpus}.train' for corpus in train_corpora]
+    train_corpora.append(f"/mnt/storage/nasimb/babylm_data/10M_rarity/{rarity_dataset}_rarity.train")
     #train_corpora = [f'../babylm_data/babylm_10M/rarity_all/{corpus}.train' for corpus in train_corpora]
     #train_corpora = ["/mnt/storage/nasimb/babylm_data/babylm_10M/all_base_rarity_all_iorder_est_5p5k.train"]
     print(train_corpora)
