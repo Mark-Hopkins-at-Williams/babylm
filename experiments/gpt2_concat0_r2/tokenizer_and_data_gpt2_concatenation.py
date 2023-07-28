@@ -27,14 +27,16 @@ def create_dataset_dict(train_files, valid_files, test_files, bos_tok, eos_tok):
     return result
 
 
-def create_multiple_files_dataset_dict(bos_tok=None, eos_tok=None):
+def create_multiple_files_dataset_dict(miss_dataset, bos_tok=None, eos_tok=None):
     corpora = ['aochildes', 'open_subtitles', 'qed', 
                'switchboard', 'children_stories', 'bnc_spoken', 'simple_wikipedia',
                'wikipedia', 'cbt', 'gutenberg',]
     
-    train_corpora = ['aochildes', '10M_log_rarity/bnc_spoken_log_rarity', 'open_subtitles',
-               'children_stories', 'cbt', 'gutenberg_fixed', 
+    train_corpora = ['aochildes', 'bnc_spoken', 'open_subtitles',
+               'children_stories', 'gutenberg_fixed', 'cbt',
                'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']
+    
+    train_corpora = [dataset for dataset in train_corpora if dataset != miss_dataset]
     
     train_corpora = [f'../babylm_data/babylm_10M/{corpus}.train' for corpus in train_corpora]
     #train_corpora = [f'../babylm_data/babylm_10M/rarity_all/{corpus}.train' for corpus in train_corpora]
