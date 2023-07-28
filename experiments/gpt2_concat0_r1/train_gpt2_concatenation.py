@@ -3,6 +3,9 @@ from transformers import GPT2LMHeadModel, AutoConfig
 from torch.utils.data.dataloader import DataLoader
 from transformers import DataCollatorForLanguageModeling
 from transformers import Trainer, TrainingArguments, AutoTokenizer
+from transformers import set_seed
+
+set_seed(1)
 
 CONTEXT_LENGTH = 128
 
@@ -17,100 +20,101 @@ class Gpt2Parameters:
     def init_model(self, config):
         return GPT2LMHeadModel(config)
     
-params = Gpt2Parameters()
-TOKENIZER = AutoTokenizer.from_pretrained(params.model_arch)
-TOKENIZER.padding_side = "right"
-TOKENIZER.pad_token = TOKENIZER.eos_token
-
-def tokenize(element):
-    outputs = TOKENIZER(element["text"], truncation=False)
-    input_batch = []
-    next_segment = []
-    for input_ids in outputs["input_ids"]:
-        next_segment.extend(input_ids)
-        next_segment.append(TOKENIZER.eos_token_id)
-        while len(next_segment) >= CONTEXT_LENGTH:
-            input_batch.append(next_segment[:CONTEXT_LENGTH])
-            next_segment = next_segment[CONTEXT_LENGTH:]
+def train_model(log_rarity_dataset):
     
-    """attention_batch = []
-    next_segment = []
-    for attention_mask in outputs["attention_mask"]:
-        next_segment.extend(attention_mask)
-        next_segment.append(0)
-        while len(next_segment) >= CONTEXT_LENGTH:
-            attention_batch.append(next_segment[:CONTEXT_LENGTH])
-            next_segment = next_segment[CONTEXT_LENGTH:]"""
-    return {"input_ids": input_batch}#, "attention_mask": attention_batch}
+    params = Gpt2Parameters()
+    TOKENIZER = AutoTokenizer.from_pretrained(params.model_arch)
+    TOKENIZER.padding_side = "right"
+    TOKENIZER.pad_token = TOKENIZER.eos_token
 
-raw_datasets = create_multiple_files_dataset_dict()
-tokenized_datasets = raw_datasets.map(
-    tokenize, batched=True, remove_columns=raw_datasets["train"].column_names,
-    load_from_cache_file=False
-)
-
-if params.pad_token is not None:
-        TOKENIZER.add_special_tokens({'pad_token': params.pad_token})
+    def tokenize(element):
+        outputs = TOKENIZER(element["text"], truncation=False)
+        input_batch = []
+        next_segment = []
+        for input_ids in outputs["input_ids"]:
+            next_segment.extend(input_ids)
+            next_segment.append(TOKENIZER.eos_token_id)
+            while len(next_segment) >= CONTEXT_LENGTH:
+                input_batch.append(next_segment[:CONTEXT_LENGTH])
+                next_segment = next_segment[CONTEXT_LENGTH:]
         
-data_collator = DataCollatorForLanguageModeling(tokenizer=TOKENIZER, mlm=False)
+        return {"input_ids": input_batch}
 
-tokenized_datasets.set_format("torch")
-train_dataloader = DataLoader(tokenized_datasets["train"], batch_size=32,  collate_fn=data_collator, shuffle=True)
-eval_dataloader = DataLoader(tokenized_datasets["valid"], batch_size=32,  collate_fn=data_collator)
-test_dataloader = DataLoader(tokenized_datasets["test"], batch_size=32,  collate_fn=data_collator)
-
-config = AutoConfig.from_pretrained(
-        params.model_arch,
-        vocab_size=len(TOKENIZER),
-        n_ctx=params.context_length,
-        bos_token_id=TOKENIZER.bos_token_id,
-        eos_token_id=TOKENIZER.eos_token_id,
+    raw_datasets = create_multiple_files_dataset_dict(log_rarity_dataset)
+    tokenized_datasets = raw_datasets.map(
+        tokenize, batched=True, remove_columns=raw_datasets["train"].column_names,
+        load_from_cache_file=False
     )
-model = params.init_model(config)
 
-model.resize_token_embeddings(len(TOKENIZER)) 
-model.config.pad_token_id = model.config.eos_token_id
+    if params.pad_token is not None:
+            TOKENIZER.add_special_tokens({'pad_token': params.pad_token})
+            
+    data_collator = DataCollatorForLanguageModeling(tokenizer=TOKENIZER, mlm=False)
 
-eval_logging_ckp_steps = 500
+    tokenized_datasets.set_format("torch")
 
-args = TrainingArguments(
-    output_dir="bnc-rarity",
-    per_device_train_batch_size=32,
-    per_device_eval_batch_size=32,
-    evaluation_strategy="steps",
-    eval_steps=eval_logging_ckp_steps,
-    logging_steps=eval_logging_ckp_steps,
-    gradient_accumulation_steps=1,
-    num_train_epochs=6,
-    weight_decay=0.1,
-    warmup_steps=1_000,
-    lr_scheduler_type="cosine",
-    learning_rate=5e-4,
-    save_steps=eval_logging_ckp_steps,
-    fp16=True,
-    push_to_hub=True,
-)
+    config = AutoConfig.from_pretrained(
+            params.model_arch,
+            vocab_size=len(TOKENIZER),
+            n_ctx=params.context_length,
+            bos_token_id=TOKENIZER.bos_token_id,
+            eos_token_id=TOKENIZER.eos_token_id,
+        )
+    model = params.init_model(config)
 
-trainer = Trainer(
-    model=model,
-    tokenizer=TOKENIZER,
-    args=args,
-    data_collator=data_collator,
-    train_dataset=tokenized_datasets["train"],
-    eval_dataset=tokenized_datasets["valid"],
-)
+    model.resize_token_embeddings(len(TOKENIZER)) 
+    model.config.pad_token_id = model.config.eos_token_id
 
-trainer.train()
-print("test set evaluation")
-print("*******************************************")
-print(trainer.evaluate(eval_dataset=tokenized_datasets["test"]))
-print("*******************************************")
-trainer.push_to_hub()
+    eval_logging_ckp_steps = 500
 
-from subprocess import Popen, PIPE, CalledProcessError
-import os
-os.chdir('/mnt/storage/nasimb/evaluation-pipeline')
-with Popen(['python','/mnt/storage/nasimb/evaluation-pipeline/babylm_eval.py', '/mnt/storage/nasimb/babylm/bnc-rarity', 'decoder'], stdout=PIPE, universal_newlines=True) as p:
-    for line in p.stdout:
-        print(line, end='')
+    model_name = f"{log_rarity_dataset}-log-rarity-seed"
+    print(f"training model: {model_name}")
+    print("######################################################################")
+    
+    args = TrainingArguments(
+        output_dir=model_name,
+        per_device_train_batch_size=32,
+        per_device_eval_batch_size=32,
+        evaluation_strategy="steps",
+        eval_steps=eval_logging_ckp_steps,
+        logging_steps=eval_logging_ckp_steps,
+        gradient_accumulation_steps=1,
+        num_train_epochs=6,
+        weight_decay=0.1,
+        warmup_steps=1_000,
+        lr_scheduler_type="cosine",
+        learning_rate=5e-4,
+        save_steps=eval_logging_ckp_steps,
+        fp16=True,
+        push_to_hub=True,
+    )
+
+    trainer = Trainer(
+        model=model,
+        tokenizer=TOKENIZER,
+        args=args,
+        data_collator=data_collator,
+        train_dataset=tokenized_datasets["train"],
+        eval_dataset=tokenized_datasets["valid"],
+    )
+
+    trainer.train()
+    print("test set evaluation")
+    print("*******************************************")
+    print(trainer.evaluate(eval_dataset=tokenized_datasets["test"]))
+    print("*******************************************")
+    trainer.push_to_hub()
+
+    from subprocess import Popen, PIPE, CalledProcessError
+    import os
+    os.chdir('/mnt/storage/nasimb/evaluation-pipeline')
+    with Popen(['python','/mnt/storage/nasimb/evaluation-pipeline/babylm_eval.py', f'/mnt/storage/nasimb/babylm/{model_name}', 'decoder'], stdout=PIPE, universal_newlines=True) as p:
+        for line in p.stdout:
+            print(line, end='')
+  
+log_rarity_corpora = ['aochildes', 'bnc_spoken', 'open_subtitles',
+               'children_stories', 'gutenberg_fixed', 'cbt'
+               'qed', 'simple_wikipedia', 'switchboard', 'wikipedia']          
+for dataset in log_rarity_corpora:
+    train_model(dataset)
 
